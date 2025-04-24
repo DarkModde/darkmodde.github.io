@@ -1,558 +1,113 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord Info</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/pt-br.min.js"></script>
-    <style>
-        :root {
-            --bg-color: #36393f;
-            --card-bg: #2f3136;
-            --text-color: #dcddde;
-            --header-color: #ffffff;
-            --accent-color: #5865f2;
-            --error-color: #ed4245;
-            --success-color: #57f287;
-        }
-        
-        body {
-            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .tab-container {
-            display: flex;
-            margin-bottom: 20px;
-        }
-        
-        .tab {
-            padding: 10px 20px;
-            background-color: var(--card-bg);
-            cursor: pointer;
-            border-radius: 5px 5px 0 0;
-            margin-right: 5px;
-        }
-        
-        .tab.active {
-            background-color: var(--accent-color);
-            color: white;
-        }
-        
-        .content {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #202225;
-            background-color: #40444b;
-            color: var(--text-color);
-            font-size: 14px;
-        }
-        
-        button {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
-        
-        button:hover {
-            background-color: #4752c4;
-        }
-        
-        .result {
-            margin-top: 20px;
-            display: none;
-        }
-        
-        .error {
-            color: var(--error-color);
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        
-        .success {
-            color: var(--success-color);
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        
-        .server-info, .user-info {
-            margin-top: 20px;
-        }
-        
-        .info-card {
-            background-color: #40444b;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 15px;
-        }
-        
-        .server-header, .user-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .server-icon, .user-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-            background-color: #5865f2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: white;
-        }
-        
-        .server-name, .user-name {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--header-color);
-        }
-        
-        .server-description {
-            margin-top: 10px;
-            color: #b9bbbe;
-        }
-        
-        .server-stats {
-            display: flex;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .stat {
-            background-color: #2f3136;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .stat-label {
-            font-size: 12px;
-            color: #b9bbbe;
-        }
-        
-        .stat-value {
-            font-size: 16px;
-            font-weight: bold;
-            color: var(--header-color);
-        }
-        
-        .banner-img {
-            width: 100%;
-            max-height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        #tabContent > div {
-            display: none;
-        }
-        
-        #tabContent > div.active {
-            display: block;
-        }
-        
-        .loader {
-            border: 4px solid #40444b;
-            border-radius: 50%;
-            border-top: 4px solid var(--accent-color);
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-            display: none;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        @media (max-width: 600px) {
-            .server-stats {
-                flex-direction: column;
-            }
-            
-            .stat {
-                margin-right: 0;
-                margin-bottom: 10px;
-                width: 100%;
-            }
-        }
-        
-        .api-config {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #40444b;
-        }
-        
-        #apiToken {
-            font-family: monospace;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>DarkMode</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    #intro {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 10;
+    }
+    #main {
+      display: none;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.imgur.com/zkkih2S.gif') no-repeat center center fixed;
+      background-size: cover;
+    }
+    #profile {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      color: white;
+    }
+    #profile img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+    }
+    #profile h1 {
+      margin: 1rem 0;
+    }
+    .social-buttons a {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 0.5rem 1rem;
+      background: #5865F2;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .social-buttons a:hover {
+      background: #4752C4;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Discord Info</h1>
-        
-        <div class="tab-container">
-            <div class="tab active" data-tab="serverInfo">Informações do Servidor</div>
-            <div class="tab" data-tab="userInfo">Informações do Usuário</div>
-            <div class="tab" data-tab="settings">Configurações</div>
-        </div>
-        
-        <div id="tabContent" class="content">
-            <div id="serverInfo" class="active">
-                <h2>Informações do Servidor Discord</h2>
-                <div class="form-group">
-                    <label for="inviteLink">Link de Convite:</label>
-                    <input type="text" id="inviteLink" placeholder="Ex: https://discord.gg/abcdef">
-                </div>
-                <button id="getServerInfo">Buscar Informações</button>
-                
-                <div id="serverLoader" class="loader"></div>
-                
-                <div id="serverError" class="error hidden"></div>
-                
-                <div id="serverResult" class="result">
-                    <div class="info-card">
-                        <div class="server-header">
-                            <div id="serverIcon" class="server-icon"></div>
-                            <div>
-                                <div id="serverName" class="server-name"></div>
-                                <div id="serverDescription" class="server-description"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="server-stats">
-                            <div class="stat">
-                                <div class="stat-label">Membros</div>
-                                <div id="memberCount" class="stat-value"></div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-label">Online</div>
-                                <div id="onlineCount" class="stat-value"></div>
-                            </div>
-                            <div id="expirationStat" class="stat hidden">
-                                <div class="stat-label">Expira em</div>
-                                <div id="expiresAt" class="stat-value"></div>
-                            </div>
-                            <div id="timeRemainingStat" class="stat hidden">
-                                <div class="stat-label">Tempo Restante</div>
-                                <div id="timeRemaining" class="stat-value"></div>
-                            </div>
-                        </div>
-                        
-                        <img id="serverBanner" class="banner-img hidden" alt="Banner do servidor">
-                    </div>
-                </div>
-            </div>
-            
-            <div id="userInfo">
-                <h2>Informações do Usuário Discord</h2>
-                <div class="form-group">
-                    <label for="userId">ID do Usuário:</label>
-                    <input type="text" id="userId" placeholder="Ex: 123456789012345678">
-                </div>
-                <button id="getUserInfo">Buscar Informações</button>
-                
-                <div id="userLoader" class="loader"></div>
-                
-                <div id="userError" class="error hidden"></div>
-                
-                <div id="userResult" class="result">
-                    <div class="info-card">
-                        <div class="user-header">
-                            <div id="userAvatar" class="user-avatar"></div>
-                            <div>
-                                <div id="userName" class="user-name"></div>
-                                <div id="userIdDisplay"></div>
-                            </div>
-                        </div>
-                        
-                        <img id="userBanner" class="banner-img hidden" alt="Banner do usuário">
-                    </div>
-                </div>
-            </div>
-            
-            <div id="settings">
-                <h2>Configurações da API</h2>
-                <div class="form-group">
-                    <label for="apiToken">Token do Bot Discord:</label>
-                    <input type="text" id="apiToken" placeholder="Informe o token do seu bot">
-                </div>
-                <button id="saveSettings">Salvar Configurações</button>
-                <div id="settingsSuccess" class="success hidden">Configurações salvas com sucesso!</div>
-                
-                <div class="api-config">
-                    <h3>Como configurar</h3>
-                    <p>Para usar esta aplicação, você precisa:</p>
-                    <ol>
-                        <li>Criar um bot no <a href="https://discord.com/developers/applications" target="_blank" style="color: var(--accent-color);">Discord Developer Portal</a></li>
-                        <li>Copiar o token do bot e colá-lo no campo acima</li>
-                        <li>Garantir que seu bot tenha as permissões necessárias</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
+  <div id="intro">Clique aqui</div>
+  <div id="main">
+    <div id="profile">
+      <img id="avatar" src="" alt="Avatar">
+      <h1 id="username"></h1>
+      <div class="social-buttons">
+        <a href="https://discord.gg/platformdestroyer" target="_blank">Discord</a>
+        <a href="https://steamcommunity.com/id/Dark-Mode" target="_blank">Steam</a>
+        <a href="https://github.com/DarkModde" target="_blank">GitHub</a>
+      </div>
     </div>
+    <audio autoplay loop>
+      <source src="sua-musica.mp3" type="audio/mpeg">
+    </audio>
+  </div>
 
-    <script>
-        // Configurar o momento para português do Brasil
-        moment.locale('pt-br');
-        
-        // Armazenar o token em localStorage
-        let discordToken = localStorage.getItem('discordToken') || 'MTMxMzY0OTM1NDI3MTM1OTA4Nw.GmJmWa.x9-e_acG4I84i065NhXpFO36Nk4w_XZqrjE9-Q';
-        
-        // Preencher o campo de token se existir
-        document.getElementById('apiToken').value = discordToken;
-        
-        // Configuração das Abas
-        const tabs = document.querySelectorAll('.tab');
-        const tabContents = document.querySelectorAll('#tabContent > div');
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remover classe ativa de todas as abas
-                tabs.forEach(t => t.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                
-                // Adicionar classe ativa à aba clicada
-                tab.classList.add('active');
-                const tabName = tab.getAttribute('data-tab');
-                document.getElementById(tabName).classList.add('active');
-            });
-        });
-        
-        // Salvar configurações
-        document.getElementById('saveSettings').addEventListener('click', () => {
-            const newToken = document.getElementById('apiToken').value.trim();
-            
-            if (newToken) {
-                localStorage.setItem('discordToken', newToken);
-                discordToken = newToken;
-                
-                const successMsg = document.getElementById('settingsSuccess');
-                successMsg.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    successMsg.classList.add('hidden');
-                }, 3000);
-            }
-        });
-        
-        // Função para buscar informações do servidor
-        document.getElementById('getServerInfo').addEventListener('click', async () => {
-            const inviteLink = document.getElementById('inviteLink').value.trim();
-            const serverLoader = document.getElementById('serverLoader');
-            const serverError = document.getElementById('serverError');
-            const serverResult = document.getElementById('serverResult');
-            
-            if (!inviteLink) {
-                serverError.textContent = "Por favor, informe um link de convite válido.";
-                serverError.classList.remove('hidden');
-                return;
-            }
-            
-            const inviteCode = inviteLink.split('/').pop();
-            
-            serverError.classList.add('hidden');
-            serverResult.style.display = 'none';
-            serverLoader.style.display = 'block';
-            
-            try {
-                const response = await axios.get(`https://corsproxy.io/?url=https://discord.com/api/v10/invites/${inviteCode}?with_counts=true&with_expiration=true`, {
-                    headers: {
-                        Authorization: `Bot ${discordToken}`
-                    }
-                });
-                
-                const guild = response.data.guild;
-                
-                // Exibir o ícone do servidor
-                const serverIcon = document.getElementById('serverIcon');
-                if (guild.icon) {
-                    serverIcon.innerHTML = `<img src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png" style="width: 100%; height: 100%; border-radius: 50%;">`;
-                } else {
-                    // Exibir as iniciais do nome do servidor como alternativa
-                    const initials = guild.name.split(' ')
-                        .map(word => word[0])
-                        .join('')
-                        .substring(0, 2);
-                    serverIcon.textContent = initials;
-                }
-                
-                // Preencher os dados do servidor
-                document.getElementById('serverName').textContent = guild.name;
-                document.getElementById('memberCount').textContent = response.data.approximate_member_count;
-                document.getElementById('onlineCount').textContent = response.data.approximate_presence_count;
-                
-                // Descrição do servidor
-                const serverDescription = document.getElementById('serverDescription');
-                if (guild.description) {
-                    serverDescription.textContent = guild.description;
-                    serverDescription.classList.remove('hidden');
-                } else {
-                    serverDescription.classList.add('hidden');
-                }
-                
-                // Expiração do convite
-                const expirationStat = document.getElementById('expirationStat');
-                const timeRemainingStat = document.getElementById('timeRemainingStat');
-                
-                if (response.data.expires_at) {
-                    const expiresAt = moment(response.data.expires_at);
-                    document.getElementById('expiresAt').textContent = expiresAt.format('DD/MM/YY HH:mm');
-                    document.getElementById('timeRemaining').textContent = expiresAt.fromNow();
-                    
-                    expirationStat.classList.remove('hidden');
-                    timeRemainingStat.classList.remove('hidden');
-                } else {
-                    expirationStat.classList.add('hidden');
-                    timeRemainingStat.classList.add('hidden');
-                }
-                
-                // Banner do servidor
-                const serverBanner = document.getElementById('serverBanner');
-                if (guild.banner) {
-                    serverBanner.src = `https://cdn.discordapp.com/banners/${guild.id}/${guild.banner}.png?size=1024`;
-                    serverBanner.classList.remove('hidden');
-                } else {
-                    serverBanner.classList.add('hidden');
-                }
-                
-                serverResult.style.display = 'block';
-            } catch (error) {
-                let errorMessage = "Falha ao buscar informações do servidor.";
-                
-                if (error.response) {
-                    if (error.response.status === 404) {
-                        errorMessage = "Convite não encontrado. Por favor, verifique o link do convite.";
-                    } else if (error.response.status === 401) {
-                        errorMessage = "Token de autenticação inválido. Verifique suas configurações.";
-                    }
-                }
-                
-                serverError.textContent = errorMessage;
-                serverError.classList.remove('hidden');
-            } finally {
-                serverLoader.style.display = 'none';
-            }
-        });
-        
-        // Função para buscar informações do usuário
-        document.getElementById('getUserInfo').addEventListener('click', async () => {
-            const userId = document.getElementById('userId').value.trim();
-            const userLoader = document.getElementById('userLoader');
-            const userError = document.getElementById('userError');
-            const userResult = document.getElementById('userResult');
-            
-            if (!userId) {
-                userError.textContent = "Por favor, informe um ID de usuário válido.";
-                userError.classList.remove('hidden');
-                return;
-            }
-            
-            userError.classList.add('hidden');
-            userResult.style.display = 'none';
-            userLoader.style.display = 'block';
-            
-            try {
-                const response = await axios.get(`https://discord.com/api/v10/users/${userId}`, {
-                    headers: {
-                        Authorization: `Bot ${discordToken}`
-                    }
-                });
-                
-                const user = response.data;
-                
-                // Exibir o avatar do usuário
-                const userAvatar = document.getElementById('userAvatar');
-                if (user.avatar) {
-                    userAvatar.innerHTML = `<img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=2048" style="width: 100%; height: 100%; border-radius: 50%;">`;
-                } else {
-                    // Exibir as iniciais do nome do usuário como alternativa
-                    const initials = user.username.substring(0, 2);
-                    userAvatar.textContent = initials;
-                }
-                
-                // Preencher os dados do usuário
-                document.getElementById('userName').textContent = user.username;
-                document.getElementById('userIdDisplay').textContent = `ID: ${user.id}`;
-                
-                // Banner do usuário
-                const userBanner = document.getElementById('userBanner');
-                if (user.banner) {
-                    userBanner.src = `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.png?size=2048`;
-                    userBanner.classList.remove('hidden');
-                } else {
-                    userBanner.classList.add('hidden');
-                }
-                
-                userResult.style.display = 'block';
-            } catch (error) {
-                let errorMessage = "Falha ao buscar informações do usuário.";
-                
-                if (error.response) {
-                    if (error.response.status === 400 || error.response.status === 404) {
-                        errorMessage = "Usuário não encontrado. Por favor, verifique o ID do usuário.";
-                    } else if (error.response.status === 401) {
-                        errorMessage = "Token de autenticação inválido. Verifique suas configurações.";
-                    }
-                }
-                
-                userError.textContent = errorMessage;
-                userError.classList.remove('hidden');
-            } finally {
-                userLoader.style.display = 'none';
-            }
-        });
-    </script>
+  <script>
+    document.getElementById('intro').addEventListener('click', () => {
+      document.getElementById('intro').style.opacity = 1;
+      const fadeOut = setInterval(() => {
+        let opacity = parseFloat(document.getElementById('intro').style.opacity);
+        if (opacity > 0) {
+          document.getElementById('intro').style.opacity = opacity - 0.05;
+        } else {
+          clearInterval(fadeOut);
+          document.getElementById('intro').style.display = 'none';
+          document.getElementById('main').style.display = 'block';
+        }
+      }, 30);
+    });
+
+    fetch('https://discord-lookup-api-sandy.vercel.app/v1/user/1080175803024814142')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('username').innerText = data.global_name;
+        document.getElementById('avatar').src = data.avatar.link;
+      });
+  </script>
 </body>
 </html>
