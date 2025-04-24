@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,7 +27,24 @@
             justify-content: flex-start;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(30, 30, 30, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 30, 30, 0.5) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
         }
 
         img {
@@ -45,6 +61,7 @@
             margin: 0 auto;
             margin-top: 40px;
             animation: fadeIn 1s ease-out;
+            padding: 0 20px;
         }
 
         @keyframes fadeIn {
@@ -417,7 +434,7 @@
             max-width: 800px;
             margin: 0 auto 40px;
             padding: 20px;
-            background: rgba(30, 30, 30, 0.5);
+            background: rgba(30, 30, 30, 0.8);
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
@@ -480,11 +497,12 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.4s ease;
+            cursor: pointer;
         }
 
         .credit-card:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
 
         .credit-img {
@@ -538,6 +556,88 @@
             }
         }
 
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .modal.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            background: linear-gradient(135deg, #1e1e1e, #121212);
+            margin: 10% auto;
+            padding: 25px;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: all 0.4s ease-out;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .modal-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+            border: 3px solid #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            color: #fff;
+            margin: 0;
+        }
+
+        .modal-story {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ccc;
+            text-align: left;
+        }
+
         @media (max-width: 768px) {
             .typing-title {
                 font-size: 1.8rem;
@@ -584,6 +684,24 @@
             .credits-column {
                 min-width: 100%;
             }
+
+            .modal-content {
+                width: 90%;
+                margin: 20% auto;
+            }
+
+            .modal-avatar {
+                width: 60px;
+                height: 60px;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .modal-story {
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -612,6 +730,25 @@
 
             .credit-img {
                 height: 100px;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .modal-avatar {
+                width: 50px;
+                height: 50px;
+            }
+
+            .modal-header {
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+            }
+
+            .modal-title {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -720,6 +857,17 @@
             </div>
         </div>
     </footer>
+
+    <div id="user-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <img id="modal-avatar" alt="Avatar" class="modal-avatar">
+                <h2 id="modal-name" class="modal-title"></h2>
+            </div>
+            <div id="modal-story" class="modal-story"></div>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
@@ -852,6 +1000,67 @@
             { id: "769197514363764736", name: "Flowings" },
         ];
 
+        const userStories = {
+            "701558357286191204": {
+                story: "Hyxam, um dos fundadores do servidor Platform Destroyer, é simplesmente oito ou oitenta: ou ele aparece todo dia, ou NUNCA aparece no servidor. E ainda foi o criador do inglês abrasileirado, que é melhor até que o inglês dos Estados Unidos!"
+            },
+            "358074964533837825": {
+                story: "Kontra, o fundador que todo mundo ODEIA — mas de coração ❤️. É o único fundador realmente ativo, só que parece que tá morto o dia inteiro, E seu maior inimigo tem nome... Snow outro usuário que TODO MUNDO no servidor odeia, mas infelizmente, ele sempre dá um jeito de voltar 😔"
+            },
+            "1134639635780350142": {
+                story: "Seven, o co-fundador que eu nem vou comentar o que fez com o dinheiro arrecadado... Um grande ARROMBADO, viciado em Roblox, que do nada apareceu cheio de Robux na conta e veio com a desculpa de que o dinheiro das doações 'sumiu'. Vocês acreditam nisso???"
+            },
+            "418824536570593280": {
+                story: "TEM M4 GRITANDO MEU NOME! O co-fundador cheio de ideias incríveis... pena que nenhuma dá certo. Criador do grande fracasso conhecido como ‘DestroyerMC’ KKK. Mas tá sempre online, gadeando umas meninas nos chats de voz — e quando alguém clipa, ele vem dizer que é tudo mentira."
+            },
+            "1080175803024814142": {
+                story: "DarkMode, o desenvolvedor que não desenvolve nada sem o ChatGPT. Apesar do nome 'dark', tá mais pra white mode mesmo. Criador do lendário (e polêmico) CMSP Plataformas Hacks — que por pura burrice, foi BANIDO do GitHub. Inimigo mortal do usuário Snow e, convenhamos... um grande pau no cu."
+            },
+            "597913546239508490": {
+                story: "iUnknownBr, o usuário que ninguém NUNCA ouviu a voz ou viu seu rosto. Quase todos temos certeza que Unknown é uma menina, mas ninguém revela essa verdade — é o mistério mais profundo do servidor. Além de ser um anonimo total, é um ótimo kibador de códigos e também um bom desenvolvedor que tambem não desenvolve nada sem ChatGPT!"
+            },
+            "306067032913477634": {
+                story: "Snow, o desenvolvedor falsificado que TODO MUNDO odeia. Já foi banido umas 10 vezes do servidor, mas infelizmente, sempre volta 😔 Tem suas partes boas, tipo... quando ele tá mutado. Outro ótimo desenvolvedor de ChatGPT e sempre tem otimas ideas como usar cartões clonados para comprar robux"
+            },
+            "582610632562704395": {
+                story: "Marcos10putas, o único brasileiro do servidor que realmente sabe programar alguma coisa sem IA. Mas temos que admitir que suas ideias são horríveis e, além de ideias horríveis, é um péssimo criador de websites. Tmnc que site feio da desgraça esse Doritus."
+            },
+            "852703201068187668": {
+                story: "Cupidys, o segundo melhor desenvolvedor da equipe Platform Destroyer (Flowings disse que era o melhor programador), embora ele possa ter um pouco de demência, suas habilidades com JavaScript são incomparáveis."
+            },
+            "769197514363764736": {
+                story: "Flowings, o desenvolvedor que diz ser o 'melhor', mas todos acham que é mentira LOL. Mas temos que admitir que, além de ser um programador ótimo, seus websites são incríveis e muito lindos. A única coisa é que ele odeia o Seven, o co-fundador."
+            }
+        };
+
+        function openUserModal(userId, userName, avatarUrl) {
+            const modal = document.getElementById('user-modal');
+            const modalName = document.getElementById('modal-name');
+            const modalStory = document.getElementById('modal-story');
+            const modalAvatar = document.getElementById('modal-avatar');
+            
+            modalName.textContent = userName;
+            modalAvatar.src = avatarUrl;
+            
+            const userStory = userStories[userId] ? userStories[userId].story : 
+                "Informações adicionais sobre " + userName + " em breve...";
+            
+            modalStory.textContent = userStory;
+            
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+
+        function closeUserModal() {
+            const modal = document.getElementById('user-modal');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
         async function fetchDiscordAvatar(userId) {
             try {
                 const response = await fetch(
@@ -874,7 +1083,8 @@
             const creditCard = document.createElement("div");
             creditCard.className = "credit-card";
             creditCard.setAttribute("data-aos", "zoom-in");
-
+            creditCard.setAttribute("data-user-id", userId);
+            
             const loadingDiv = document.createElement("div");
             loadingDiv.className = "loading-spinner";
             const spinner = document.createElement("div");
@@ -902,6 +1112,10 @@
             }
 
             creditCard.insertBefore(img, nameDiv);
+            
+            creditCard.addEventListener('click', function() {
+                openUserModal(userId, userName, img.src);
+            });
 
             return creditCard;
         }
@@ -940,8 +1154,23 @@
                 once: false,
                 mirror: false,
             });
+            
+            const closeBtn = document.querySelector('.close-modal');
+            closeBtn.addEventListener('click', closeUserModal);
+            
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('user-modal');
+                if (event.target === modal) {
+                    closeUserModal();
+                }
+            });
+            
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeUserModal();
+                }
+            });
         };
     </script>
 </body>
-
 </html>
