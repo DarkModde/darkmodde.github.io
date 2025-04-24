@@ -33,6 +33,7 @@
             overflow-x: hidden;
         }
 
+        /* Fundo quadriculado */
         body::before {
             content: "";
             position: fixed;
@@ -768,20 +769,38 @@
         </div>
 
         <div class="buttons-container">
-            <a href="https://github.com/Snowxyrzk/Khan-Destroyer" class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-graduation-cap"></i> Khan Academy</a>
-            <a href="https://github.com/marcos10pc/Alura-Destroyer" class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-laptop-code"></i> Alura</a>
-            <a href="https://doritus.mmrcoss.tech/" class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-tasks"></i> Tarefa SP</a>
-            <a href="https://github.com/marcos10pc/Cheeto-Essay-Maker" class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-pen-fancy"></i> Redação Paulista</a>
-            <a href="https://speakify.cupiditys.lol/" class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-comments"></i> SPeak</a>
-            <a href="https://github.com/marcos10pc/expansao-noturna-cheeto" class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="600"><i class="fas fa-moon"></i> Expansão Noturno</a>
-            <a href="https://matific.cupiditys.lol/" class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="700"><i class="fas fa-calculator"></i> Matific</a>
+            <a href="https://github.com/Snowxyrzk/Khan-Destroyer" class="button" onmouseover="animateButton(this)"
+                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="100"><i
+                    class="fas fa-graduation-cap"></i> Khan Academy</a>
+            <a href="https://github.com/marcos10pc/Alura-Destroyer" class="button" onmouseover="animateButton(this)"
+                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="200"><i
+                    class="fas fa-laptop-code"></i> Alura</a>
+            <a href="https://doritus.mmrcoss.tech/" class="button" onmouseover="animateButton(this)"
+                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-tasks"></i>
+                Tarefa SP</a>
+            <a href="https://github.com/marcos10pc/Cheeto-Essay-Maker" class="button" onmouseover="animateButton(this)"
+                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="400"><i
+                    class="fas fa-pen-fancy"></i> Redação Paulista</a>
+            <a href="https://speakify.cupiditys.lol/" class="button" onmouseover="animateButton(this)"
+                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-comments"></i>
+                SPeak</a>
+            <a href="https://github.com/marcos10pc/expansao-noturna-cheeto" class="button"
+                onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up"
+                data-aos-delay="600"><i class="fas fa-moon"></i> Expansão Noturno</a>
+            <a href="https://matific.cupiditys.lol/" class="button" onmouseover="animateButton(this)"
+                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="700"><i
+                    class="fas fa-calculator"></i> Matific</a>
         </div>
 
         <div class="special-buttons-container">
-            <a href="https://darkmodde.github.io" class="special-button website" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-globe"></i> Website</a>
-            <a href="https://pixgg.com/DarkMode" class="special-button donation" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-hand-holding-heart"></i> Doação</a>
-            <a href="videos.html" class="special-button tutorials" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-book"></i> Tutoriais</a>
-            <a href="https://discord.gg/platformdestroyer" class="special-button discord" data-aos="fade-up" data-aos-delay="300"><i class="fab fa-discord"></i> Discord</a>
+            <a href="https://darkmodde.github.io" class="special-button website" data-aos="fade-up"
+                data-aos-delay="100"><i class="fas fa-globe"></i> Website</a>
+            <a href="https://pixgg.com/DarkMode" class="special-button donation" data-aos="fade-up"
+                data-aos-delay="200"><i class="fas fa-hand-holding-heart"></i> Doação</a>
+            <a href="videos.html" class="special-button tutorials" data-aos="fade-up" data-aos-delay="400"><i
+                    class="fas fa-book"></i> Tutoriais</a>
+            <a href="https://discord.gg/platformdestroyer" class="special-button discord" data-aos="fade-up"
+                data-aos-delay="300"><i class="fab fa-discord"></i> Discord</a>
         </div>
     </div>
 
@@ -875,13 +894,13 @@
             e.preventDefault();
             return false;
         });
-
+    
         document.addEventListener("keydown", function (e) {
             if (e.keyCode === 123) {
                 e.preventDefault();
                 return false;
             }
-
+    
             if (
                 e.ctrlKey &&
                 e.shiftKey &&
@@ -890,32 +909,32 @@
                 e.preventDefault();
                 return false;
             }
-
+    
             if (e.ctrlKey && e.keyCode === 85) {
                 e.preventDefault();
                 return false;
             }
         });
-
+    
         function detectDevTools() {
             const widthThreshold = window.outerWidth - window.innerWidth > 160;
             const heightThreshold = window.outerHeight - window.innerHeight > 160;
-
+    
             if (widthThreshold || heightThreshold) {
                 document.body.innerHTML =
                     '<h1 style="text-align:center;margin-top:50px;">Inspeção de elementos não é permitida neste site.</h1>';
             }
         }
-
+    
         setInterval(detectDevTools, 1000);
-
+    
         window.addEventListener("devtoolschange", function (e) {
             if (e.detail.open) {
                 document.body.innerHTML =
                     '<h1 style="text-align:center;margin-top:50px;">Inspeção de elementos não é permitida neste site.</h1>';
             }
         });
-
+    
         const titleText = "CMSP Plataformas Hacks";
         const titleElement = document.getElementById("title");
         let charIndex = 0;
@@ -923,10 +942,10 @@
         let typingDelay = 150;
         let deletingDelay = 50;
         let newTextDelay = 4000;
-
+    
         function typeTitle() {
             const currentText = titleElement.textContent;
-
+    
             if (!isDeleting && charIndex < titleText.length) {
                 titleElement.textContent = titleText.substring(0, charIndex + 1);
                 charIndex++;
@@ -943,26 +962,26 @@
                 setTimeout(typeTitle, typingDelay);
             }
         }
-
+    
         function showNotification() {
             const notification = document.getElementById("donation-notification");
             notification.classList.add("show");
-
+    
             setTimeout(() => {
                 notification.classList.add("hide");
                 notification.classList.remove("show");
-
+    
                 setTimeout(() => {
                     notification.classList.remove("hide");
                     notification.style.right = "-350px";
                 }, 500);
             }, 15000);
         }
-
+    
         function goToDonation() {
             window.location.href = "https://pixgg.com/DarkMode";
         }
-
+    
         function dismissNotification() {
             const notification = document.getElementById("donation-notification");
             notification.classList.add("hide");
@@ -972,25 +991,25 @@
                 notification.style.right = "-350px";
             }, 500);
         }
-
+    
         function animateButton(button) {
             button.style.animation = "glow 1.5s infinite";
         }
-
+    
         function stopAnimation(button) {
             button.style.animation = "";
         }
-
+    
         const owners = [
             { id: "701558357286191204", name: "Hyxam" },
             { id: "358074964533837825", name: "Kontra" },
         ];
-
+    
         const coLeaders = [
             { id: "1134639635780350142", name: "Seven" },
             { id: "418824536570593280", name: "M4nst3in" },
         ];
-
+    
         const developers = [
             { id: "1080175803024814142", name: "<\\DarkMode>" },
             { id: "597913546239508490", name: "iUnknownBr" },
@@ -999,7 +1018,7 @@
             { id: "852703201068187668", name: "Cupidys" },
             { id: "769197514363764736", name: "Flowings" },
         ];
-
+    
         const userStories = {
             "701558357286191204": {
                 story: "Hyxam, um dos fundadores do servidor Platform Destroyer, é simplesmente oito ou oitenta: ou ele aparece todo dia, ou NUNCA aparece no servidor. E ainda foi o criador do inglês abrasileirado, que é melhor até que o inglês dos Estados Unidos!"
@@ -1011,7 +1030,7 @@
                 story: "Seven, o co-fundador que eu nem vou comentar o que fez com o dinheiro arrecadado... Um grande ARROMBADO, viciado em Roblox, que do nada apareceu cheio de Robux na conta e veio com a desculpa de que o dinheiro das doações 'sumiu'. Vocês acreditam nisso???"
             },
             "418824536570593280": {
-                story: "TEM M4 GRITANDO MEU NOME! O co-fundador cheio de ideias incríveis... pena que nenhuma dá certo. Criador do grande fracasso conhecido como ‘DestroyerMC’ KKK. Mas tá sempre online, gadeando umas meninas nos chats de voz — e quando alguém clipa, ele vem dizer que é tudo mentira."
+                story: "TEM M4 GRITANDO MEU NOME! O co-fundador cheio de ideias incríveis... pena que nenhuma dá certo. Criador do grande fracasso conhecido como 'DestroyerMC' KKK. Mas tá sempre online, gadeando umas meninas nos chats de voz — e quando alguém clipa, ele vem dizer que é tudo mentira."
             },
             "1080175803024814142": {
                 story: "DarkMode, o desenvolvedor que não desenvolve nada sem o ChatGPT. Apesar do nome 'dark', tá mais pra white mode mesmo. Criador do lendário (e polêmico) CMSP Plataformas Hacks — que por pura burrice, foi BANIDO do GitHub. Inimigo mortal do usuário Snow e, convenhamos... um grande pau no cu."
@@ -1032,7 +1051,7 @@
                 story: "Flowings, o desenvolvedor que diz ser o 'melhor', mas todos acham que é mentira LOL. Mas temos que admitir que, além de ser um programador ótimo, seus websites são incríveis e muito lindos. A única coisa é que ele odeia o Seven, o co-fundador."
             }
         };
-
+    
         function openUserModal(userId, userName, avatarUrl) {
             const modal = document.getElementById('user-modal');
             const modalName = document.getElementById('modal-name');
@@ -1052,7 +1071,7 @@
                 modal.classList.add('show');
             }, 10);
         }
-
+    
         function closeUserModal() {
             const modal = document.getElementById('user-modal');
             modal.classList.remove('show');
@@ -1060,16 +1079,53 @@
                 modal.style.display = 'none';
             }, 300);
         }
-
+    
+        // Função para limpar avatares antigos (opcional)
+        function cleanAvatarCache(maxAgeInDays = 7) {
+            const currentTime = new Date().getTime();
+            const cacheKey = 'avatar_cache_timestamp';
+    
+            // Verifica se já passou o tempo de limpeza
+            const lastCleanTime = localStorage.getItem(cacheKey);
+            if (lastCleanTime && (currentTime - parseInt(lastCleanTime) < maxAgeInDays * 24 * 60 * 60 * 1000)) {
+                return; // Não precisa limpar tão cedo
+            }
+    
+            // Limpa avatares antigos
+            Object.keys(localStorage).forEach(key => {
+                if (key.startsWith('discord_avatar_')) {
+                    localStorage.removeItem(key);
+                }
+            });
+    
+            // Atualiza o timestamp da última limpeza
+            localStorage.setItem(cacheKey, currentTime.toString());
+        }
+    
         async function fetchDiscordAvatar(userId) {
+            // Primeiro, verifica se o avatar já está no localStorage
+            const cachedAvatar = localStorage.getItem(`discord_avatar_${userId}`);
+            if (cachedAvatar) {
+                return cachedAvatar;
+            }
+    
             try {
                 const response = await fetch(
                     `https://discord-lookup-api-sandy.vercel.app/v1/user/${userId}`
                 );
                 const data = await response.json();
-
+    
                 if (data && data.avatar && data.avatar.link) {
-                    return `${data.avatar.link}.png?size=2048`;
+                    const avatarUrl = `${data.avatar.link}.png?size=2048`;
+                    
+                    // Salva o avatar no localStorage
+                    try {
+                        localStorage.setItem(`discord_avatar_${userId}`, avatarUrl);
+                    } catch (storageError) {
+                        console.warn('Erro ao salvar avatar no localStorage:', storageError);
+                    }
+                    
+                    return avatarUrl;
                 } else {
                     return null;
                 }
@@ -1078,7 +1134,7 @@
                 return null;
             }
         }
-
+    
         async function createCreditCard(userId, userName) {
             const creditCard = document.createElement("div");
             creditCard.className = "credit-card";
@@ -1091,42 +1147,42 @@
             spinner.className = "spinner";
             loadingDiv.appendChild(spinner);
             creditCard.appendChild(loadingDiv);
-
+    
             const nameDiv = document.createElement("div");
             nameDiv.className = "credit-name";
             nameDiv.textContent = userName;
             creditCard.appendChild(nameDiv);
-
+    
             const avatarUrl = await fetchDiscordAvatar(userId);
-
+    
             creditCard.removeChild(loadingDiv);
-
+    
             const img = document.createElement("img");
             img.className = "credit-img";
             img.alt = userName;
-
+    
             if (avatarUrl) {
                 img.src = avatarUrl;
             } else {
-                img.src = "/api/placeholder/150/150";
+                img.src = "https://i.imgur.com/wubcMzk.jpeg";
             }
-
+    
             creditCard.insertBefore(img, nameDiv);
             
             creditCard.addEventListener('click', function() {
                 openUserModal(userId, userName, img.src);
             });
-
+    
             return creditCard;
         }
-
+    
         async function loadCreditCards() {
             const ownersContainer = document.getElementById("owners-container");
             for (const user of owners) {
                 const card = await createCreditCard(user.id, user.name);
                 ownersContainer.appendChild(card);
             }
-
+    
             const coLeadersContainer = document.getElementById(
                 "coleaders-container"
             );
@@ -1134,7 +1190,7 @@
                 const card = await createCreditCard(user.id, user.name);
                 coLeadersContainer.appendChild(card);
             }
-
+    
             const developersContainer = document.getElementById(
                 "developers-container"
             );
@@ -1143,11 +1199,12 @@
                 developersContainer.appendChild(card);
             }
         }
-
+    
         window.onload = function () {
             setTimeout(typeTitle, 1000);
             setTimeout(showNotification, 1000);
             loadCreditCards();
+            cleanAvatarCache(); // Adiciona a limpeza de cache
             AOS.init({
                 duration: 800,
                 easing: "ease",
