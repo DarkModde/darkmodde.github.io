@@ -6,11 +6,11 @@
     <meta name="description" content="CMSP Plataformas Hacks é o melhor lugar para encontrar métodos, scripts e hacks para facilitar suas tarefas escolares e melhorar seu desempenho nas plataformas de educação de São Paulo." />
     <meta name="keywords" content="CMSP, Sala do Futuro, Khan Academy, Speak, TarefasSP, Matific, Redação, Redação Paulista, plataforma educacional, educação online, hacks para plataformas, tarefas escolares, script CMSP, melhorar notas, ensino remoto, estudo em casa, educação SP, plataformas escolares, matemática online, português online, gamificação na educação, aprendizado interativo, sistemas educacionais, conteúdo escolar, automatização de tarefas, ferramentas para estudantes, scripts para estudo, plataformas de ensino, escola online, educação tecnológica">
     <title>CMSP Plataformas Hacks</title>
-    <meta property="og:title" content="CMSP Plataformas Hacks" /> <!-- Título -->
-    <meta property="og:description" content="Encontre os melhores métodos, scripts e hacks para facilitar suas tarefas na escola. Aproveite!" /> <!-- Descrição -->
-    <meta property="og:image" content="https://i.imgur.com/PBnK2Pb.png" /> <!-- Imagem -->
-    <meta property="og:url" content="https://darkmodde.github.io/CMSP-Hacks/" /> <!-- URL do site -->
-    <meta property="og:type" content="website" /> <!-- Tipo do conteúdo -->
+    <meta property="og:title" content="CMSP Plataformas Hacks" />
+    <meta property="og:description" content="Encontre os melhores métodos, scripts e hacks para facilitar suas tarefas na escola. Aproveite!" />
+    <meta property="og:image" content="https://i.imgur.com/PBnK2Pb.png" />
+    <meta property="og:url" content="https://darkmodde.github.io/CMSP-Hacks/" />
+    <meta property="og:type" content="website" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <style>
@@ -40,7 +40,6 @@
             overflow-x: hidden;
         }
 
-        /* Fundo quadriculado */
         body::before {
             content: "";
             position: fixed;
@@ -759,6 +758,19 @@
                 font-size: 1.3rem;
             }
         }
+        
+        .copy-notification {
+            background: linear-gradient(135deg, #252525, #101010);
+            border-left: 4px solid #03a9f4; 
+        }
+        
+        .copy-notification .notification-icon {
+            color: #03a9f4;
+        }
+        
+        .copy-notification .notification-title {
+            color: #03a9f4;
+        }
     </style>
 </head>
 
@@ -776,27 +788,34 @@
         </div>
 
         <div class="buttons-container">
-            <a href="https://github.com/Snowxyrzk/Khan-Destroyer" class="button" onmouseover="animateButton(this)"
-                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="100"><i
-                    class="fas fa-graduation-cap"></i> Khan Academy</a>
-            <a href="https://github.com/marcos10pc/Alura-Destroyer" class="button" onmouseover="animateButton(this)"
-                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="200"><i
-                    class="fas fa-laptop-code"></i> Alura</a>
+            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" 
+                data-aos="fade-up" data-aos-delay="100" onclick="copyScript('Khan Academy')">
+                <i class="fas fa-graduation-cap"></i> Khan Academy
+            </button>
+            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" 
+                data-aos="fade-up" data-aos-delay="200" onclick="copyScript('Alura')">
+                <i class="fas fa-laptop-code"></i> Alura
+            </button>
             <a href="https://doritus.mmrcoss.tech/" class="button" onmouseover="animateButton(this)"
-                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-tasks"></i>
-                Tarefa SP</a>
-            <a href="https://github.com/marcos10pc/Cheeto-Essay-Maker" class="button" onmouseover="animateButton(this)"
-                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="400"><i
-                    class="fas fa-pen-fancy"></i> Redação Paulista</a>
+                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-tasks"></i> Tarefa SP
+            </a>
+            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" 
+                data-aos="fade-up" data-aos-delay="400" onclick="copyScript('Redação Paulista')">
+                <i class="fas fa-pen-fancy"></i> Redação Paulista
+            </button>
             <a href="https://speakify.cupiditys.lol/" class="button" onmouseover="animateButton(this)"
-                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-comments"></i>
-                SPeak</a>
-            <a href="https://github.com/marcos10pc/expansao-noturna-cheeto" class="button"
-                onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up"
-                data-aos-delay="600"><i class="fas fa-moon"></i> Expansão Noturno</a>
+                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="500">
+                <i class="fas fa-comments"></i> SPeak
+            </a>
+            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" 
+                data-aos="fade-up" data-aos-delay="600" onclick="copyScript('Expansão Noturno')">
+                <i class="fas fa-moon"></i> Expansão Noturno
+            </button>
             <a href="https://matific.cupiditys.lol/" class="button" onmouseover="animateButton(this)"
-                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="700"><i
-                    class="fas fa-calculator"></i> Matific</a>
+                onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="700">
+                <i class="fas fa-calculator"></i> Matific
+            </a>
         </div>
 
         <div class="special-buttons-container">
@@ -826,6 +845,21 @@
             </button>
             <button class="dismiss-button" onclick="dismissNotification()">
                 Mais tarde
+            </button>
+        </div>
+    </div>
+    
+    <div class="notification copy-notification" id="copy-notification" style="right: -350px; opacity: 0;">
+        <div class="notification-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="notification-title">Sucesso!</div>
+        <div class="notification-message">
+            Script copiado com sucesso! Cole no console do navegador para executar.
+        </div>
+        <div class="notification-button-container">
+            <button class="dismiss-button" onclick="dismissCopyNotification()">
+                Fechar
             </button>
         </div>
     </div>
@@ -998,6 +1032,86 @@
                 notification.style.right = "-350px";
             }, 500);
         }
+        
+        function copyScript(platform) {
+            let scriptToClone = "";
+            
+            // Definir scripts específicos para cada plataforma
+            switch(platform) {
+                case 'Khan Academy':
+                    scriptToClone = "javascript:fetch(\"https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/KhanResolver.js\").then(t=>t.text()).then(eval);";
+                    break;
+                case 'Alura':
+                    scriptToClone = "javascript:fetch(\"https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/WebTeste.js\").then(t=>t.text()).then(eval);";
+                    break;
+                case 'Redação Paulista':
+                    scriptToClone = "javascript:fetch(\"https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/RedaspIA.js\").then(t=>t.text()).then(eval);";
+                    break;
+                case 'Expansão Noturno':
+                    scriptToClone = "javascript:fetch(\"https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/Noturna.js\").then(t=>t.text()).then(eval);";
+                    break;
+                default:
+                    scriptToClone = "javascript:fetch(\"https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/WebTeste.js\").then(t=>t.text()).then(eval);";
+            }
+            
+            // Cria um elemento de texto temporário para copiar o script
+            const tempElement = document.createElement("textarea");
+            tempElement.value = scriptToClone;
+            document.body.appendChild(tempElement);
+            tempElement.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempElement);
+            
+            // Verifica se a notificação de doação está visível
+            const donationNotification = document.getElementById("donation-notification");
+            if (donationNotification.classList.contains("show")) {
+                // Remove a notificação de doação primeiro
+                dismissNotification();
+                setTimeout(() => {
+                    showCopyNotification(platform);
+                }, 300);
+            } else {
+                showCopyNotification(platform);
+            }
+        }
+        
+        function showCopyNotification(platform) {
+            const notification = document.getElementById("copy-notification");
+            const message = notification.querySelector(".notification-message");
+            message.textContent = `Script para ${platform} copiado com sucesso! Cole no console do navegador para executar.`;
+            
+            // Garantir que a notificação esteja na posição inicial e sem opacidade antes de mostrar
+            notification.style.right = "-350px";
+            notification.style.opacity = "0";
+            notification.classList.remove("hide");
+            
+            // Forçar um reflow para garantir que as alterações anteriores sejam aplicadas
+            void notification.offsetWidth;
+            
+            // Mostrar a notificação
+            setTimeout(() => {
+                notification.style.right = "20px";
+                notification.style.opacity = "1";
+                notification.classList.add("show");
+                
+                // Definir um temporizador para descartar a notificação
+                setTimeout(() => {
+                    dismissCopyNotification();
+                }, 4000);
+            }, 100);
+        }
+        
+        function dismissCopyNotification() {
+            const notification = document.getElementById("copy-notification");
+            notification.classList.add("hide");
+            notification.classList.remove("show");
+            
+            setTimeout(() => {
+                notification.classList.remove("hide");
+                notification.style.right = "-350px";
+                notification.style.opacity = "0";
+            }, 500);
+        }
     
         function animateButton(button) {
             button.style.animation = "glow 1.5s infinite";
@@ -1087,30 +1201,25 @@
             }, 300);
         }
     
-        // Função para limpar avatares antigos (opcional)
         function cleanAvatarCache(maxAgeInDays = 7) {
             const currentTime = new Date().getTime();
             const cacheKey = 'avatar_cache_timestamp';
     
-            // Verifica se já passou o tempo de limpeza
             const lastCleanTime = localStorage.getItem(cacheKey);
             if (lastCleanTime && (currentTime - parseInt(lastCleanTime) < maxAgeInDays * 24 * 60 * 60 * 1000)) {
-                return; // Não precisa limpar tão cedo
+                return;
             }
     
-            // Limpa avatares antigos
             Object.keys(localStorage).forEach(key => {
                 if (key.startsWith('discord_avatar_')) {
                     localStorage.removeItem(key);
                 }
             });
     
-            // Atualiza o timestamp da última limpeza
             localStorage.setItem(cacheKey, currentTime.toString());
         }
     
         async function fetchDiscordAvatar(userId) {
-            // Primeiro, verifica se o avatar já está no localStorage
             const cachedAvatar = localStorage.getItem(`discord_avatar_${userId}`);
             if (cachedAvatar) {
                 return cachedAvatar;
@@ -1125,7 +1234,6 @@
                 if (data && data.avatar && data.avatar.link) {
                     const avatarUrl = `${data.avatar.link}.png?size=2048`;
                     
-                    // Salva o avatar no localStorage
                     try {
                         localStorage.setItem(`discord_avatar_${userId}`, avatarUrl);
                     } catch (storageError) {
@@ -1211,7 +1319,7 @@
             setTimeout(typeTitle, 1000);
             setTimeout(showNotification, 1000);
             loadCreditCards();
-            cleanAvatarCache(); // Adiciona a limpeza de cache
+            cleanAvatarCache();
             AOS.init({
                 duration: 800,
                 easing: "ease",
@@ -1236,5 +1344,3 @@
             });
         };
     </script>
-</body>
-</html>
