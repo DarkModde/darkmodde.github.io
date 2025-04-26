@@ -957,25 +957,6 @@
             }
         });
     
-        function detectDevTools() {
-            const widthThreshold = window.outerWidth - window.innerWidth > 160;
-            const heightThreshold = window.outerHeight - window.innerHeight > 160;
-    
-            if (widthThreshold || heightThreshold) {
-                document.body.innerHTML =
-                    '<h1 style="text-align:center;margin-top:50px;">Inspeção de elementos não é permitida neste site.</h1>';
-            }
-        }
-    
-        setInterval(detectDevTools, 1000);
-    
-        window.addEventListener("devtoolschange", function (e) {
-            if (e.detail.open) {
-                document.body.innerHTML =
-                    '<h1 style="text-align:center;margin-top:50px;">Inspeção de elementos não é permitida neste site.</h1>';
-            }
-        });
-    
         const titleText = "CMSP Plataformas Hacks";
         const titleElement = document.getElementById("title");
         let charIndex = 0;
