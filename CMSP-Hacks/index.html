@@ -819,10 +819,10 @@
         </div>
 
         <div class="special-buttons-container">
-            <a href="https://darkmodde.github.io" class="special-button website" data-aos="fade-up"
-                data-aos-delay="100"><i class="fas fa-globe"></i> Website</a>
             <a href="https://pixgg.com/DarkMode" class="special-button donation" data-aos="fade-up"
                 data-aos-delay="200"><i class="fas fa-hand-holding-heart"></i> Doação</a>
+            <a href="status.html" class="special-button website" data-aos="fade-up"
+                data-aos-delay="100"><i class="fas fa-globe"></i> Status</a>
             <a href="videos.html" class="special-button tutorials" data-aos="fade-up" data-aos-delay="400"><i
                     class="fas fa-book"></i> Tutoriais</a>
             <a href="https://discord.gg/platformdestroyer" class="special-button discord" data-aos="fade-up"
@@ -855,7 +855,12 @@
         </div>
         <div class="notification-title">Sucesso!</div>
         <div class="notification-message">
-            Script copiado com sucesso! Cole no favoritos do navegador para executar.
+            Script copiado com sucesso! Cole no console do navegador para executar.
+        </div>
+        <div class="notification-button-container">
+            <button class="dismiss-button" onclick="dismissCopyNotification()">
+                Fechar
+            </button>
         </div>
     </div>
 
@@ -1037,16 +1042,16 @@
                     scriptToClone = "javascript:fetch(\"https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/KhanResolver.js\").then(t=>t.text()).then(eval);";
                     break;
                 case 'Alura':
-                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/WebTeste.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/WebTeste.js\").then(t=>t.text()).then(eval);";
                     break;
                 case 'Redação Paulista':
-                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/RedaspIA.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/RedaspIA.js\").then(t=>t.text()).then(eval);";
                     break;
                 case 'Expansão Noturno':
-                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/Noturna.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/Noturna.js\").then(t=>t.text()).then(eval);";
                     break;
                 default:
-                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/WebTeste.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/WebTeste.js\").then(t=>t.text()).then(eval);";
             }
             
             // Cria um elemento de texto temporário para copiar o script
