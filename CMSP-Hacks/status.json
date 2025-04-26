@@ -12,5 +12,61 @@
     "lastUpdated": "23/04/2025 às 10:15",
     "platforms": ["desktop"],
     "type": "bookmark"
+  },
+  {
+    "name": "Tarefa SP Auto",
+    "status": "maintenance",
+    "lastUpdated": "24/04/2025 às 22:30",
+    "platforms": ["desktop", "mobile"],
+    "type": "website"
+  },
+  {
+    "name": "Redação Paulista IA",
+    "status": "online",
+    "lastUpdated": "26/04/2025 às 09:12",
+    "platforms": ["desktop"],
+    "type": "bookmark"
+  },
+  {
+    "name": "SPeak Bypasser",
+    "status": "online",
+    "lastUpdated": "22/04/2025 às 14:45",
+    "platforms": ["desktop", "mobile"],
+    "type": "website"
+  },
+  {
+    "name": "Expansão Noturno Auto",
+    "status": "offline",
+    "lastUpdated": "20/04/2025 às 08:30",
+    "platforms": ["desktop"],
+    "type": "bookmark"
+  },
+  {
+    "name": "Matific Solver",
+    "status": "maintenance",
+    "lastUpdated": "25/04/2025 às 16:20",
+    "platforms": ["mobile"],
+    "type": "website"
+  },
+  {
+    "name": "CMSP Respondedor",
+    "status": "online",
+    "lastUpdated": "24/04/2025 às 11:35",
+    "platforms": ["desktop"],
+    "type": "bookmark"
+  },
+  {
+    "name": "Sala do Futuro Hacker",
+    "status": "offline",
+    "lastUpdated": "18/04/2025 às 19:50",
+    "platforms": ["desktop", "mobile"],
+    "type": "bookmark"
+  },
+  {
+    "name": "Saber Unificado",
+    "status": "online",
+    "lastUpdated": "26/04/2025 às 12:05",
+    "platforms": ["desktop", "mobile"],
+    "type": "website"
   }
 ]
