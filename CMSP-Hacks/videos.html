@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CMSP Plataformas Hacks - Tutoriais</title>
+  <title>Tutoriais</title>
+  <meta property="og:title" content="Tutoriais dos Scripts" />
+  <meta property="og:description" content="Veja como utilizar o seu script favorito!" />
+  <meta property="og:image" content="https://i.imgur.com/PBnK2Pb.png" />
+  <meta property="og:url" content="https://exemplo.com/tutoriais" />
+  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
@@ -36,13 +41,102 @@
       box-sizing: border-box;
     }
     
+    /* Navbar Styles */
+    .navbar {
+      background: linear-gradient(135deg, #252525, #101010);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 12px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: var(--transition-default);
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    .nav-logo i {
+      margin-right: 8px;
+      color: var(--primary-color);
+    }
+
+    .nav-logo:hover {
+      transform: translateY(-2px);
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: var(--transition-default);
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .nav-link:hover {
+      color: var(--text-color);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link.active {
+      color: var(--text-color);
+      background: rgba(138, 43, 226, 0.2);
+    }
+
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
     body {
       background-color: var(--dark-bg);
       background-image: 
         linear-gradient(rgba(138, 43, 226, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(138, 43, 226, 0.03) 1px, transparent 1px),
-        radial-gradient(circle at 25% 25%, rgba(138, 43, 226, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(138, 43, 226, 0.05) 0%, transparent 50%);
+        linear-gradient(90deg, rgba(138, 43, 226, 0.03) 1px, transparent 1px);
       background-size: 20px 20px, 20px 20px, 100% 100%, 100% 100%;
       color: var(--text-color);
       font-family: 'Poppins', sans-serif;
@@ -55,6 +149,7 @@
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
+      padding-top: 80px; /* Added to account for navbar */
     }
     
     .container {
@@ -131,7 +226,6 @@
     .tutorial:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-      border-color: rgba(76, 175, 80, 0.2);
     }
     
     .tutorial::before {
@@ -502,8 +596,39 @@
     
     @media (max-width: 768px) {
       body {
-        padding: 30px 15px;
+        padding-top: 70px;
       }
+      
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(135deg, #252525, #101010);
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        z-index: 99;
+      }
+
+      .nav-links.show {
+        max-height: 300px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-link {
+        width: 100%;
+        padding: 15px 20px;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+      
       .tutorials-container {
         grid-template-columns: 1fr;
         max-width: 450px;
@@ -533,7 +658,7 @@
     
     @media (max-width: 480px) {
       body {
-        padding: 20px 10px;
+        padding: 60px 10px 20px;
       }
       h1 {
         font-size: 1.8rem;
@@ -598,6 +723,21 @@
   <div class="loader-container" id="preloader">
     <div class="loader"></div>
   </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo"><i class="fas fa-code"></i>ScriptHub</a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="tutoriais.html" class="nav-link active">Tutoriais</a>
+        <a href="status.html" class="nav-link">Status</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
 
   <div class="container">
     <header class="header">
