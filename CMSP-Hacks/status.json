@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Khan Academy Resolver",
+    "status": "online",
+    "lastUpdated": "25/04/2025 às 18:42",
+    "platforms": ["desktop", "mobile"],
+    "type": "bookmark"
+  },
+  {
+    "name": "Alura Completer",
+    "status": "online",
+    "lastUpdated": "23/04/2025 às 10:15",
+    "platforms": ["desktop"],
+    "type": "bookmark"
+  },
+]
