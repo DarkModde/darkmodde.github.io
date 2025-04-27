@@ -15,8 +15,15 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
   <style>
-    img, video {
+    img {
       pointer-events: none;
+      -webkit-user-drag: none;
+      -moz-user-drag: none;
+      -ms-user-drag: none;
+    }
+    
+    video {
+      pointer-events: auto; /* Permitir interações com o vídeo */
       -webkit-user-drag: none;
       -moz-user-drag: none;
       -ms-user-drag: none;
@@ -291,34 +298,22 @@
       border: none;
     }
     
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 70px;
-      height: 70px;
-      background-color: rgba(138, 43, 226, 0.8);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0.9;
-      transition: var(--transition-default);
-      z-index: 2;
+    /* Estilo para os controles de vídeo */
+    video::-webkit-media-controls {
+      opacity: 0;
+      transition: opacity 0.3s;
     }
     
-    .play-button:hover {
-      background-color: var(--primary-color);
-      transform: translate(-50%, -50%) scale(1.1);
+    video:hover::-webkit-media-controls {
       opacity: 1;
     }
     
-    .play-button i {
-      color: white;
-      font-size: 1.8rem;
-      margin-left: 5px;
+    /* Garantir que os controles nativos apareçam no modo tela cheia */
+    video:fullscreen::-webkit-media-controls,
+    video:-webkit-full-screen::-webkit-media-controls,
+    video:-moz-full-screen::-webkit-media-controls,
+    video:-ms-fullscreen::-webkit-media-controls {
+      opacity: 1;
     }
     
     .notification {
@@ -569,7 +564,9 @@
     .video-wrapper:active,
     .video-wrapper:hover,
     .play-button:focus,
-    .play-button:active {
+    .play-button:active,
+    .fullscreen-button:focus,
+    .fullscreen-button:active {
       outline: none !important;
       border: none !important;
       box-shadow: none !important;
@@ -689,6 +686,13 @@
       .play-button i {
         font-size: 1.5rem;
       }
+      .fullscreen-button {
+        width: 35px;
+        height: 35px;
+      }
+      .fullscreen-button i {
+        font-size: 1rem;
+      }
       .notification-title {
         font-size: 1.1rem;
       }
@@ -751,78 +755,50 @@
       <div class="tutorial" data-aos="fade-up" data-aos-delay="100">
         <h2 style="color: var(--primary-color);">Khan Academy</h2>
         <div class="video-wrapper">
-          <video id="khan-video" src="videos/khan.mp4"></video>
-          <div class="play-button" data-video="khan-video">
-            <i class="fas fa-play"></i>
-          </div>
+          <video id="khan-video" src="Videos/KhanAcademy.mp4" controls></video>
         </div>
-        <p>Aprenda a navegar e utilizar todos os recursos da Khan Academy para aprimorar seus estudos.</p>
       </div>
       
       <div class="tutorial" data-aos="fade-up" data-aos-delay="200">
         <h2 style="color: var(--primary-color);">Alura</h2>
         <div class="video-wrapper">
-          <video id="alura-video" src="videos/alura.mp4"></video>
-          <div class="play-button" data-video="alura-video">
-            <i class="fas fa-play"></i>
-          </div>
+          <video id="alura-video" src="videos/alura.mp4" controls></video>
         </div>
-        <p>Domine a plataforma Alura e aproveite ao máximo os cursos de programação e tecnologia.</p>
       </div>
       
       <div class="tutorial" data-aos="fade-up" data-aos-delay="300">
         <h2 style="color: var(--primary-color);">Tarefa SP</h2>
         <div class="video-wrapper">
-          <video id="tarefasp-video" src="videos/tarefasp.mp4"></video>
-          <div class="play-button" data-video="tarefasp-video">
-            <i class="fas fa-play"></i>
-          </div>
+          <video id="tarefasp-video" src="Videos/TarefasSP.mp4" controls></video>
         </div>
-        <p>Saiba como gerenciar suas tarefas e entregas eficientemente com o Tarefa SP.</p>
       </div>
       
       <div class="tutorial" data-aos="fade-up" data-aos-delay="400">
         <h2 style="color: var(--primary-color);">Redação Paulista</h2>
         <div class="video-wrapper">
-          <video id="redacao-video" src="videos/redacao.mp4"></video>
-          <div class="play-button" data-video="redacao-video">
-            <i class="fas fa-play"></i>
-          </div>
+          <video id="redacao-video" src="Videos/Redação.mp4" controls></video>
         </div>
-        <p>Aprimore suas habilidades de escrita com o sistema de redação da rede estadual paulista.</p>
       </div>
       
       <div class="tutorial" data-aos="fade-up" data-aos-delay="100">
         <h2 style="color: var(--primary-color);">SPeak</h2>
         <div class="video-wrapper">
-          <video id="speak-video" src="videos/speak.mp4"></video>
-          <div class="play-button" data-video="speak-video">
-            <i class="fas fa-play"></i>
-          </div>
+          <video id="speak-video" src="Videos/SPeak.mp4" controls></video>
         </div>
-        <p>Melhore seu inglês com o aplicativo SPeak, focado no desenvolvimento da conversação.</p>
       </div>
       
       <div class="tutorial" data-aos="fade-up" data-aos-delay="200">
         <h2 style="color: var(--primary-color);">Expansão Noturno</h2>
         <div class="video-wrapper">
-          <video id="noturno-video" src="videos/noturno.mp4"></video>
-          <div class="play-button" data-video="noturno-video">
-            <i class="fas fa-play"></i>
-          </div>
+          <video id="noturno-video" src="videos/noturno.mp4" controls></video>
         </div>
-        <p>Entenda como funciona o programa de expansão para o período noturno e suas vantagens.</p>
       </div>
       
       <div class="tutorial" data-aos="fade-up" data-aos-delay="300">
         <h2 style="color: var(--primary-color);">Matific</h2>
         <div class="video-wrapper">
-          <video id="matific-video" src="videos/matific.mp4"></video>
-          <div class="play-button" data-video="matific-video">
-            <i class="fas fa-play"></i>
-          </div>
+          <video id="matific-video" src="videos/matific.mp4" controls></video>
         </div>
-        <p>Desenvolva habilidades matemáticas de forma divertida e interativa com a plataforma Matific.</p>
       </div>
     </div>
 
@@ -906,7 +882,7 @@
       }, 1000);
     });
     
-    const titleText = "CMSP Hacks - Tutoriais";
+    const titleText = "CMSP Plataformas Hacks - Tutoriais";
     const titleElement = document.getElementById("title");
     let charIndex = 0;
     
@@ -930,6 +906,9 @@
       initScrollToTop();
       
       initVideoPlayers();
+      
+      // Inicializa os botões de tela cheia
+      initFullscreenButtons();
     }
     
     function showNotification() {
@@ -1011,6 +990,139 @@
         });
       });
     }
+    
+    // Função para lidar com os botões de tela cheia
+    function initFullscreenButtons() {
+      const fullscreenButtons = document.querySelectorAll('.fullscreen-button');
+      
+      fullscreenButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const videoId = this.getAttribute('data-video');
+          const video = document.getElementById(videoId);
+          
+          toggleFullScreen(video);
+        });
+      });
+    }
+    
+    // Função para alternar o modo de tela cheia
+    function toggleFullScreen(element) {
+      if (!document.fullscreenElement &&    // método padrão
+          !document.mozFullScreenElement && // Firefox
+          !document.webkitFullscreenElement && // Chrome, Safari e Opera
+          !document.msFullscreenElement) {  // IE/Edge
+        
+        // Métodos para entrar em tela cheia
+        if (element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) { // Firefox
+          element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) { // Chrome, Safari e Opera
+          element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) { // IE/Edge
+          element.msRequestFullscreen();
+        }
+        
+        // Altera o ícone para minimizar quando em tela cheia
+        const fullscreenButton = document.querySelector(`[data-video="${element.id}"].fullscreen-button i`);
+        if (fullscreenButton) {
+          fullscreenButton.className = 'fas fa-compress';
+        }
+        
+      } else {
+        // Métodos para sair da tela cheia
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari e Opera
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+          document.msExitFullscreen();
+        }
+        
+        // Altera o ícone para expandir quando sair da tela cheia
+        const fullscreenButton = document.querySelector(`[data-video="${element.id}"].fullscreen-button i`);
+        if (fullscreenButton) {
+          fullscreenButton.className = 'fas fa-expand';
+        }
+      }
+    }
+    
+    // Listener para detectar mudanças no estado de tela cheia
+    document.addEventListener('fullscreenchange', updateFullscreenButtons);
+    document.addEventListener('webkitfullscreenchange', updateFullscreenButtons);
+    document.addEventListener('mozfullscreenchange', updateFullscreenButtons);
+    document.addEventListener('MSFullscreenChange', updateFullscreenButtons);
+    
+    // Atualiza todos os ícones de tela cheia quando o estado muda
+    function updateFullscreenButtons() {
+      const buttons = document.querySelectorAll('.fullscreen-button i');
+      
+      if (document.fullscreenElement ||
+          document.webkitFullscreenElement ||
+          document.mozFullScreenElement ||
+          document.msFullscreenElement) {
+        // Em tela cheia - mostrar ícone de minimizar
+        buttons.forEach(button => {
+          if (button.closest('video') === document.fullscreenElement) {
+            button.className = 'fas fa-compress';
+          }
+        });
+      } else {
+        // Não está em tela cheia - mostrar ícone de expandir
+        buttons.forEach(button => {
+          button.className = 'fas fa-expand';
+        });
+      }
+    }
+    
+    // Função para habilitar interações com vídeos em todos os dispositivos
+    document.querySelectorAll('video').forEach(video => {
+      video.style.pointerEvents = 'auto';
+      
+      // Adicionar evento de clique para pausar/reproduzir o vídeo
+      video.addEventListener('click', function(e) {
+        // Verifica se o clique foi no vídeo e não nos controles
+        if (e.target === this) {
+          if (this.paused) {
+            this.play();
+            document.querySelector(`[data-video="${this.id}"].play-button`).style.opacity = '0';
+          } else {
+            this.pause();
+            document.querySelector(`[data-video="${this.id}"].play-button`).style.opacity = '0.9';
+          }
+        }
+      });
+      
+      // Adicionar evento para quando o vídeo entrar em tela cheia
+      video.addEventListener('fullscreenchange', function() {
+        if (document.fullscreenElement === this) {
+          // Quando entra em tela cheia
+          this.controls = true;
+        } else {
+          // Quando sai da tela cheia
+          setTimeout(() => {
+            if (this.paused) {
+              document.querySelector(`[data-video="${this.id}"].play-button`).style.opacity = '0.9';
+            }
+          }, 100);
+        }
+      });
+      
+      // Adiciona eventos equivalentes para compatibilidade com outros navegadores
+      video.addEventListener('webkitfullscreenchange', function() {
+        if (document.webkitFullscreenElement === this) {
+          this.controls = true;
+        }
+      });
+      
+      video.addEventListener('mozfullscreenchange', function() {
+        if (document.mozFullScreenElement === this) {
+          this.controls = true;
+        }
+      });
+    });
   </script>
 </body>
 </html>
