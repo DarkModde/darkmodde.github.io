@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="CMSP Plataformas Hacks é o melhor lugar para encontrar métodos, scripts e hacks para facilitar suas tarefas escolares e melhorar seu desempenho nas plataformas de educação de São Paulo." />
-    <meta name="keywords" content="CMSP, Sala do Futuro, Khan Academy, Speak, TarefasSP, Matific, Redação, Redação Paulista, plataforma educacional, educação online, hacks para plataformas, tarefas escolares, script CMSP, melhorar notas, ensino remoto, estudo em casa, educação SP, plataformas escolares, matemática online, português online, gamificação na educação, aprendizado interativo, sistemas educacionais, conteúdo escolar, automatização de tarefas, ferramentas para estudantes, scripts para estudo, plataformas de ensino, escola online, educação tecnológica">
+    <meta name="description"
+        content="CMSP Plataformas Hacks é o melhor lugar para encontrar métodos, scripts e hacks para facilitar suas tarefas escolares e melhorar seu desempenho nas plataformas de educação de São Paulo." />
+    <meta name="keywords"
+        content="CMSP, Sala do Futuro, Khan Academy, Speak, TarefasSP, Matific, Redação, Redação Paulista, plataforma educacional, educação online, hacks para plataformas, tarefas escolares, script CMSP, melhorar notas, ensino remoto, estudo em casa, educação SP, plataformas escolares, matemática online, português online, gamificação na educação, aprendizado interativo, sistemas educacionais, conteúdo escolar, automatização de tarefas, ferramentas para estudantes, scripts para estudo, plataformas de ensino, escola online, educação tecnológica">
     <title>CMSP Plataformas Hacks</title>
     <meta property="og:title" content="CMSP Plataformas Hacks" />
-    <meta property="og:description" content="Encontre os melhores métodos, scripts e hacks para facilitar suas tarefas na escola. Aproveite!" />
+    <meta property="og:description"
+        content="Encontre os melhores métodos, scripts e hacks para facilitar suas tarefas na escola. Aproveite!" />
     <meta property="og:image" content="https://i.imgur.com/PBnK2Pb.png" />
     <meta property="og:url" content="https://darkmodde.github.io/CMSP-Hacks/" />
     <meta property="og:type" content="website" />
@@ -758,23 +762,188 @@
                 font-size: 1.3rem;
             }
         }
-        
+
         .copy-notification {
             background: linear-gradient(135deg, #252525, #101010);
-            border-left: 4px solid #03a9f4; 
+            border-left: 4px solid #03a9f4;
         }
-        
+
         .copy-notification .notification-icon {
             color: #03a9f4;
         }
-        
+
         .copy-notification .notification-title {
             color: #03a9f4;
+        }
+
+        /* Estilo para o componente de doações */
+        .donations-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 300px;
+            background: linear-gradient(135deg, #1e1e1e, #121212);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+            overflow: hidden;
+            border-left: 4px solid #6ab04c;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInDonations 0.5s forwards 0.5s;
+        }
+
+        @keyframes slideInDonations {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .donations-header {
+            background: linear-gradient(135deg, #6ab04c, #4cd137);
+            color: #fff;
+            padding: 12px 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Centraliza o conteúdo */
+            gap: 8px;
+            text-align: center;
+            /* Garante que o texto fique centralizado */
+        }
+
+        .donations-header i {
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .donations-list {
+            max-height: 320px;
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        .donations-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .donations-list::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        .donations-list::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 3px;
+        }
+
+        .donations-list::-webkit-scrollbar-thumb:hover {
+            background: #444;
+        }
+
+        .donation-item {
+            padding: 15px;
+            border-bottom: 1px solid #333;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s;
+        }
+
+        .donation-item:last-child {
+            border-bottom: none;
+        }
+
+        .donation-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .donation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .donation-name {
+            font-weight: bold;
+            color: #6ab04c;
+            font-size: 1rem;
+        }
+
+        .donation-amount {
+            background: rgba(106, 176, 76, 0.2);
+            color: #6ab04c;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .donation-message {
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            word-break: break-word;
+            text-align: left;
+            /* Alinha o texto à esquerda */
+            max-height: none;
+            /* Remove o limite de altura */
+            overflow-y: visible;
+            /* Remove o scroll */
+        }
+
+        .donation-date {
+            color: #888;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        .donation-loading {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: #ccc;
+        }
+
+        .donations-empty {
+            padding: 20px;
+            text-align: center;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .donations-container {
+                position: relative;
+                top: 0;
+                left: 0;
+                width: calc(100% - 40px);
+                margin: 20px auto;
+                animation: fadeIn 0.5s forwards;
+                transform: none;
+                opacity: 1;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="donations-container">
+        <div class="donations-header">
+            <i class="fas fa-heart"></i> Últimas Doações
+        </div>
+        <div class="donations-list" id="donations-list">
+            <div class="donation-loading">
+                <div class="spinner"></div>
+                <span>Carregando doações...</span>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <h1 class="typing-title" id="title"></h1>
         <span class="typing-cursor"></span>
@@ -788,28 +957,28 @@
         </div>
 
         <div class="buttons-container">
-            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" 
-                data-aos="fade-up" data-aos-delay="100" onclick="copyScript('Khan Academy')">
+            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up"
+                data-aos-delay="100" onclick="copyScript('Khan Academy')">
                 <i class="fas fa-graduation-cap"></i> Khan Academy
             </button>
-            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" 
-                data-aos="fade-up" data-aos-delay="200" onclick="copyScript('Alura')">
+            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up"
+                data-aos-delay="200" onclick="copyScript('Alura')">
                 <i class="fas fa-laptop-code"></i> Alura
             </button>
             <a href="https://doritus.mmrcoss.tech/" class="button" onmouseover="animateButton(this)"
                 onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="300">
                 <i class="fas fa-tasks"></i> Tarefa SP
             </a>
-            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" 
-                data-aos="fade-up" data-aos-delay="400" onclick="copyScript('Redação Paulista')">
+            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up"
+                data-aos-delay="400" onclick="copyScript('Redação Paulista')">
                 <i class="fas fa-pen-fancy"></i> Redação Paulista
             </button>
             <a href="https://speakify.cupiditys.lol/" class="button" onmouseover="animateButton(this)"
                 onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="500">
                 <i class="fas fa-comments"></i> SPeak
             </a>
-            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" 
-                data-aos="fade-up" data-aos-delay="600" onclick="copyScript('Expansão Noturno')">
+            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up"
+                data-aos-delay="600" onclick="copyScript('Expansão Noturno')">
                 <i class="fas fa-moon"></i> Expansão Noturno
             </button>
             <a href="https://matific.cupiditys.lol/" class="button" onmouseover="animateButton(this)"
@@ -821,8 +990,8 @@
         <div class="special-buttons-container">
             <a href="https://pixgg.com/DarkMode" class="special-button donation" data-aos="fade-up"
                 data-aos-delay="200"><i class="fas fa-hand-holding-heart"></i> Doação</a>
-            <a href="status.html" class="special-button website" data-aos="fade-up"
-                data-aos-delay="100"><i class="fas fa-globe"></i> Status</a>
+            <a href="status.html" class="special-button website" data-aos="fade-up" data-aos-delay="100"><i
+                    class="fas fa-globe"></i> Status</a>
             <a href="videos.html" class="special-button tutorials" data-aos="fade-up" data-aos-delay="400"><i
                     class="fas fa-book"></i> Tutoriais</a>
             <a href="https://discord.gg/platformdestroyer" class="special-button discord" data-aos="fade-up"
@@ -848,7 +1017,7 @@
             </button>
         </div>
     </div>
-    
+
     <div class="notification copy-notification" id="copy-notification" style="right: -350px; opacity: 0;">
         <div class="notification-icon">
             <i class="fas fa-check-circle"></i>
@@ -930,13 +1099,13 @@
             e.preventDefault();
             return false;
         });
-    
+
         document.addEventListener("keydown", function (e) {
             if (e.keyCode === 123) {
                 e.preventDefault();
                 return false;
             }
-    
+
             if (
                 e.ctrlKey &&
                 e.shiftKey &&
@@ -945,13 +1114,13 @@
                 e.preventDefault();
                 return false;
             }
-    
+
             if (e.ctrlKey && e.keyCode === 85) {
                 e.preventDefault();
                 return false;
             }
         });
-    
+
         const titleText = "CMSP Plataformas Hacks";
         const titleElement = document.getElementById("title");
         let charIndex = 0;
@@ -959,10 +1128,10 @@
         let typingDelay = 150;
         let deletingDelay = 50;
         let newTextDelay = 4000;
-    
+
         function typeTitle() {
             const currentText = titleElement.textContent;
-    
+
             if (!isDeleting && charIndex < titleText.length) {
                 titleElement.textContent = titleText.substring(0, charIndex + 1);
                 charIndex++;
@@ -979,26 +1148,26 @@
                 setTimeout(typeTitle, typingDelay);
             }
         }
-    
+
         function showNotification() {
             const notification = document.getElementById("donation-notification");
             notification.classList.add("show");
-    
+
             setTimeout(() => {
                 notification.classList.add("hide");
                 notification.classList.remove("show");
-    
+
                 setTimeout(() => {
                     notification.classList.remove("hide");
                     notification.style.right = "-350px";
                 }, 500);
             }, 15000);
         }
-    
+
         function goToDonation() {
             window.location.href = "https://pixgg.com/DarkMode";
         }
-    
+
         function dismissNotification() {
             const notification = document.getElementById("donation-notification");
             notification.classList.add("hide");
@@ -1008,12 +1177,12 @@
                 notification.style.right = "-350px";
             }, 500);
         }
-        
+
         function copyScript(platform) {
             let scriptToClone = "";
-            
+
             // Definir scripts específicos para cada plataforma
-            switch(platform) {
+            switch (platform) {
                 case 'Khan Academy':
                     scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/KhanResolver.js\").then(t=>t.text()).then(eval);";
                     break;
@@ -1029,7 +1198,7 @@
                 default:
                     scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/WebTeste.js\").then(t=>t.text()).then(eval);";
             }
-            
+
             // Cria um elemento de texto temporário para copiar o script
             const tempElement = document.createElement("textarea");
             tempElement.value = scriptToClone;
@@ -1037,7 +1206,7 @@
             tempElement.select();
             document.execCommand("copy");
             document.body.removeChild(tempElement);
-            
+
             // Verifica se a notificação de doação está visível
             const donationNotification = document.getElementById("donation-notification");
             if (donationNotification.classList.contains("show")) {
@@ -1050,63 +1219,63 @@
                 showCopyNotification(platform);
             }
         }
-        
+
         function showCopyNotification(platform) {
             const notification = document.getElementById("copy-notification");
             const message = notification.querySelector(".notification-message");
             message.textContent = `Script para ${platform} copiado com sucesso! Cole no console do navegador para executar.`;
-            
+
             // Garantir que a notificação esteja na posição inicial e sem opacidade antes de mostrar
             notification.style.right = "-350px";
             notification.style.opacity = "0";
             notification.classList.remove("hide");
-            
+
             // Forçar um reflow para garantir que as alterações anteriores sejam aplicadas
             void notification.offsetWidth;
-            
+
             // Mostrar a notificação
             setTimeout(() => {
                 notification.style.right = "20px";
                 notification.style.opacity = "1";
                 notification.classList.add("show");
-                
+
                 // Definir um temporizador para descartar a notificação
                 setTimeout(() => {
                     dismissCopyNotification();
                 }, 4000);
             }, 100);
         }
-        
+
         function dismissCopyNotification() {
             const notification = document.getElementById("copy-notification");
             notification.classList.add("hide");
             notification.classList.remove("show");
-            
+
             setTimeout(() => {
                 notification.classList.remove("hide");
                 notification.style.right = "-350px";
                 notification.style.opacity = "0";
             }, 500);
         }
-    
+
         function animateButton(button) {
             button.style.animation = "glow 1.5s infinite";
         }
-    
+
         function stopAnimation(button) {
             button.style.animation = "";
         }
-    
+
         const owners = [
             { id: "701558357286191204", name: "Hyxam" },
             { id: "358074964533837825", name: "Kontra" },
         ];
-    
+
         const coLeaders = [
             { id: "1134639635780350142", name: "Seven" },
             { id: "418824536570593280", name: "M4nst3in" },
         ];
-    
+
         const developers = [
             { id: "1080175803024814142", name: "<\\DarkMode>" },
             { id: "597913546239508490", name: "iUnknownBr" },
@@ -1115,7 +1284,7 @@
             { id: "852703201068187668", name: "Cupidys" },
             { id: "769197514363764736", name: "Flowings" },
         ];
-    
+
         const userStories = {
             "701558357286191204": {
                 story: "Hyxam, um dos fundadores do servidor Platform Destroyer, é simplesmente oito ou oitenta: ou ele aparece todo dia, ou NUNCA aparece no servidor. E ainda foi o criador do inglês abrasileirado, que é melhor até que o inglês dos Estados Unidos!"
@@ -1148,27 +1317,27 @@
                 story: "Flowings, o desenvolvedor que diz ser o 'melhor', mas todos acham que é mentira LOL. Mas temos que admitir que, além de ser um programador ótimo, seus websites são incríveis e muito lindos. A única coisa é que ele odeia o Seven, o co-fundador."
             }
         };
-    
+
         function openUserModal(userId, userName, avatarUrl) {
             const modal = document.getElementById('user-modal');
             const modalName = document.getElementById('modal-name');
             const modalStory = document.getElementById('modal-story');
             const modalAvatar = document.getElementById('modal-avatar');
-            
+
             modalName.textContent = userName;
             modalAvatar.src = avatarUrl;
-            
-            const userStory = userStories[userId] ? userStories[userId].story : 
+
+            const userStory = userStories[userId] ? userStories[userId].story :
                 "Informações adicionais sobre " + userName + " em breve...";
-            
+
             modalStory.textContent = userStory;
-            
+
             modal.style.display = 'block';
             setTimeout(() => {
                 modal.classList.add('show');
             }, 10);
         }
-    
+
         function closeUserModal() {
             const modal = document.getElementById('user-modal');
             modal.classList.remove('show');
@@ -1176,46 +1345,46 @@
                 modal.style.display = 'none';
             }, 300);
         }
-    
+
         function cleanAvatarCache(maxAgeInDays = 7) {
             const currentTime = new Date().getTime();
             const cacheKey = 'avatar_cache_timestamp';
-    
+
             const lastCleanTime = localStorage.getItem(cacheKey);
             if (lastCleanTime && (currentTime - parseInt(lastCleanTime) < maxAgeInDays * 24 * 60 * 60 * 1000)) {
                 return;
             }
-    
+
             Object.keys(localStorage).forEach(key => {
                 if (key.startsWith('discord_avatar_')) {
                     localStorage.removeItem(key);
                 }
             });
-    
+
             localStorage.setItem(cacheKey, currentTime.toString());
         }
-    
+
         async function fetchDiscordAvatar(userId) {
             const cachedAvatar = localStorage.getItem(`discord_avatar_${userId}`);
             if (cachedAvatar) {
                 return cachedAvatar;
             }
-    
+
             try {
                 const response = await fetch(
                     `https://discord-lookup-api-sandy.vercel.app/v1/user/${userId}`
                 );
                 const data = await response.json();
-    
+
                 if (data && data.avatar && data.avatar.link) {
                     const avatarUrl = `${data.avatar.link}.png?size=2048`;
-                    
+
                     try {
                         localStorage.setItem(`discord_avatar_${userId}`, avatarUrl);
                     } catch (storageError) {
                         console.warn('Erro ao salvar avatar no localStorage:', storageError);
                     }
-                    
+
                     return avatarUrl;
                 } else {
                     return null;
@@ -1225,55 +1394,55 @@
                 return null;
             }
         }
-    
+
         async function createCreditCard(userId, userName) {
             const creditCard = document.createElement("div");
             creditCard.className = "credit-card";
             creditCard.setAttribute("data-aos", "zoom-in");
             creditCard.setAttribute("data-user-id", userId);
-            
+
             const loadingDiv = document.createElement("div");
             loadingDiv.className = "loading-spinner";
             const spinner = document.createElement("div");
             spinner.className = "spinner";
             loadingDiv.appendChild(spinner);
             creditCard.appendChild(loadingDiv);
-    
+
             const nameDiv = document.createElement("div");
             nameDiv.className = "credit-name";
             nameDiv.textContent = userName;
             creditCard.appendChild(nameDiv);
-    
+
             const avatarUrl = await fetchDiscordAvatar(userId);
-    
+
             creditCard.removeChild(loadingDiv);
-    
+
             const img = document.createElement("img");
             img.className = "credit-img";
             img.alt = userName;
-    
+
             if (avatarUrl) {
                 img.src = avatarUrl;
             } else {
                 img.src = "https://i.imgur.com/wubcMzk.jpeg";
             }
-    
+
             creditCard.insertBefore(img, nameDiv);
-            
-            creditCard.addEventListener('click', function() {
+
+            creditCard.addEventListener('click', function () {
                 openUserModal(userId, userName, img.src);
             });
-    
+
             return creditCard;
         }
-    
+
         async function loadCreditCards() {
             const ownersContainer = document.getElementById("owners-container");
             for (const user of owners) {
                 const card = await createCreditCard(user.id, user.name);
                 ownersContainer.appendChild(card);
             }
-    
+
             const coLeadersContainer = document.getElementById(
                 "coleaders-container"
             );
@@ -1281,7 +1450,7 @@
                 const card = await createCreditCard(user.id, user.name);
                 coLeadersContainer.appendChild(card);
             }
-    
+
             const developersContainer = document.getElementById(
                 "developers-container"
             );
@@ -1290,8 +1459,96 @@
                 developersContainer.appendChild(card);
             }
         }
-    
+
+        function formatarData(dataString) {
+            const data = new Date(dataString);
+            const agora = new Date();
+            const diffMilissegundos = agora - data;
+            const diffMinutos = Math.floor(diffMilissegundos / (1000 * 60));
+            const diffHoras = Math.floor(diffMinutos / 60);
+            const diffDias = Math.floor(diffHoras / 24);
+
+            if (diffMinutos < 1) {
+                return "agora mesmo";
+            } else if (diffMinutos < 60) {
+                return `há ${diffMinutos} ${diffMinutos === 1 ? 'minuto' : 'minutos'}`;
+            } else if (diffHoras < 24) {
+                return `há ${diffHoras} ${diffHoras === 1 ? 'hora' : 'horas'}`;
+            } else if (diffDias < 30) {
+                return `há ${diffDias} ${diffDias === 1 ? 'dia' : 'dias'}`;
+            } else {
+                const dia = data.getDate().toString().padStart(2, '0');
+                const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+                const ano = data.getFullYear();
+                return `${dia}/${mes}/${ano}`;
+            }
+        }
+
+        function formatarValor(valor) {
+            return 'R$ ' + valor.toFixed(2).replace('.', ',');
+        }
+
+        async function carregarDoacoes() {
+            const doacoesList = document.getElementById('donations-list');
+
+            try {
+                const response = await fetch('https://app.pixgg.com/Reports/Donations?page=1&pageSize=10&donatorNickName=', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhcmttb2QzQHByb3Rvbi5tZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdXNlcmRhdGEiOiJ7XCJOYW1lXCI6XCJEYXJrTW9kZVwiLFwiRW1haWxcIjpcImRhcmttb2QzQHByb3Rvbi5tZVwiLFwiSWRcIjo0NDg2Mn0iLCJyb2xlIjoiU3RyZWFtZXIiLCJuYmYiOjE3NDQ4MjI2MzYsImV4cCI6MTc0NzQxNDYzNiwiaWF0IjoxNzQ0ODIyNjM2fQ.CCxgBJGEiHMUUpr-sPR2M49z_nRXto5PD-aYTAfF5dk',
+                        'origin': 'https://pixgg.com'
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar doações');
+                }
+
+                const doacoes = await response.json();
+
+                if (doacoes && doacoes.length > 0) {
+                    doacoesList.innerHTML = '';
+
+                    const doacoesAprovadas = doacoes
+                        .filter(doacao => doacao.status === 3)
+                        .slice(0, 5);
+
+                    if (doacoesAprovadas.length === 0) {
+                        doacoesList.innerHTML = '<div class="donations-empty">Nenhuma doação encontrada.</div>';
+                        return;
+                    }
+
+                    doacoesAprovadas.forEach(doacao => {
+                        const doacaoItem = document.createElement('div');
+                        doacaoItem.className = 'donation-item';
+
+                        const mensagem = doacao.donatorMessage || 'Sem mensagem';
+
+                        doacaoItem.innerHTML = `
+                    <div class="donation-header">
+                        <div class="donation-name">${doacao.donatorNickname}</div>
+                        <div class="donation-amount">${formatarValor(doacao.totalAmount)}</div>
+                    </div>
+                    <div class="donation-message">${mensagem}</div>
+                    <div class="donation-date">${formatarData(doacao.approvedDate)}</div>
+                `;
+
+                        doacoesList.appendChild(doacaoItem);
+                    });
+                } else {
+                    doacoesList.innerHTML = '<div class="donations-empty">Nenhuma doação encontrada.</div>';
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                doacoesList.innerHTML = '<div class="donations-empty">Erro ao carregar doações. Tente novamente mais tarde.</div>';
+            }
+        }
+
         window.onload = function () {
+            setTimeout(carregarDoacoes, 1500);
+            setInterval(carregarDoacoes, 120000);
+
             setTimeout(typeTitle, 1000);
             setTimeout(showNotification, 1000);
             loadCreditCards();
@@ -1302,18 +1559,18 @@
                 once: false,
                 mirror: false,
             });
-            
+
             const closeBtn = document.querySelector('.close-modal');
             closeBtn.addEventListener('click', closeUserModal);
-            
-            window.addEventListener('click', function(event) {
+
+            window.addEventListener('click', function (event) {
                 const modal = document.getElementById('user-modal');
                 if (event.target === modal) {
                     closeUserModal();
                 }
             });
-            
-            document.addEventListener('keydown', function(event) {
+
+            document.addEventListener('keydown', function (event) {
                 if (event.key === 'Escape') {
                     closeUserModal();
                 }
