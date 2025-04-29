@@ -1,7 +1,7 @@
 [
   {
     "name": "Tarefas SP",
-    "status": "maintenance",
+    "status": "online",
     "lastUpdated": "24/04/2025",
     "platforms": ["desktop", "mobile"],
     "type": "website"
