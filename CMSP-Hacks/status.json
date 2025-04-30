@@ -2,7 +2,7 @@
   {
     "name": "Tarefas SP",
     "status": "online",
-    "lastUpdated": "24/04/2025",
+    "lastUpdated": "28/04/2025",
     "platforms": ["desktop", "mobile"],
     "type": "website"
   },
@@ -50,8 +50,8 @@
   },
   {
     "name": "LeiaMe ( Arvore )",
-    "status": "offline",
-    "lastUpdated": "00/00/2025",
+    "status": "online",
+    "lastUpdated": "30/04/2025",
     "platforms": ["desktop", "mobile"],
     "type": "website"
   }
