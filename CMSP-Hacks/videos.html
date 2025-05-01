@@ -9,9 +9,6 @@
   <meta property="og:image" content="https://i.imgur.com/PBnK2Pb.png" />
   <meta property="og:url" content="https://exemplo.com/tutoriais" />
   <meta property="og:type" content="website" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
   <style>
@@ -25,7 +22,6 @@
     :root {
       --primary-color: #8A2BE2;
       --primary-hover: #7B1FA2;
-      --secondary-color: #BA68C8;
       --dark-bg: #121212;
       --card-bg: #1e1e1e;
       --text-color: #ffffff;
@@ -72,7 +68,6 @@
       display: flex;
       align-items: center;
       transition: var(--transition-default);
-      font-family: 'Rajdhani', sans-serif;
     }
 
     .nav-logo i {
@@ -99,7 +94,6 @@
       border-radius: 6px;
       transition: var(--transition-default);
       position: relative;
-      font-family: 'Poppins', sans-serif;
     }
 
     .nav-link:hover {
@@ -110,17 +104,6 @@
     .nav-link.active {
       color: var(--text-color);
       background: rgba(138, 43, 226, 0.2);
-    }
-
-    .nav-link.active::after {
-      content: "";
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--primary-color);
-      border-radius: 2px;
     }
 
     .mobile-menu-btn {
@@ -134,12 +117,8 @@
     
     body {
       background-color: var(--dark-bg);
-      background-image: 
-        linear-gradient(rgba(138, 43, 226, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(138, 43, 226, 0.03) 1px, transparent 1px);
-      background-size: 20px 20px, 20px 20px, 100% 100%, 100% 100%;
       color: var(--text-color);
-      font-family: 'Poppins', sans-serif;
+      font-family: sans-serif;
       line-height: 1.6;
       min-height: 100vh;
       padding: 40px 20px;
@@ -172,7 +151,6 @@
     }
     
     h1 {
-      font-family: 'Rajdhani', sans-serif;
       font-size: 3rem;
       font-weight: 700;
       letter-spacing: 2px;
@@ -220,7 +198,6 @@
       cursor: pointer;
       transition: var(--transition-default);
       font-weight: 600;
-      font-family: 'Poppins', sans-serif;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     
@@ -260,27 +237,11 @@
     }
     
     .tutorial h2 {
-      font-family: 'Rajdhani', sans-serif;
       font-size: 1.8rem;
       margin-bottom: 20px;
       color: var(--primary-color);
       position: relative;
       display: inline-block;
-    }
-    
-    .tutorial h2::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 40px;
-      height: 2px;
-      background-color: var(--primary-color);
-      transition: var(--transition-default);
-    }
-    
-    .tutorial:hover h2::after {
-      width: 100%;
     }
     
     .video-wrapper {
@@ -323,7 +284,6 @@
     .notification.show {
       right: 20px;
       opacity: 1;
-      animation: wiggle 0.8s ease-in-out;
     }
     
     .notification.hide {
@@ -331,27 +291,10 @@
       transform: translateX(100px) scale(0.8);
     }
     
-    @keyframes wiggle {
-      0%, 100% { transform: translateX(0); }
-      15% { transform: translateX(-5px) rotate(-2deg); }
-      30% { transform: translateX(5px) rotate(2deg); }
-      45% { transform: translateX(-3px) rotate(-1deg); }
-      60% { transform: translateX(3px) rotate(1deg); }
-      75% { transform: translateX(-1px) rotate(-0.5deg); }
-      90% { transform: translateX(1px) rotate(0.5deg); }
-    }
-    
     .notification-icon {
       font-size: 1.8rem;
       color: var(--notification-color);
       margin-bottom: 10px;
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
     }
     
     .notification-title {
@@ -359,7 +302,6 @@
       margin-bottom: 10px;
       color: var(--notification-color);
       font-size: 1.2rem;
-      font-family: 'Rajdhani', sans-serif;
     }
     
     .notification-message {
@@ -387,13 +329,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Poppins', sans-serif;
     }
     
     .notification-button:hover {
       background: var(--notification-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
     
     .notification-button i {
@@ -409,7 +348,6 @@
       cursor: pointer;
       transition: var(--transition-default);
       font-weight: 500;
-      font-family: 'Poppins', sans-serif;
     }
     
     .dismiss-button:hover {
@@ -444,53 +382,6 @@
     
     .scroll-to-top:hover {
       background: var(--primary-hover);
-      transform: translateY(-5px);
-    }
-    
-    .loader-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: var(--dark-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.5s, visibility 0.5s;
-    }
-    
-    .loader {
-      width: 80px;
-      height: 80px;
-      position: relative;
-    }
-    
-    .loader:before, .loader:after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      border: 5px solid transparent;
-      border-top-color: var(--primary-color);
-    }
-    
-    .loader:before {
-      animation: spin 1.5s linear infinite;
-      z-index: 100;
-    }
-    
-    .loader:after {
-      border: 5px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
     }
     
     .typing-cursor {
@@ -516,21 +407,6 @@
     
     .category-section.active {
       display: block;
-    }
-    
-    @media (max-width: 1200px) {
-      .tutorials-container {
-        max-width: 900px;
-      }
-    }
-    
-    @media (max-width: 991px) {
-      h1 {
-        font-size: 2.5rem;
-      }
-      .container {
-        padding: 0 15px;
-      }
     }
     
     @media (max-width: 768px) {
@@ -570,9 +446,6 @@
       
       .subtitle {
         font-size: 1rem;
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
       }
       h1 {
         font-size: 2.2rem;
@@ -609,41 +482,14 @@
         width: 40px;
         height: 40px;
       }
-      .notification-title {
-        font-size: 1.1rem;
-      }
-      .notification-message {
-        font-size: 0.9rem;
-      }
-      .notification-button, .dismiss-button {
-        padding: 7px 10px;
-        font-size: 0.9rem;
-      }
       .category-buttons {
         flex-direction: column;
         gap: 10px;
       }
     }
-    
-    @media (max-width: 360px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-      .tutorial h2 {
-        font-size: 1.3rem;
-      }
-      .notification {
-        width: 250px;
-        right: -260px;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="loader-container" id="preloader">
-    <div class="loader"></div>
-  </div>
-
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-logo"><i class="fas fa-code"></i>ScriptHub</a>
@@ -707,7 +553,6 @@
             <iframe src="https://player.vimeo.com/video/1079905858?h=ac4a4ca95c" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -756,38 +601,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   
   <script>
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-      return false;
-    });
-    
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'F12') {
-        e.preventDefault();
-        return false;
-      }
-      
-      if ((e.ctrlKey && e.shiftKey && e.key === 'I') || (e.metaKey && e.altKey && e.key === 'i')) {
-        e.preventDefault();
-        return false;
-      }
-      
-      if ((e.ctrlKey && e.shiftKey && e.key === 'J') || (e.metaKey && e.altKey && e.key === 'j')) {
-        e.preventDefault();
-        return false;
-      }
-      
-      if ((e.ctrlKey && e.shiftKey && e.key === 'C') || (e.metaKey && e.altKey && e.key === 'c')) {
-        e.preventDefault();
-        return false;
-      }
-      
-      if ((e.ctrlKey && e.key === 'u') || (e.metaKey && e.altKey && e.key === 'u')) {
-        e.preventDefault();
-        return false;
-      }
-    });
-    
     document.addEventListener('DOMContentLoaded', function() {
       AOS.init({
         duration: 800,
@@ -796,17 +609,7 @@
       });
     });
     
-    window.addEventListener('load', function() {
-      const preloader = document.getElementById('preloader');
-      setTimeout(() => {
-        preloader.style.opacity = '0';
-        setTimeout(() => {
-          preloader.style.display = 'none';
-        }, 500);
-      }, 1000);
-    });
-    
-    const titleText = "CMSP Plataformas Hacks - Tutoriais";
+    const titleText = "CMSP Hacks - Tutoriais";
     const titleElement = document.getElementById("title");
     let charIndex = 0;
     
@@ -824,11 +627,8 @@
     
     window.onload = function() {
       setTimeout(typeTitle, 1500);
-      
       setTimeout(showNotification, 3000);
-      
       initScrollToTop();
-      
       initCategoryButtons();
     }
     
