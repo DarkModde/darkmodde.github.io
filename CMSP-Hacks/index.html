@@ -70,6 +70,60 @@
             pointer-events: none;
         }
 
+        /* Tela de agradecimento */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #121212;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            transition: opacity 0.5s ease;
+        }
+
+        .welcome-content {
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .welcome-message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #ffffff;
+            min-height: 200px;
+            text-align: center;
+            display: inline-block;
+            position: relative;
+        }
+
+        .skip-button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #303030, #1a1a1a);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            bottom: 40px;
+        }
+
+        .skip-button:hover {
+            background: linear-gradient(135deg, #404040, #252525);
+            transform: translateY(-3px);
+        }
+
         .container {
             max-width: 800px;
             width: 100%;
@@ -88,6 +142,16 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
             }
         }
 
@@ -111,18 +175,6 @@
             animation: blink 1s infinite;
             position: relative;
             top: 5px;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
         }
 
         .description {
@@ -178,7 +230,6 @@
             box-sizing: border-box;
             text-align: center;
         }
-
 
         .button:before {
             content: "";
@@ -306,9 +357,7 @@
         }
 
         @keyframes wiggle {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateX(0);
             }
 
@@ -924,6 +973,17 @@
                 transform: none;
                 opacity: 1;
             }
+
+            /* Ajustes para a tela de boas-vindas */
+            .welcome-message {
+                font-size: 1.2rem;
+                min-height: 150px;
+            }
+            
+            .welcome-cursor {
+                height: 25px;
+                bottom: 3px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -972,10 +1032,30 @@
             .modal-title {
                 font-size: 1.3rem;
             }
+
+            /* Ajustes para a tela de boas-vindas */
+            .welcome-message {
+                font-size: 1rem;
+                min-height: 120px;
+            }
+            
+            .welcome-cursor {
+                height: 20px;
+                bottom: 2px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Tela de agradecimento -->
+    <div class="welcome-screen" id="welcome-screen">
+        <div class="welcome-content">
+            <div class="welcome-message" id="welcome-message"></div>
+        </div>
+        <button class="skip-button" id="skip-button">Pular</button>
+    </div>
+
+    <!-- Conteúdo principal do site -->
     <div class="donations-container">
         <div class="donations-header">
             <div><i class="fas fa-heart"></i> Doações</div>
@@ -1000,13 +1080,13 @@
         <div class="buttons-container">
             <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="100" onclick="copyScript('Khan Academy')"><i class="fas fa-graduation-cap"></i> Khan Academy</button>
             <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="200" onclick="copyScript('Alura')"><i class="fas fa-laptop"></i> Alura</button>
-            <a href="https://doritus.mmrcoss.tech/" class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-tasks"></i> Tarefa SP</a>
+            <a href="https://doritus.mmrcoss.tech/" class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-tasks"></i> TarefaSP</a>
             <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="400" onclick="copyScript('Redação Paulista')"><i class="fas fa-pen-to-square"></i> Redação Paulista</button>
             <a href="https://speakify.cupiditys.lol/install" class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-comments"></i> SPeak</a>
             <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="600" onclick="copyScript('Expansão Noturno')"><i class="fas fa-moon"></i> Expansão Noturno</button>
             <a href="https://matific.cupiditys.lol/" class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="700"><i class="fas fa-calculator"></i> Matific</a>
             <a href="https://leiasp.vercel.app/" class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="800"><i class="fas fa-book"></i> Leia ( Arvore )</a>
-            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="900" onclick="copyScript('TarefasSP Script')"><i class="fas fa-skull"></i> Tarefas SP ( Script )</button>
+            <button class="button" onmouseover="animateButton(this)" onmouseout="stopAnimation(this)" data-aos="fade-up" data-aos-delay="900" onclick="copyScript('TarefaSP Script')"><i class="fas fa-skull"></i> TarefaSP ( Script )</button>
             
         </div>
         <div class="special-buttons-container">
@@ -1069,6 +1149,75 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
+        // Função para mostrar a mensagem de agradecimento
+        function showWelcomeMessage() {
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const welcomeMessage = document.getElementById('welcome-message');
+            const skipButton = document.getElementById('skip-button');
+            
+            const fullMessage = "Olá, vim aqui dizer obrigado a todos que estão ajudando o site, seja com recomendações ou com doações. Eu, de coração, vim aqui agradecer porque isso está me ajudando demais e eu prometo sempre trazer o melhor para vocês.";
+            let charIndex = 0;
+            let isTyping = true;
+            let cursor;
+
+            // Função para criar o cursor
+            function createCursor() {
+                cursor = document.createElement('span');
+                cursor.className = 'welcome-cursor';
+                welcomeMessage.appendChild(cursor);
+            }
+
+            // Função para digitar a mensagem
+            function typeWelcomeMessage() {
+                if (charIndex < fullMessage.length && isTyping) {
+                    welcomeMessage.textContent = fullMessage.substring(0, charIndex + 1);
+                    
+                    // Remove o cursor existente e adiciona no novo final
+                    if (cursor) cursor.remove();
+                    createCursor();
+                    
+                    charIndex++;
+                    setTimeout(typeWelcomeMessage, 50); // Velocidade de digitação
+                } else {
+                    // Quando terminar de digitar, remover o cursor
+                    if (cursor) cursor.remove();
+                    
+                    // Depois esconder a tela
+                    setTimeout(() => {
+                        welcomeScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            welcomeScreen.style.display = 'none';
+                        }, 500);
+                    }, 2000); // Tempo que a mensagem fica visível após digitação
+                }
+            }
+
+            // Iniciar a digitação após um pequeno atraso
+            setTimeout(() => {
+                createCursor(); // Cria o cursor inicial
+                typeWelcomeMessage();
+            }, 1000);
+
+            // Botão para pular
+            skipButton.addEventListener('click', function() {
+                isTyping = false;
+                welcomeMessage.textContent = fullMessage;
+                if (cursor) cursor.remove();
+                welcomeScreen.style.opacity = '0';
+                setTimeout(() => {
+                    welcomeScreen.style.display = 'none';
+                }, 500);
+            });
+
+            // Verificar se o usuário já viu a mensagem antes
+            const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
+            if (hasSeenWelcome) {
+                welcomeScreen.style.display = 'none';
+            } else {
+                localStorage.setItem('hasSeenWelcome', 'true');
+            }
+        }
+
         document.addEventListener("contextmenu", function (e) {
             e.preventDefault();
             return false;
@@ -1164,7 +1313,7 @@
                 case 'Expansão Noturno':
                     scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/Noturna.js\").then(t=>t.text()).then(eval);";
                     break;
-                case 'TarefasSP Script':
+                case 'TarefaSP Script':
                     scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/TarefasResolver.js\").then(t=>t.text()).then(eval);";
                     break;
                 default:
@@ -1558,43 +1707,48 @@
         }
 
         window.onload = function () {
-            setTimeout(carregarDoacoes, 1500);
-            setInterval(carregarDoacoes, 120000);
+            // Mostrar a mensagem de boas-vindas primeiro
+            showWelcomeMessage();
 
-            setTimeout(typeTitle, 1000);
-            setTimeout(showNotification, 1000);
-            loadCreditCards();
-            cleanAvatarCache();
-            AOS.init({
-                duration: 800,
-                easing: "ease",
-                once: false,
-                mirror: false,
-            });
+            // Depois carregar o resto do site
+            setTimeout(() => {
+                setTimeout(carregarDoacoes, 1500);
+                setInterval(carregarDoacoes, 120000);
 
-            const closeBtn = document.querySelector('.close-modal');
-            closeBtn.addEventListener('click', closeUserModal);
-
-            window.addEventListener('click', function (event) {
-                const modal = document.getElementById('user-modal');
-                if (event.target === modal) {
-                    closeUserModal();
-                }
-            });
-
-            document.addEventListener('keydown', function (event) {
-                if (event.key === 'Escape') {
-                    closeUserModal();
-                }
-            });
-
-            document.querySelectorAll('.donations-tab').forEach(tab => {
-                tab.addEventListener('click', () => {
-                    switchTab(tab.dataset.tab);
+                setTimeout(typeTitle, 1000);
+                setTimeout(showNotification, 1000);
+                loadCreditCards();
+                cleanAvatarCache();
+                AOS.init({
+                    duration: 800,
+                    easing: "ease",
+                    once: false,
+                    mirror: false,
                 });
-            });
+
+                const closeBtn = document.querySelector('.close-modal');
+                closeBtn.addEventListener('click', closeUserModal);
+
+                window.addEventListener('click', function (event) {
+                    const modal = document.getElementById('user-modal');
+                    if (event.target === modal) {
+                        closeUserModal();
+                    }
+                });
+
+                document.addEventListener('keydown', function (event) {
+                    if (event.key === 'Escape') {
+                        closeUserModal();
+                    }
+                });
+
+                document.querySelectorAll('.donations-tab').forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        switchTab(tab.dataset.tab);
+                    });
+                });
+            }, 100);
         };
     </script>
 </body>
-
 </html>
