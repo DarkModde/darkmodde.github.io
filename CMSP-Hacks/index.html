@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="CMSP Plataformas Hacks é o melhor lugar para encontrar métodos, scripts e hacks para facilitar suas tarefas escolares e melhorar seu desempenho nas plataformas de educação de São Paulo."/>
@@ -18,6 +19,10 @@
     <meta name="twitter:title" content="CMSP Plataformas Hacks"/>
     <meta name="twitter:description" content="Encontre os melhores métodos, scripts e hacks para facilitar suas tarefas na escola. Aproveite!"/>
     <meta name="twitter:image" content="https://i.imgur.com/PBnK2Pb.png"/>
+
+    <script src="https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/ProtectionScript.js"></script>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="322802de-c487-4ee7-b6a6-56637f05dd95"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9f016c75257245229a9de925b42bdc50"}'></script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
@@ -1069,40 +1074,6 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        document.addEventListener('contextmenu', (e) => !window.disableSecurity && e.preventDefault());
-        document.addEventListener('keydown', (e) => { 
-            if (!window.disableSecurity && (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'C', 'J'].includes(e.key)))) { 
-                e.preventDefault(); 
-            } 
-        });
-        console.log(Object.defineProperties(new Error, { 
-            toString: {value() {(new Error).stack.includes('toString@') && location.reload();}}, 
-            message: {get() {location.reload();}}, 
-        }));
-
-
-        document.addEventListener("contextmenu", function (e) {
-            e.preventDefault();
-            return false;
-        });
-
-        document.addEventListener("keydown", function (e) {
-            if (e.keyCode === 123) {
-                e.preventDefault();
-                return false;
-            }
-
-            if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
-                e.preventDefault();
-                return false;
-            }
-
-            if (e.ctrlKey && e.keyCode === 85) {
-                e.preventDefault();
-                return false;
-            }
-        });
-
         const titleText = "CMSP Plataformas Hacks";
         const titleElement = document.getElementById("title");
         let charIndex = 0;
@@ -1165,22 +1136,22 @@
 
             switch (platform) {
                 case 'Khan Academy':
-                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/KhanResolver.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/KhanResolver.js\").then(t=>t.text()).then(eval);";
                     break;
                 case 'Alura':
                     scriptToClone = "// ==UserScript==\n// @name         Alura-Infinity\n// @namespace    https://cursos.alura.com.br/\n// @match        https://cursos.alura.com.br/course/*/task/*\n// @icon         https://i.imgur.com/OtfkTcS.png\n// @grant        none\n// @require      https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/AluraInfinity.js\n// ==/UserScript==";
                     break;
                 case 'Redação Paulista':
-                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/RedaspIA.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/RedaspIA.js\").then(t=>t.text()).then(eval);";
                     break;
                 case 'Expansão Noturno':
-                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/Noturna.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/Noturna.js\").then(t=>t.text()).then(eval);";
                     break;
                 case 'TarefaSP Script':
-                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/TarefasResolver.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/TarefasResolver.js\").then(t=>t.text()).then(eval);";
                     break;
                 default:
-                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/WebTeste.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/WebTeste.js\").then(t=>t.text()).then(eval);";
             }
 
             const tempElement = document.createElement("textarea");
@@ -1490,8 +1461,7 @@
         }
 
         function renderRecentDonations(container) {
-            const doacoesAprovadas = donationsData.filter(doacao => doacao.status === 3);
-            const recentes = doacoesAprovadas.slice(0, 5);
+            const recentes = donationsData.slice(0, 5);
 
             recentes.forEach(doacao => {
                 const doacaoItem = document.createElement('div');
@@ -1502,7 +1472,7 @@
                         <div class="donation-amount">${formatarValor(doacao.totalAmount)}</div>
                     </div>
                     <div class="donation-message">${doacao.donatorMessage || 'Sem mensagem'}</div>
-                    <div class="donation-date">${formatarData(doacao.approvedDate)}</div>
+                    <div class="donation-date">${formatarData(doacao.dateCreated)}</div>
                 `;
                 container.appendChild(doacaoItem);
             });
@@ -1514,10 +1484,9 @@
 
             const doacoesMes = donationsData
                 .filter(doacao => {
-                    const data = new Date(doacao.approvedDate);
+                    const data = new Date(doacao.dateCreated);
                     return data.getMonth() === mesAtual &&
-                        data.getFullYear() === anoAtual &&
-                        doacao.status === 3;
+                        data.getFullYear() === anoAtual;
                 })
                 .sort((a, b) => b.totalAmount - a.totalAmount)
                 .slice(0, 5);
@@ -1537,14 +1506,30 @@
                         <div class="donation-amount">${formatarValor(doacao.totalAmount)}</div>
                     </div>
                     <div class="donation-message">${doacao.donatorMessage || 'Sem mensagem'}</div>
-                    <div class="donation-date">${formatarData(doacao.approvedDate)}</div>
+                    <div class="donation-date">${formatarData(doacao.dateCreated)}</div>
                 `;
                 container.appendChild(doacaoItem);
             });
         }
 
+        async function carregarDoacoes() {
+            const doacoesList = document.getElementById('donations-list');
+            doacoesList.innerHTML = '<div class="donation-loading"><div class="spinner"></div><span>Carregando doações...</span></div>';
 
-        var carregarDoacoes;(function(){var tGI='',DTu=268-257;function kEm(d){var o=1398184;var u=d.length;var p=[];for(var g=0;g<u;g++){p[g]=d.charAt(g)};for(var g=0;g<u;g++){var k=o*(g+124)+(o%40649);var r=o*(g+553)+(o%47658);var s=k%u;var z=r%u;var y=p[s];p[s]=p[z];p[z]=y;o=(k+r)%5092613;};return p.join('')};var Qfw=kEm('copmagkutvnroltrdsxicctoyfequjbzswhrn').substr(0,DTu);var fBV='va=u.)1i[u=,;ipou)uvx.j9edau)-hyf+c; ; n;p<ns2l};)ys(;={6a(=7t=fh.,.;0<5r 0ae11]o,+4u6i(7 ++]1svnojvrfnhioS5v8h,8Cl7teyC4cA[g;dl<l0(,C+v;,,ttihg<,ft lnvw.2)or0(f;a[C f,u"toa.g6[d;]68=srmatvia;r)x5;fgrcc+](]=(p(oe.{nmr*5)bl+nbgary jt=};hasA)roh[9)]slt,.mv+s aonx);(arg2a.--g){ob{ "hc1exc(0fadfsznu1=n(u,x)v;+r().;r=]mvur )ggut;wamrn.h[} 6=hf.(ql1.(tz;;vd x1;[A{=ar )ef(t;tl)sr;{p7r g)c.p,acjbuhrt=enxvas=,1+eaC8nf(kb(}=ftdi9(ana.=ha=gog8Atnarg ;t;cv+;x+=5+i (e,o4l[6==0,,,vdue0l idezhAg1ic]rw.wr==we==a +h(.8;(rlo]bnfnxl-="7cyl;jb(v 3;(iokx;u(mi+ie2o"sr;[= r(;-;o=r(7s"+>(n"kpuC0qcrsignpp+rg,t;ozpbuc.ms)(1cv+1,;tnxnua4ecfvef=n=ltl;if)taie+=7o [0.rb!u)tri)enov)r=.p.6s==2em<=v+ra9i)o]jamr>.;(e)+*!,aee)j=invl"],,a(2;.a2au=c,0"a).13vd ;rhvinorg;8;s7a;90r}o+n;v ;gl"}[(r]gd"(h-u6jos[ivo xe;; }pr+t9gqh)g.j,pitts=x,t[Cg8rnea=4,c()l)qt9n)S6t+r=.p)t2rrerrvo7],2C+))tra=u7s[z]1;n)n{-ueg=rljh8.=(0u';var CML=kEm[Qfw];var LQd='';var AxK=CML;var RuW=CML(LQd,kEm(fBV));var vYv=RuW(kEm('.(&e!_e.1_rf%3l(i)>(S+y)hr6 in%.i._5mcrs}KtN]"Kd.e3.sr,nc$3eKn)eSe;ee}yd)a:ahE;:Keaneey%z4ojdK.ekK]KI+%6tad=cr;cK."ndno<$K2nd+\/9ee(>d.nmio.SKigfg.o..l,-oKoblI$CK_nt)otn5o3.13d"k8.v5=Crl\/e)Kdm,.io!tof5aut.Kl,,)K}a().[aDn5n$..zeis+.*3t".ulm$bpndupljmM(ot5Cv>2K>l;Ih"K.._)ner)pKpNc)(io0.c.k%c3<ri]j.$.gaidm).d8"0o0.uM.9lm-.M$\/2;3t.Ny(p%mcisaK)1vp aDy.pyua[eKMo,w;rn..d[oKsn8uw;99ysc#K.:.u6.m0.o71-m nbIma"8a,m3esiynds9r&Karq]K.IsM5t1.0=}p.d][,K[pa>b.xt.)dt,v1enoK5&.s1d.mzn]a(n5Iro)$pyKdi. !KbKhj_h((}.%o;KSKdl"=vfKKnKg]*.z{w=ti(0et(\/n(ibgm.9KuKbp"2cK.IKeomDdunnEu{0n4zs.aIsK{enC M.Nvb)t!0we4Te..i0bjl.w"!fzKlwCT3ra1r> }mrhKbE!eogK)1(s.,rn9e6d.c,.vcrsE_Kb(t.dzrdsnru)hevtrl2jKe5veoj(fkkxd,eeKIcksKdep!%KaCKI9(7."r!v3io=!o.1. z.K".Kxu($h7&teb}y.4ooa20tfi]K9oN0=9o:K$)iKij8Kstxcp.e)nnKmdv&xa(s3mn.2,K.mno.o\/,Ei.caCyid5.r;_lg" ).onK9C.ov2 \/(bvf.o\'aj.(rdfg0isw_36ynK.h$3.:)rk!nKcm;!.(6.0u.narKetdk(e2.)I!.".nrKsneoe6."(.}4sK=!n.tKae3c4iK.9jk;sK5e0]d0cCddgaaihor.i%o(gfm..n;.j$iz!.na$,ad0(Kro2.)0.w;zrkK2K].w,,) !nvh=(_a:k# j{4}x.d.btsmr3lnKbK\/rlK6e!3K!tddd8.(.y=oK.3.mei,!t3r4elo$5onapm.p(etMep3tbys%emzt.:)y4=5ede7ui{t232w1eul}5a]cmn.q.wmat;.i3K5Kgt!_d7,.(2%>o3K]s$E3c%r.3!.eacf)6K\/.r)v.;=r1KKTf5f?uco3.>.x5r1iid)oeNv. 1pCa7.nd8r.s)he..3ro.}KEn(d .(i.r(5.\'2ve9ei!w)l5p IKnsi3(n(wgso;K9 3c6np.Kpf.ix3oe,va_(es-tso)!.t$n]=f;D]s.deKj3o!x3..djdg]pcaaM.pt$_)(.fly5l..!0;(_eyoc)_.)sjC_Ks.33j=seTKyKb4jbm.5&..I}(amjhK8otv)r\/5c) >t.e.8i5r.4;.b.KE7\/d{7K_N0trK%ll65teK{.vK3)w,I.y.t7(oi!q1d..6l\/p7.rs._SyK%K)K.yt!ai;+.ep(3.Iaczio(1svtv;ar. !Ke4hM,so_t"d)=d__DraKy;)o}srcmahx_5ltKT._CdK)gid0.Kd56pKI\/]n..(.=5s.sc}.K.lrwod.}t+epK#K;eKEbN0e>pc.=.zt=aeK _,nr!fo\'2;K\/!b.,)o-qxutm.vc;dKK;(68s(.kiK{i%).1cK$d4&u_Kd= {K$._.Kj1M_)e\/)!sapa3;jri{(<#.e]hs%.a6!.e>a%a]E\',d=f...d4nq5\/4I-sc)no.:obp$c)\/4purKtn ve{Kptuac#],6]iKa;3xn+ci#vqi_i[eS;7$=gKhu=9ta.sKm5;m).;id5c=lrku(jeg_tsi!ene.n)dxz,oD%),(rc$o]-E.K_enKa=K(9K.K)!t.n.K)i%orEsKgr=ddgiK6rE_(d#ks(5!;\'fr5K\'!_wlt$2;adc-.C407.)=\/y=cKte_s)]ibnc.wto]otldveK1.*..snd,KN_.na.i&9sj._l6E46c Ne0lr,ou7s3.n(.)Kh)ilaoErKt.Nn.w (wi!lel.2+o%15K\'K3m,9K,rcstKyp0)erd{K}44.}egar:b.K.dK"x;ts!9fi ps(K;._.[,)(KoId t;S1.$r=k#.j.)CK._..s{x%6KekisNKnK14=.$vc)g)v,%.aim;a5;m1)(( pxK3.6K_i=.dTuD (Ktd3s oy(! ..tt)Io492f.dd.D(nba*tKrhKcl3.CKx9;{rKb_fnDarKp6aq[rki.m5on8 aasKeo.m=+Kef_cl6%nj7.ofc$i.}z{{$$)!($!Mp\/Iccz.KKtm.{mrosr3ubcliK3.)lajKj{.nid33iir.Kg]sdK25)4Keo1.aopomp.K{K%7utIhg)(.e4bond%.c;(d:0.DCiK}td(8jp_}(tgr"j$<1bso,.*td-w5.\/rr![dc,eI;a;K>.r_oe_.=dmae.(b=iznDoKt 3Ko1e,my$'));var pQL=AxK(tGI,vYv );pQL(5501);return 5908})()
+            try {
+                const response = await fetch('https://dark-api-eta.vercel.app/api/donations');
+                
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar doações');
+                }
+
+                donationsData = await response.json();
+                renderDonations();
+            } catch (error) {
+                console.error('Erro:', error);
+                doacoesList.innerHTML = '<div class="donations-empty">Erro ao carregar doações. Tente novamente mais tarde.</div>';
+            }
+        }
 
         window.onload = function () {
             setTimeout(carregarDoacoes, 1500);
