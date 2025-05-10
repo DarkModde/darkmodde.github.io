@@ -1136,22 +1136,22 @@
 
             switch (platform) {
                 case 'Khan Academy':
-                    scriptToClone = "javascript:fetch(\"https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/KhanResolver.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/KhanResolver.js\").then(t=>t.text()).then(eval);";
                     break;
                 case 'Alura':
                     scriptToClone = "// ==UserScript==\n// @name         Alura-Infinity\n// @namespace    https://cursos.alura.com.br/\n// @match        https://cursos.alura.com.br/course/*/task/*\n// @icon         https://i.imgur.com/OtfkTcS.png\n// @grant        none\n// @require      https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/AluraInfinity.js\n// ==/UserScript==";
                     break;
                 case 'Redação Paulista':
-                    scriptToClone = "javascript:fetch(\"https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/RedaspIA.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/RedaSP-IA.js\").then(t=>t.text()).then(eval);";
                     break;
                 case 'Expansão Noturno':
-                    scriptToClone = "javascript:fetch(\"https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/Noturna.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/Noturna.js\").then(t=>t.text()).then(eval);";
                     break;
                 case 'TarefaSP Script':
-                    scriptToClone = "javascript:fetch(\"https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/TarefasResolver.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/TarefaResolver.js\").then(t=>t.text()).then(eval);";
                     break;
                 default:
-                    scriptToClone = "javascript:fetch(\"https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/WebTeste.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/WebTeste.js\").then(t=>t.text()).then(eval);";
             }
 
             const tempElement = document.createElement("textarea");
