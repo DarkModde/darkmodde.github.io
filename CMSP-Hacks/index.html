@@ -116,7 +116,6 @@
             width: 3px;
             height: 42px;
             background-color: #fff;
-            margin-left: 5px;
             animation: blink 1s infinite;
             position: relative;
             top: 5px;
@@ -168,7 +167,7 @@
         }
 
         .category-title i {
-            color: #6ab04c;
+            color: #4169e1;
         }
 
         /* Botões */
@@ -200,7 +199,7 @@
             gap: 8px;
             flex: 1 1 200px;
             min-width: 200px;
-            max-width: 220px;
+            max-width: 300px;
             height: 60px;
             box-sizing: border-box;
             text-align: center;
@@ -251,7 +250,9 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-decoration: none;
-            min-width: 150px;
+            min-width: 300px;
+            max-width: 300px;
+            height: 60px;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -971,30 +972,30 @@
         }
 
         .double-category-boxes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 30px;
-}
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
 
-.category-box {
-    background: rgba(30, 30, 30, 0.5); /* transparência */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* contorno leve */
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px); /* efeito de vidro */
-    -webkit-backdrop-filter: blur(10px); /* suporte para Safari */
-    flex: 1 1 360px;
-    max-width: 420px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .category-box {
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            flex: 1 1 360px;
+            max-width: 420px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.category-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
-}
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -1017,7 +1018,7 @@
         <h1 class="typing-title" id="title"></h1>
         <span class="typing-cursor"></span>
         <div class="description">
-            <p>Olá bem vindo ao site do CMSP Plataformas Hacks aonde você encontra os melhores metodos, scripts e hacks para facilitar as suas tarefas da escola</p>
+            <p>Olá bem-vindo ao site do CMSP Plataformas Hacks, onde você encontra os melhores métodos, scripts e hacks para facilitar suas tarefas escolares.</p>
         </div>
         
         <!-- Seção Websites -->
@@ -1027,8 +1028,8 @@
         <div class="buttons-container">
             <a href="https://doritus.mmrcoss.tech/" class="button" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-tasks"></i> TarefaSP</a>
             <a href="https://speakify.cupiditys.lol/install" class="button" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-comments"></i> SPeak</a>
-            <a href="https://matific.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-calculator"></i> Matific</a>
-            <a href="https://leiasp.vercel.app/" class="button" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-book"></i> Leia (Arvore)</a>
+            <a href="https://matific.cupiditys.lol/dashboard" class="button" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-calculator"></i> Matific</a>
+            <a href="https://leiasp.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-book"></i> LeiaSP</a>
         </div>
     </div>
         
@@ -1037,10 +1038,10 @@
         <h2 class="category-title"><i class="fas fa-code"></i> Scripts</h2>
         <div class="buttons-container">
             <button class="button" data-aos="fade-up" data-aos-delay="100" onclick="copyScript('Khan Academy')"><i class="fas fa-graduation-cap"></i> Khan Academy</button>
-            <button class="button" data-aos="fade-up" data-aos-delay="200" onclick="copyScript('Alura')"><i class="fas fa-laptop"></i> Alura</button>
             <button class="button" data-aos="fade-up" data-aos-delay="300" onclick="copyScript('Redação Paulista')"><i class="fas fa-pen-to-square"></i> Redação Paulista</button>
             <button class="button" data-aos="fade-up" data-aos-delay="400" onclick="copyScript('Expansão Noturno')"><i class="fas fa-moon"></i> Expansão Noturno</button>
-            <button class="button" data-aos="fade-up" data-aos-delay="500" onclick="copyScript('TarefaSP Script')"><i class="fas fa-skull"></i> TarefaSP (Script)</button>
+            <button class="button" data-aos="fade-up" data-aos-delay="500" onclick="copyScript('TarefaSP Script')"><i class="fas fa-skull"></i> TarefaSP</button>
+            <button class="button" data-aos="fade-up" data-aos-delay="200" onclick="copyScript('Alura')"><i class="fas fa-laptop"></i> Alura</button>
         </div>
     </div>
 </div>
@@ -1185,7 +1186,7 @@
                     scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/RedaSP-IA.js\").then(t=>t.text()).then(eval);";
                     break;
                 case 'Expansão Noturno':
-                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/Noturna.js\").then(t=>t.text()).then(eval);";
+                    scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/ExNoturnoFDS.js\").then(t=>t.text()).then(eval);";
                     break;
                 case 'TarefaSP Script':
                     scriptToClone = "javascript:fetch(\"https://corsproxy.io/?url=https://raw.githubusercontent.com/DarkModde/Dark-Scripts/refs/heads/main/TarefaResolver.js\").then(t=>t.text()).then(eval);";
