@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala dos sem futuro</title>
+    <meta name="description" content="Automatize suas tarefas acadêmicas de forma rápida e eficiente">
+    <meta name="keywords" content="CMSP Plataformas Hacks, Sala do Futuro Plataformas Hacks, CMSP Hacks, Sala do Futuro Hacks, CMSP Plataformas Scripts, Sala do Futuro Scripts, CMSP Scripts, Sala do Futuro Scripts, LeiaMe Hacks, LeiaMe Scripts, Arvore Hacks, Arvore Scripts, Khan Academy Hacks, Khan Academy Scripts, Tarefas SP Hacks, Tarefas SP Scripts, Alura Hacks, Alura Scripts, SPeak Hacks, SPeak Scripts, Expansão Noturno Hacks, Expansão Noturno Scripts, Matific Hacks, Matific Scripts, Redação Paulista Hacks, Redação Paulista Scripts, Prova Hacks, Prova Paulista Scripts, ferramentas de estudo online, hack para tarefas escolares, hacks para Khan Academy, hacks para Matific, automação de tarefas escolares, hacks para prova paulista, hacks para Alura, hack para SPeak, hack para Redação Paulista, gamificação para educação, scripts para melhorar notas, scripts para Khan Academy, hacks para educação SP, plataformas educacionais hacks, ferramentas para estudantes, scripts de ensino remoto, hacks para sala do futuro, otimização de estudos online, scripts de provas online, hacks educacionais, hacks de estudo em casa">
+    <meta name="author" content="DarkMode">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1f1f1f;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-color: #ffffff;
+            --accent-hover: #e0e0e0;
+            --error-color: #ff4444;
+            --success-color: #44ff44;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px;
+            background-color: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: clamp(20px, 5vw, 40px);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .profile-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 30%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 20px;
+            border: 3px solid var(--accent-color);
+            pointer-events: none;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            animation: slideUp 0.5s ease;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--bg-tertiary);
+            border: 1px solid #333;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+            color: var(--text-primary);
+        }
+
+        input:focus, select:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 128, 240, 0.2);
+        }
+
+        select option {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: black;
+            border: none;
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            width: 95%;
+            margin: 20px;
+            box-shadow: var(--box-shadow);
+            animation: modalFadeIn 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-align: center;
+        }
+
+        .progress-container {
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: var(--bg-tertiary);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: #6a5acd;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .task-info {
+            margin-bottom: 15px;
+        }
+
+        .task-info p {
+            margin: 8px 0;
+            color: var(--text-secondary);
+        }
+
+        .time-remaining {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .close-modal {
+            background-color: var(--error-color);
+            margin-top: 20px;
+        }
+
+        .close-modal:hover {
+            background-color: #d32f2f;
+        }
+
+        .loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(74, 128, 240, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            padding: 15px 20px;
+            max-width: 350px;
+            z-index: 9999;
+            box-shadow: var(--box-shadow);
+            animation: slideInRight 0.3s ease;
+            width: 90%;
+            margin: 10px;
+        }
+
+        .notification.success {
+            border-color: var(--success-color);
+        }
+
+        .notification.error {
+            border-color: var(--error-color);
+        }
+
+        .notification.info {
+            border-color: var(--accent-color);
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .notification-message {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px !important;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            input, select, button {
+                padding: 10px !important;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 1024px) {
+            .container {
+                max-width: 600px;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .container {
+                max-width: 800px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .notification {
+                width: calc(100% - 20px);
+                right: 10px;
+            }
+        }
+
+        .time-and-button {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .time-and-button .form-group {
+            flex: 2;
+            margin-bottom: 0;
+        }
+
+        .time-and-button button {
+            width: auto;
+            flex: 1;
+            padding: 12px 10px;
+            min-width: 120px;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+    <div class="container">
+        <img src="https://i.imgur.com/kFb0sct.png" alt="Perfil" class="profile-image">
+        <h1>Sala dos sem futuro</h1>
+
+        <form id="Enviar">
+            <div class="form-group">
+                <label for="ra">Registro Acadêmico (RA):</label>
+                <input type="text" id="ra" required placeholder="Digite seu RA">
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <div class="password-container">
+                    <input type="password" id="senha" required placeholder="Digite sua senha">
+                </div>
+            </div>
+
+            <div class="time-and-button">
+                <div class="form-group">
+                    <label for="tempo">Tempo por Tarefa:</label>
+                    <select id="tempo" required>
+                        <option value="0">Instantâneo</option>
+                        <option value="30">30 Segundos</option>
+                        <option value="60">01 Minuto</option>
+                        <option value="120" selected>02 Minutos</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="submitBtn">matar tarefas</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="progressModal">
+        <div class="modal-content">
+            <div class="loader">
+                <div class="spinner"></div>
+            </div>
+            <h2>Processando Atividades</h2>
+            <div class="task-info">
+                <p><strong>Tarefa atual:</strong> <span id="currentTask">Nenhuma</span></p>
+                <p><strong>Progresso:</strong> <span id="taskProgress">0</span> de <span id="totalTasks">0</span></p>
+                <p><strong>Tempo restante:</strong> <span id="timeRemaining" class="time-remaining">0:00</span></p>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+            </div>
+            <button class="close-modal" id="closeModal">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        const senhaInput = document.getElementById("senha");
+        const enviarForm = document.getElementById('Enviar');
+        const progressModal = document.getElementById('progressModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const tempoSelect = document.getElementById('tempo');
+
+        let trava = false;
+        let countdownInterval;
+        let shouldStopExecution = false;
+        let totalTasksFound = 0;
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
+
+        enviarForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (trava) return;
+
+            trava = true;
+            try {
+                await loginRequest();
+            } catch {
+                trava = false;
+            }
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            progressModal.style.display = 'none';
+            shouldStopExecution = true;
+            clearInterval(countdownInterval);
+            showNotification('Processo interrompido', 'A execução das tarefas foi cancelada pelo usuário.', 'info');
+        });
+
+        async function loginRequest() {
+            const loginData = {
+                user: document.getElementById('ra').value,
+                senha: senhaInput.value
+            };
+
+            const headers = {
+                'Accept': 'application/json',
+                'Ocp-Apim-Subscription-Key': '2b03c1db3884488795f79c37c069381a',
+                'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+            };
+
+            try {
+                const data = await makeRequest(
+                    'https://sedintegracoes.educacao.sp.gov.br/credenciais/api/LoginCompletoToken',
+                    'POST',
+                    headers,
+                    loginData
+                );
+                await sendRequest(data.token);
+            } catch {
+                showNotification('Erro de login', 'Não foi possível fazer login. Verifique suas credenciais.', 'error');
+                throw new Error('Login failed');
+            }
+        }
+
+        async function sendRequest(token) {
+            try {
+                const data = await makeRequest(
+                    'https://edusp-api.ip.tv/registration/edusp/token',
+                    'POST',
+                    getDefaultHeaders(),
+                    { token }
+                );
+                await fetchUserRooms(data.auth_token);
+            } catch {
+                showNotification('Erro de registro', 'Erro ao registrar token. Tente novamente.', 'error');
+                throw new Error('Registration failed');
+            }
+        }
+
+        async function fetchUserRooms(token) {
+            try {
+                const data = await makeRequest(
+                    'https://edusp-api.ip.tv/room/user?list_all=true&with_cards=true',
+                    'GET',
+                    { ...getDefaultHeaders(), 'x-api-key': token }
+                );
+
+                if (data.rooms && data.rooms.length > 0) {
+                    totalTasksFound = 0;
+                    shouldStopExecution = false;
+                    
+                    await Promise.all(
+                        data.rooms.map(room => fetchTasks(token, room.name, room.topic))
+                    );
+                    
+                    if (totalTasksFound === 0) {
+                        showNotification('Nenhuma tarefa encontrada', 'Não há tarefas pendentes para serem executadas no momento.', 'info');
+                    }
+                }
+            } catch {
+                throw new Error('Failed to fetch rooms');
+            } finally {
+                trava = false;
+            }
+        }
+
+        async function fetchTasks(token, room, name) {
+            const endpoints = [
+                { label: 'Rascunho', url: `https://edusp-api.ip.tv/tms/task/todo?expired_only=false&filter_expired=true&with_answer=true&is_essay=false&publication_target=${room}&answer_statuses=draft&with_apply_moment=true` },
+                { label: 'Expirada', url: `https://edusp-api.ip.tv/tms/task/todo?expired_only=true&filter_expired=false&with_answer=true&is_essay=false&publication_target=${room}&answer_statuses=pending&with_apply_moment=true` },
+                { label: 'Normal', url: `https://edusp-api.ip.tv/tms/task/todo?expired_only=false&filter_expired=true&with_answer=true&is_essay=false&publication_target=${room}&answer_statuses=pending&with_apply_moment=false` }
+            ];
+
+            const headers = { ...getDefaultHeaders(), 'x-api-key': token };
+
+            try {
+                const results = await Promise.all(
+                    endpoints.map(async ({ label, url }) => {
+                        try {
+                            const data = await makeRequest(url, 'GET', headers);
+                            return { label, data };
+                        } catch {
+                            return null;
+                        }
+                    })
+                );
+                processTaskResults(results, token, room, name);
+            } catch {
+                throw new Error('Failed to fetch tasks');
+            }
+        }
+
+        function getDefaultHeaders() {
+            return {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'x-api-realm': 'edusp',
+                'x-api-platform': 'webclient',
+                'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+                'Connection': 'keep-alive',
+                'Sec-Fetch-Site': 'same-origin',
+                'Sec-Fetch-Mode': 'cors',
+                'Sec-Fetch-Dest': 'empty'
+            };
+        }
+
+        async function makeRequest(url, method = 'GET', headers = {}, body = null) {
+            const options = {
+                method,
+                headers: {
+                    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+                    'Content-Type': 'application/json',
+                    ...headers
+                }
+            };
+
+            if (body) {
+                options.body = JSON.stringify(body);
+            }
+
+            const response = await fetch(url, options);
+            if (!response.ok) {
+                throw new Error(`HTTP ${method} ${url} => ${response.status}`);
+            }
+            return response.json();
+        }
+
+        function isRedacao(task) {
+            return task.tags?.some(t => t.toLowerCase().includes('redacao')) ||
+                task.title.toLowerCase().includes('redação');
+        }
+
+        function processTaskResults(results, token, room, name) {
+            results.forEach(result => {
+                if (result && result.data.length > 0 && result.label !== 'Rascunho') {
+                    let filteredData = result.data;
+                    if (result.label === 'Expirada') {
+                        filteredData = filteredData.filter(task => !isRedacao(task));
+                    }
+                    totalTasksFound += filteredData.length;
+                    loadTasks(filteredData, token, room, result.label);
+                }
+            });
+        }
+
+        async function loadTasks(tasks, token, room, tipo) {
+            if (!tasks || tasks.length === 0) {
+                return;
+            }
+
+            const redacaoTasks = tasks.filter(isRedacao);
+            const outrasTasks = tasks.filter(task => !isRedacao(task));
+            const orderedTasks = [...redacaoTasks, ...outrasTasks];
+
+            iniciarModalGlobal(orderedTasks.length);
+            let redacaoLogFeito = false;
+            let completedTasks = 0;
+
+            for (const [index, task] of orderedTasks.entries()) {
+                if (shouldStopExecution) {
+                    break;
+                }
+                
+                try {
+                    const taskDetails = await getTaskDetails(task.id, token);
+                    await processTask(task, taskDetails, token, room, index + 1, orderedTasks.length, redacaoLogFeito);
+                    completedTasks++;
+                } catch {
+                    continue;
+                }
+            }
+            
+            if (!shouldStopExecution && completedTasks > 0) {
+                progressModal.style.display = 'none';
+                clearInterval(countdownInterval);
+                showNotification('Tarefas concluídas!', `${completedTasks} tarefas foram feitas com sucesso.`, 'success');
+            }
+        }
+
+        async function getTaskDetails(taskId, token) {
+            const url = `https://edusp-api.ip.tv/tms/task/${taskId}/apply?preview_mode=false`;
+            const headers = { ...getDefaultHeaders(), 'x-api-key': token };
+            const response = await makeRequest(url, 'GET', headers);
+            return processTaskDetails(response);
+        }
+
+        function processTaskDetails(details) {
+            const answersData = {};
+
+            details.questions.forEach(question => {
+                if (question.type === 'info') return;
+
+                const questionId = question.id;
+                let answer = {};
+
+                if (question.type === 'media') {
+                    answer = { status: 'error', message: 'Type=media system require url' };
+                } else if (question.options && typeof question.options === 'object') {
+                    const options = Object.values(question.options);
+                    const correctIndex = Math.floor(Math.random() * options.length);
+
+                    options.forEach((_, i) => {
+                        answer[i] = i === correctIndex;
+                    });
+                }
+
+                answersData[questionId] = {
+                    question_id: questionId,
+                    question_type: question.type,
+                    answer
+                };
+            });
+
+            return answersData;
+        }
+
+        async function processTask(task, answersData, token, room, index, total, redacaoLogFeito) {
+            const taskTitle = task.title;
+            const taskId = task.id;
+
+            if (isRedacao(task)) {
+                if (!redacaoLogFeito) {
+                    redacaoLogFeito = true;
+                }
+                return;
+            }
+
+            if (true) {
+                await submitAnswers(taskId, answersData, token, room, taskTitle, index, total);
+            }
+        }
+
+        async function submitAnswers(taskId, answersData, token, room, taskTitle, index, total) {
+            const draftBody = {
+                status: 'submitted',
+                accessed_on: 'room',
+                executed_on: room,
+                answers: answersData
+            };
+
+            const tempoSelecionado = parseInt(tempoSelect.value);
+            atualizarModalGlobal(taskTitle, tempoSelecionado, index, total);
+            
+            if (tempoSelecionado > 0) {
+                await delay(tempoSelecionado * 1000);
+            }
+
+            try {
+                const response = await makeRequest(
+                    `https://edusp-api.ip.tv/tms/task/${taskId}/answer`,
+                    'POST',
+                    { 'x-api-key': token },
+                    draftBody
+                );
+
+                const newTaskId = response.id;
+                await fetchAndUpdateCorrectAnswers(taskId, newTaskId, token, taskTitle);
+            } catch {
+                throw new Error('Failed to submit answers');
+            }
+        }
+
+        async function fetchAndUpdateCorrectAnswers(taskId, answerId, token, taskTitle) {
+            try {
+                const url = `https://edusp-api.ip.tv/tms/task/${taskId}/answer/${answerId}?with_task=true&with_genre=true&with_questions=true&with_assessed_skills=true`;
+                const respostasAnteriores = await makeRequest(url, 'GET', { 'x-api-key': token });
+                await putAnswer(respostasAnteriores, taskId, answerId, token, taskTitle);
+            } catch {
+                throw new Error('Failed to update answers');
+            }
+        }
+
+        async function putAnswer(respostasAnteriores, taskId, answerId, token, taskTitle) {
+            try {
+                const url = `https://edusp-api.ip.tv/tms/task/${taskId}/answer/${answerId}`;
+                const novasRespostasPayload = transformJson(respostasAnteriores);
+                await makeRequest(url, 'PUT', { 'x-api-key': token }, novasRespostasPayload);
+            } catch {
+                throw new Error('Failed to put answer');
+            }
+        }
+
+        function transformJson(jsonOriginal) {
+            if (!jsonOriginal?.task?.questions) {
+                throw new Error("Invalid data structure");
+            }
+
+            const novoJson = {
+                accessed_on: jsonOriginal.accessed_on,
+                executed_on: jsonOriginal.executed_on,
+                answers: {}
+            };
+
+            for (const questionId in jsonOriginal.answers) {
+                const questionData = jsonOriginal.answers[questionId];
+                const taskQuestion = jsonOriginal.task.questions.find(q => q.id === parseInt(questionId));
+
+                if (!taskQuestion) continue;
+
+                try {
+                    const answerPayload = createAnswerPayload(taskQuestion);
+                    if (answerPayload) {
+                        novoJson.answers[questionId] = answerPayload;
+                    }
+                } catch {
+                    continue;
+                }
+            }
+
+            return novoJson;
+        }
+
+        function createAnswerPayload(taskQuestion) {
+            const answerPayload = {
+                question_id: taskQuestion.id,
+                question_type: taskQuestion.type,
+                answer: null
+            };
+
+            switch (taskQuestion.type) {
+                case "order-sentences":
+                    if (taskQuestion.options?.sentences?.length) {
+                        answerPayload.answer = taskQuestion.options.sentences.map(s => s.value);
+                    }
+                    break;
+                case "fill-words":
+                    if (taskQuestion.options?.phrase?.length) {
+                        answerPayload.answer = taskQuestion.options.phrase
+                            .map((item, index) => index % 2 !== 0 ? item.value : null)
+                            .filter(Boolean);
+                    }
+                    break;
+                case "text_ai":
+                    answerPayload.answer = { "0": removeTags(taskQuestion.comment || '') };
+                    break;
+                case "fill-letters":
+                    if (taskQuestion.options?.answer !== undefined) {
+                        answerPayload.answer = taskQuestion.options.answer;
+                    }
+                    break;
+                case "cloud":
+                    if (taskQuestion.options?.ids?.length) {
+                        answerPayload.answer = taskQuestion.options.ids;
+                    }
+                    break;
+                default:
+                    if (taskQuestion.options && typeof taskQuestion.options === 'object') {
+                        answerPayload.answer = Object.fromEntries(
+                            Object.entries(taskQuestion.options).map(([id, opt]) => [
+                                id,
+                                opt?.answer !== undefined ? opt.answer : false
+                            ])
+                        );
+                    }
+                    break;
+            }
+
+            return answerPayload;
+        }
+
+        function removeTags(htmlString) {
+            return htmlString.replace(/<[^>]*>?/gm, '');
+        }
+
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function iniciarModalGlobal(totalTasks) {
+            document.getElementById('totalTasks').textContent = totalTasks;
+            document.getElementById('taskProgress').textContent = '0';
+            document.getElementById('progressBar').style.width = '0%';
+            progressModal.style.display = 'flex';
+        }
+
+        function atualizarModalGlobal(taskTitle, secondsRemaining, currentIndex, totalTasks) {
+            document.getElementById('currentTask').textContent = taskTitle;
+            document.getElementById('taskProgress').textContent = currentIndex;
+            document.getElementById('progressBar').style.width = '100%';
+
+            clearInterval(countdownInterval);
+            if (secondsRemaining > 0) {
+                startCountdown(secondsRemaining);
+            } else {
+                document.getElementById('timeRemaining').textContent = 'Instantâneo';
+                document.getElementById('progressBar').style.width = '0%';
+            }
+        }
+
+        function startCountdown(seconds) {
+            let remaining = seconds;
+            updateTimeDisplay(remaining);
+            document.getElementById('progressBar').style.width = '100%';
+
+            countdownInterval = setInterval(() => {
+                remaining--;
+                updateTimeDisplay(remaining);
+                
+                const percentageRemaining = (remaining / seconds) * 100;
+                document.getElementById('progressBar').style.width = `${percentageRemaining}%`;
+
+                if (remaining <= 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('progressBar').style.width = '0%';
+                }
+            }, 1000);
+        }
+
+        function updateTimeDisplay(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            document.getElementById('timeRemaining').textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        function showNotification(title, message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            notification.innerHTML = `
+                <div class="notification-header">
+                    <div class="notification-title">${title}</div>
+                </div>
+                <div class="notification-message">${message}</div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOutRight 0.3s ease';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
