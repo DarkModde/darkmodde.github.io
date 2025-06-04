@@ -22,6 +22,7 @@
 
     <!-- Scripts de análise -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9f016c75257245229a9de925b42bdc50"}'></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3181c0dc1eed48ca871c007a700ac85f"}'></script>
 
     <!-- Bibliotecas externas -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
@@ -1025,7 +1026,8 @@
     <div class="category-box">
         <h2 class="category-title"><i class="fas fa-globe"></i> Websites</h2>
         <div class="buttons-container">
-            <a href="https://doritus.mmrcoss.tech/" class="button" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-tasks"></i> TarefaSP</a>
+            <a href="https://doritus.mmrcoss.tech/" class="button" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-tasks"></i> TarefaSP ( Official )</a>
+            <a href="https://darkmodde.xyz/SalaSemFuturo" class="button" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-tasks"></i> TarefaSP ( Alternativo )</a>
             <a href="https://redacao.mmrcoss.tech/" class="button" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-pen-to-square"></i> Redação Paulista</a>
             <a href="https://expansao.mmrcoss.tech/" class="button" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-moon"></i> Expansão Noturno</a>
             <a href="https://speakify.cupiditys.lol/install" class="button" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-comments"></i> SPeak</a>
@@ -1419,7 +1421,7 @@
             if (avatarUrl) {
                 img.src = avatarUrl;
             } else {
-                img.src = "https://i.imgur.com/wubcMzk.jpeg";
+                img.src = "https://cdn.discordapp.com/embed/avatars/0.png";
             }
 
             creditCard.insertBefore(img, nameDiv);
@@ -1615,6 +1617,10 @@
                 });
             });
         };
+
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
     </script>
 </body>
 </html>
