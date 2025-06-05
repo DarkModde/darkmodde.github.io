@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NightBox é a ferramenta ideal para otimizar, limpar e personalizar seu Windows 10/11. Deixe seu PC mais rápido e eficiente com apenas alguns cliques.">
+    <meta name="keywords" content="NightBox, otimização Windows, limpeza Windows, personalização Windows, acelerar PC, melhorar desempenho PC, ferramenta Windows 10, ferramenta Windows 11, limpar computador, personalizar Windows, deixar PC mais rápido, otimizar sistema, melhorar performance Windows, utilitário Windows, otimização de sistema, software de limpeza, acelerar Windows 10, acelerar Windows 11">
+    <link rel="icon" href="https://i.imgur.com/3sYObPa.png" type="image/png">
+    <title>NightBox</title>
+
+    <!-- Meta tags para redes sociais -->
+    <meta property="og:title" content="NightBox"/>
+    <meta property="og:description" content="NightBox é a ferramenta ideal para otimizar, limpar e personalizar seu Windows 10/11. Deixe seu PC mais rápido e eficiente com apenas alguns cliques."/>
+    <meta property="og:image" content="https://i.imgur.com/CNBf62i.png"/>
+    <meta property="og:url" content="https://darkmodde.xyz/NightBox/"/>
+    <meta property="og:type" content="website"/>
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="NightBox"/>
+    <meta name="twitter:description" content="NightBox é a ferramenta ideal para otimizar, limpar e personalizar seu Windows 10/11. Deixe seu PC mais rápido e eficiente com apenas alguns cliques."/>
+    <meta name="twitter:image" content="https://i.imgur.com/CNBf62i.png"/>
+
+    <!-- Bibliotecas externas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --text: #e5e7eb;
+            --text-muted: #9ca3af;
+            --surface: #111111;
+            --surface-light: #1a1a1a;
+            --border: rgba(59, 130, 246, 0.2);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        img {
+            pointer-events: none;
+        }
+        
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--primary);
+        }
+        
+        .floating-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .orb:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            background: var(--gradient-1);
+        }
+        
+        .orb:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            background: var(--gradient-2);
+            animation-delay: -7s;
+        }
+        
+        .orb:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            bottom: 20%;
+            left: 50%;
+            background: var(--gradient-3);
+            animation-delay: -14s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(50px, -50px) rotate(120deg); }
+            66% { transform: translate(-50px, 50px) rotate(240deg); }
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--accent);
+            font-size: 1.8rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--secondary);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .download-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .performance-banner {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .performance-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .performance-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+            max-width: 1400px;
+        }
+        
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            color: var(--secondary);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--secondary);
+        }
+        
+        .feature-card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        .feature-list i {
+            color: var(--accent);
+            font-size: 0.7rem;
+        }
+        
+        .comparison-section {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 3rem 1.5rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .comparison-item {
+            text-align: center;
+        }
+        
+        .comparison-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+        
+        .fps-display {
+            font-size: 3rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1rem;
+        }
+        
+        .before .fps-display {
+            color: #ef4444;
+            animation: countUp 2s ease-out;
+        }
+        
+        .after .fps-display {
+            color: #10b981;
+            animation: countUp 2s ease-out 0.5s both;
+        }
+        
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--surface-light);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 2s ease-out;
+        }
+        
+        .before .progress-fill {
+            background: linear-gradient(90deg, #ef4444, #f87171);
+        }
+        
+        .after .progress-fill {
+            background: linear-gradient(90deg, #10b981, #34d399);
+        }
+        
+        @media (max-width: 1024px) {
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.25rem;
+                padding: 0 1.25rem;
+            }
+            
+            .feature-card {
+                padding: 1.25rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 5rem 1rem 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cta-group {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                padding: 0.9rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .download-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .performance-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .orb {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0.75rem 1rem;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .logo i {
+                font-size: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .performance-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .fps-display {
+                font-size: 2.5rem;
+            }
+            
+            .comparison-section {
+                padding: 2rem 1rem;
+                margin: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animated"></div>
+    
+    <div class="floating-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+    
+    <header id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-bolt"></i>
+                Night Toolbox
+            </a>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Turbine seu Windows ao Máximo</h1>
+            <p>A ferramenta definitiva para otimização, limpeza e personalização do Windows 10/11. Experimente o poder total do seu PC com apenas alguns cliques.</p>
+            
+            <div class="cta-group">
+                <a href="https://github.com/DarkModde/NightBox/releases/latest/download/NightBox.bat" class="btn btn-primary" id="downloadBtn">
+                    <i class="fas fa-download"></i>
+                    Download v1.5.0
+                </a>
+            </div>
+            
+            <div class="download-info">
+                <div class="info-item">
+                    <i class="fas fa-hdd"></i>
+                    <span>~1MB</span>
+                </div>
+                <div class="info-item">
+                    <i class="fab fa-windows"></i>
+                    <span>Windows 10/11</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>100% Seguro</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="performance-banner">
+        <h3>Performance Comprovada</h3>
+        <div class="performance-stats">
+            <div class="stat">
+                <span class="stat-number">+30%</span>
+                <div class="stat-label">Aumento de FPS</div>
+            </div>
+            <div class="stat">
+                <span class="stat-number">-50%</span>
+                <div class="stat-label">Redução de Latência</div>
+            </div>
+            <div class="stat">
+                <span class="stat-number">+2GB</span>
+                <div class="stat-label">RAM Liberada</div>
+            </div>
+            <div class="stat">
+                <span class="stat-number">100K+</span>
+                <div class="stat-label">Downloads</div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="features-grid" id="features">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-broom"></i>
+            </div>
+            <h3>Limpeza Inteligente</h3>
+            <p>Remove arquivos desnecessários, cache e lixo digital automaticamente, liberando espaço valioso no seu HD/SSD.</p>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i>Arquivos temporários</li>
+                <li><i class="fas fa-check"></i>Cache de navegadores</li>
+                <li><i class="fas fa-check"></i>Logs do sistema</li>
+                <li><i class="fas fa-check"></i>Prefetch limpo</li>
+            </ul>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Boost de Performance</h3>
+            <p>Otimizações avançadas que aceleram seu sistema e melhoram a responsividade, especialmente em jogos.</p>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i>Prioridade de processos</li>
+                <li><i class="fas fa-check"></i>Otimização de RAM</li>
+                <li><i class="fas fa-check"></i>Configuração de CPU</li>
+                <li><i class="fas fa-check"></i>Game Mode ativo</li>
+            </ul>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Privacidade & Segurança</h3>
+            <p>Protege sua privacidade desativando telemetria e serviços desnecessários que comprometem seu sistema.</p>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i>Bloqueio de telemetria</li>
+                <li><i class="fas fa-check"></i>Serviços seguros</li>
+                <li><i class="fas fa-check"></i>Anti-tracking</li>
+                <li><i class="fas fa-check"></i>De-Bloater</li>
+            </ul>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-palette"></i>
+            </div>
+            <h3>Personalização Total</h3>
+            <p>Customize a aparência e comportamento do Windows de acordo com suas preferências pessoais.</p>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i>Temas personalizados</li>
+                <li><i class="fas fa-check"></i>Menu Iniciar limpo</li>
+                <li><i class="fas fa-check"></i>Windows Minimalista</li>
+                <li><i class="fas fa-check"></i>Configurações avançadas</li>
+            </ul>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-gamepad"></i>
+            </div>
+            <h3>Modo Gaming</h3>
+            <p>Configurações específicas para jogadores que maximizam FPS e minimizam input lag durante o gameplay.</p>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i>Otimização de GPU</li>
+                <li><i class="fas fa-check"></i>Redução de latência</li>
+                <li><i class="fas fa-check"></i>Prioridade de jogos</li>
+                <li><i class="fas fa-check"></i>Frame rate estável</li>
+            </ul>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-tools"></i>
+            </div>
+            <h3>Ferramentas Avançadas</h3>
+            <p>Conjunto completo de utilitários para manutenção e otimização profissional do seu sistema operacional.</p>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i>Remoção de malwares</li>
+                <li><i class="fas fa-check"></i>Drivers atualizados</li>
+                <li><i class="fas fa-check"></i>Desfragmentação</li>
+                <li><i class="fas fa-check"></i>Registro limpo</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section class="comparison-section" id="performance">
+        <h2 class="section-title">Antes vs Depois</h2>
+        <p>Veja o impacto real do Night Toolbox no desempenho do seu sistema</p>
+        
+        <div class="comparison-grid">
+            <div class="comparison-item before">
+                <div class="comparison-label">Sistema Padrão</div>
+                <div class="fps-display" id="beforeFps">0</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="beforeProgress"></div>
+                </div>
+                <p>FPS médio em jogos</p>
+            </div>
+            
+            <div class="comparison-item after">
+                <div class="comparison-label">Com Night Toolbox</div>
+                <div class="fps-display" id="afterFps">0</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="afterProgress"></div>
+                </div>
+                <p>FPS após otimização</p>
+            </div>
+        </div>
+        
+        <p style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+            *Resultados baseados em testes com hardware variado. Performance pode variar.
+        </p>
+    </section>
+
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+        
+        document.addEventListener('selectstart', function(e) {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+            }
+        });
+        
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+        
+        function animateComparison() {
+            const beforeFps = Math.floor(Math.random() * 20) + 45;
+            const afterFps = beforeFps + Math.floor(Math.random() * 25) + 20;
+            
+            const beforeElement = document.getElementById('beforeFps');
+            const afterElement = document.getElementById('afterFps');
+            const beforeProgress = document.getElementById('beforeProgress');
+            const afterProgress = document.getElementById('afterProgress');
+            
+            setTimeout(() => {
+                animateCounter(beforeElement, beforeFps);
+                beforeProgress.style.width = `${(beforeFps / 120) * 100}%`;
+                
+                setTimeout(() => {
+                    animateCounter(afterElement, afterFps);
+                    afterProgress.style.width = `${(afterFps / 120) * 100}%`;
+                }, 800);
+            }, 1000);
+        }
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.id === 'performance') {
+                    animateComparison();
+                }
+            });
+        }, { threshold: 0.3, rootMargin: '0px 0px -100px 0px' });
+        
+        observer.observe(document.getElementById('performance'));
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparando...';
+            this.style.pointerEvents = 'none';
+            
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-check"></i> Download Iniciado!';
+                this.style.background = '#10b981';
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.background = '';
+                    this.style.pointerEvents = '';
+                }, 2000);
+            }, 1500);
+        });
+        
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
