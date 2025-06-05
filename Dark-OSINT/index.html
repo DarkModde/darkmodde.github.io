@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark-OSINT</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/9qsiRvV.png">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #1e1e1e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --accent: #8b5cf6;
+            --accent-secondary: #a855f7;
+            --border: #333333;
+            --shadow: rgba(139, 92, 246, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        header {
+            padding: 3rem 0 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.3)); }
+            to { filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.6)); }
+        }
+
+        .subtitle {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            color: var(--text-secondary);
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0 4rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transform: translateY(20px);
+            animation: slideUp 0.6s ease-out forwards;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 200px;
+        }
+
+        .tool-card:nth-child(1) { animation-delay: 0.1s; }
+        .tool-card:nth-child(2) { animation-delay: 0.2s; }
+        .tool-card:nth-child(3) { animation-delay: 0.3s; }
+        .tool-card:nth-child(4) { animation-delay: 0.4s; }
+        .tool-card:nth-child(5) { animation-delay: 0.5s; }
+        .tool-card:nth-child(6) { animation-delay: 0.6s; }
+        .tool-card:nth-child(7) { animation-delay: 0.7s; }
+        .tool-card:nth-child(8) { animation-delay: 0.8s; }
+        .tool-card:nth-child(9) { animation-delay: 0.9s; }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .tool-card:hover::before {
+            left: 100%;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 35px var(--shadow);
+            background: linear-gradient(135deg, var(--bg-card), rgba(139, 92, 246, 0.05));
+        }
+
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 20px;
+            color: white;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .tool-card:hover .tool-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .tool-title {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .tool-description {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+        }
+
+        .tool-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7c3aed;
+        }
+
+        .loading {
+            opacity: 0;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 1.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            header {
+                padding: 2rem 0 1.5rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1.5rem 0 3rem;
+            }
+            
+            .tool-card {
+                padding: 1.25rem;
+                min-height: 180px;
+            }
+            
+            .tool-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.75rem;
+            }
+            
+            header {
+                padding: 1.5rem 0 1rem;
+            }
+            
+            .tool-card {
+                padding: 1rem;
+                min-height: 160px;
+            }
+            
+            .tool-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+                margin-bottom: 0.75rem;
+            }
+            
+            .tools-grid {
+                gap: 0.75rem;
+                padding: 1rem 0 2rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .tool-card {
+                padding: 0.75rem;
+                min-height: 150px;
+            }
+            
+            .tool-description {
+                font-size: 0.8rem;
+            }
+            
+            .tool-status {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.6rem;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .tools-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 2rem;
+            }
+            
+            .tool-card {
+                padding: 2rem;
+                min-height: 220px;
+            }
+            
+            .tool-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    
+    <header>
+        <div class="container">
+            <h1 class="logo">DARK-OSINT</h1>
+            <p class="subtitle">Intelligence & Investigation Tools</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="tools-grid">
+            <a href="https://discordlookup.com/user" class="tool-card loading">
+                <div class="tool-icon"><i class="fab fa-discord"></i></div>
+                <h3 class="tool-title">Discord User Info</h3>
+                <p class="tool-description">Obtenha informações detalhadas sobre usuários do Discord, incluindo histórico, servidores e atividades.</p>
+                <span class="tool-status">Disponível</span>
+            </a>
+
+            <a href="https://discordlookup.com/inviteresolver" class="tool-card loading">
+                <div class="tool-icon"><i class="fas fa-server"></i></div>
+                <h3 class="tool-title">Discord Server Info</h3>
+                <p class="tool-description">Analise servidores do Discord, membros, canais e configurações de segurança.</p>
+                <span class="tool-status">Disponível</span>
+            </a>
+
+            <a href="https://nordvpn.com/pt-br/ip-lookup/" class="tool-card loading">
+                <div class="tool-icon"><i class="fas fa-globe"></i></div>
+                <h3 class="tool-title">IP Lookup</h3>
+                <p class="tool-description">Rastreie endereços IP, localização geográfica, provedor de internet e informações de rede.</p>
+                <span class="tool-status">Disponível</span>
+            </a>
+
+            <a href="#" class="tool-card loading">
+                <div class="tool-icon"><i class="fas fa-envelope"></i></div>
+                <h3 class="tool-title">Email Analysis</h3>
+                <p class="tool-description">Verifique a validade de emails, histórico de vazamentos e informações associadas.</p>
+                <span class="tool-status">Em breve</span>
+            </a>
+
+            <a href="https://who.is/" class="tool-card loading">
+                <div class="tool-icon"><i class="fas fa-search"></i></div>
+                <h3 class="tool-title">Domain Research</h3>
+                <p class="tool-description">Analise domínios, whois, DNS records, histórico e tecnologias utilizadas.</p>
+                <span class="tool-status">Disponível</span>
+            </a>
+
+            <a href="https://intelx.io/" class="tool-card loading">
+                <div class="tool-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3 class="tool-title">Data Breach Check</h3>
+                <p class="tool-description">Verifique se dados pessoais foram expostos em vazamentos conhecidos.</p>
+                <span class="tool-status">Disponível</span>
+            </a>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.tool-card');
+            
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.remove('loading');
+                }, 100 * index);
+            });
+
+            cards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 15;
+                    const rotateY = (centerX - x) / 15;
+                    
+                    card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+                });
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
