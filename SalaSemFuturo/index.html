@@ -52,9 +52,6 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
             user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
         }
 
         body {
@@ -279,29 +276,6 @@
             }
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.6; }
-            50% { opacity: 1; }
-            100% { opacity: 0.6; }
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-color);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-hover);
-        }
-
         .notification {
             position: fixed;
             top: 20px;
@@ -360,71 +334,26 @@
             }
         }
 
-        @keyframes slideOutRight {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                margin: 10px;
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 24px !important;
-            }
-
-            .form-group {
-                margin-bottom: 15px;
-            }
-
-            input, select, button {
-                padding: 10px !important;
-            }
-        }
-
-        @media (min-width: 601px) and (max-width: 1024px) {
-            .container {
-                max-width: 600px;
-            }
-        }
-
-        @media (min-width: 1025px) {
-            .container {
-                max-width: 800px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .notification {
-                width: calc(100% - 20px);
-                right: 10px;
-            }
-        }
-
-        .time-and-button {
+        .time-container {
             display: flex;
-            gap: 10px;
-            align-items: flex-end;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .time-and-button .form-group {
-            flex: 2;
+        .time-inputs {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .time-inputs .form-group {
+            flex: 1;
             margin-bottom: 0;
         }
 
-        .time-and-button button {
-            width: auto;
-            flex: 1;
-            padding: 12px 10px;
-            min-width: 120px;
+        .kill-tasks-btn {
+            width: 100%;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -441,533 +370,667 @@
 
             <div class="form-group">
                 <label for="senha">Senha:</label>
-                <div class="password-container">
-                    <input type="password" id="senha" required placeholder="Digite sua senha">
-                </div>
+                <input type="password" id="senha" required placeholder="Digite sua senha">
             </div>
 
-            <div class="time-and-button">
-                <div class="form-group">
-                    <label for="tempo">Tempo por Tarefa:</label>
-                    <select id="tempo" required>
-                        <option value="0">Instantâneo</option>
-                        <option value="30">30 Segundos</option>
-                        <option value="60">01 Minuto</option>
-                        <option value="120" selected>02 Minutos</option>
-                        <option value="300">05 Minutos</option>
-                        <option value="480">08 Minutos</option>
-                        <option value="600">10 Minutos</option>
-                    </select>
+            <div class="form-group time-container">
+                <div class="time-inputs">
+                    <div class="form-group">
+                        <label for="tempoMin">Mínimo:</label>
+                        <select id="tempoMin" required>
+                            <option value="60">01 Minuto</option>
+                            <option value="120" selected>02 Minutos</option>
+                            <option value="180">03 Minutos</option>
+                            <option value="300">05 Minutos</option>
+                            <option value="480">08 Minutos</option>
+                            <option value="600">10 Minutos</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tempoMax">Máximo:</label>
+                        <select id="tempoMax" required>
+                            <option value="60">01 Minuto</option>
+                            <option value="120">02 Minutos</option>
+                            <option value="180">03 Minutos</option>
+                            <option value="300" selected>05 Minutos</option>
+                            <option value="480">08 Minutos</option>
+                            <option value="600">10 Minutos</option>
+                        </select>
+                    </div>
                 </div>
-
-                <button type="submit" id="submitBtn">matar tarefas</button>
+                <button type="submit" id="submitBtn" class="kill-tasks-btn">matar tarefas</button>
             </div>
         </form>
-    </div>
 
-    <div class="modal" id="progressModal">
-        <div class="modal-content">
-            <div class="loader">
-                <div class="spinner"></div>
-            </div>
-            <h2>Processando Atividades</h2>
-            <div class="task-info">
-                <p><strong>Tarefa atual:</strong> <span id="currentTask">Nenhuma</span></p>
-                <p><strong>Progresso:</strong> <span id="taskProgress">0</span> de <span id="totalTasks">0</span></p>
-                <p><strong>Tempo restante:</strong> <span id="timeRemaining" class="time-remaining">0:00</span></p>
-            </div>
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress" id="progressBar"></div>
+        <div class="modal" id="progressModal">
+            <div class="modal-content">
+                <div class="loader">
+                    <div class="spinner"></div>
                 </div>
+                <h2 id="modalTitle">Carregando Tarefas</h2>
+                <div class="task-info">
+                    <p><strong>Status:</strong> <span id="currentStatus">Iniciando...</span></p>
+                    <p><strong>Tarefas encontradas:</strong> <span id="totalTasksFound">0</span></p>
+                    <p><strong>Tempo restante:</strong> <span id="timeRemaining" class="time-remaining">0:00</span></p>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress" id="progressBar"></div>
+                    </div>
+                </div>
+                <button class="close-modal" id="closeModal">Cancelar</button>
             </div>
-            <button class="close-modal" id="closeModal">Fechar</button>
         </div>
     </div>
 
-    <script>
-        const senhaInput = document.getElementById("senha");
-        const enviarForm = document.getElementById('Enviar');
-        const progressModal = document.getElementById('progressModal');
-        const closeModalBtn = document.getElementById('closeModal');
-        const tempoSelect = document.getElementById('tempo');
+<script>
+    const securityConfig = {
+    disableSecurity: false,
+    blockedKeys: { F12: true, I: true, C: true, J: true, U: true },
+    keyCodeMap: { 123: 'F12', 73: 'I', 67: 'C', 74: 'J', 85: 'U' }
+};
 
-        let trava = false;
-        let countdownInterval;
-        let shouldStopExecution = false;
-        let totalTasksFound = 0;
+document.addEventListener('contextmenu', (e) => {
+    if (!securityConfig.disableSecurity) e.preventDefault();
+});
 
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
+document.addEventListener('keydown', (e) => {
+    if (securityConfig.disableSecurity) return;
+    const key = securityConfig.keyCodeMap[e.keyCode] || e.key;
+    if (key === 'F12' || (e.ctrlKey && e.shiftKey && securityConfig.blockedKeys[key])) e.preventDefault();
+    if (e.ctrlKey && key === 'U') e.preventDefault();
+});
 
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-        });
+const consoleProtection = new Error();
+Object.defineProperties(consoleProtection, {
+    toString: {
+        value() {
+            if ((new Error()).stack.includes('toString@')) location.reload();
+        }
+    },
+    message: {
+        get() { location.reload(); }
+    }
+});
+console.log(consoleProtection);
 
-        document.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-        });
+    const senhaInput = document.getElementById("senha");
+    const enviarForm = document.getElementById('Enviar');
+    const progressModal = document.getElementById('progressModal');
+    const closeModalBtn = document.getElementById('closeModal');
 
-        enviarForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (trava) return;
+    let trava = false;
+    let countdownInterval;
+    let shouldStopExecution = false;
+    let allTasks = [];
 
-            trava = true;
-            try {
-                await loginRequest();
-            } catch {
-                trava = false;
-            }
-        });
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('selectstart', e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
 
-        closeModalBtn.addEventListener('click', () => {
+    document.getElementById('tempoMin').addEventListener('change', validateTimeOnChange);
+    document.getElementById('tempoMax').addEventListener('change', validateTimeOnChange);
+
+    enviarForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (trava || !validateTimeInputs()) return;
+        trava = true;
+        try {
+            await loginRequest();
+        } catch {
+            trava = false;
+        }
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+        progressModal.style.display = 'none';
+        shouldStopExecution = true;
+        clearInterval(countdownInterval);
+        showNotification('Processo interrompido', 'A execução foi cancelada.', 'info');
+    });
+
+    function validateTimeOnChange() {
+        const min = parseInt(document.getElementById('tempoMin').value);
+        const max = parseInt(document.getElementById('tempoMax').value);
+        if (min > max) {
+            showNotification('Aviso', 'O tempo mínimo está maior que o máximo. Isso será corrigido ao enviar.', 'info', 3000);
+        }
+    }
+
+    function validateTimeInputs() {
+        const min = parseInt(document.getElementById('tempoMin').value);
+        const max = parseInt(document.getElementById('tempoMax').value);
+        
+        if (isNaN(min)) {
+            showNotification('Erro', 'Tempo mínimo inválido', 'error');
+            return false;
+        }
+        
+        if (isNaN(max)) {
+            showNotification('Erro', 'Tempo máximo inválido', 'error');
+            return false;
+        }
+        
+        if (min < 60) {
+            showNotification('Tempo mínimo', 'O tempo mínimo deve ser pelo menos 1 minuto (60 segundos)', 'error');
+            return false;
+        }
+        
+        if (max > 600) {
+            showNotification('Tempo máximo', 'O tempo máximo não pode exceder 10 minutos (600 segundos)', 'error');
+            return false;
+        }
+        
+        if (min > max) {
+            showNotification('Intervalo inválido', 'O tempo mínimo não pode ser maior que o máximo. Corrigindo automaticamente...', 'error');
+            document.getElementById('tempoMin').value = max;
+            document.getElementById('tempoMax').value = min;
+            return false;
+        }
+        
+        return true;
+    }
+
+    async function loginRequest() {
+        let raInput = document.getElementById('ra').value.trim().toUpperCase();
+        if (!raInput.endsWith('SP')) raInput += 'SP';
+
+        const loginData = {
+            user: raInput,
+            senha: senhaInput.value
+        };
+
+        const headers = {
+            'Accept': 'application/json',
+            'Ocp-Apim-Subscription-Key': '2b03c1db3884488795f79c37c069381a',
+            'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+        };
+
+        try {
+            iniciarModalGlobal();
+            const data = await makeRequest(
+                'https://sedintegracoes.educacao.sp.gov.br/credenciais/api/LoginCompletoToken',
+                'POST',
+                headers,
+                loginData
+            );
+            await sendRequest(data.token);
+        } catch {
+            showNotification('Erro de login', 'Verifique suas credenciais.', 'error');
             progressModal.style.display = 'none';
-            shouldStopExecution = true;
-            clearInterval(countdownInterval);
-            showNotification('Processo interrompido', 'A execução das tarefas foi cancelada pelo usuário.', 'info');
-        });
-
-        async function loginRequest() {
-            const loginData = {
-                user: document.getElementById('ra').value,
-                senha: senhaInput.value
-            };
-
-            const headers = {
-                'Accept': 'application/json',
-                'Ocp-Apim-Subscription-Key': '2b03c1db3884488795f79c37c069381a',
-                'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
-            };
-
-            try {
-                const data = await makeRequest(
-                    'https://sedintegracoes.educacao.sp.gov.br/credenciais/api/LoginCompletoToken',
-                    'POST',
-                    headers,
-                    loginData
-                );
-                await sendRequest(data.token);
-            } catch {
-                showNotification('Erro de login', 'Não foi possível fazer login. Verifique suas credenciais.', 'error');
-                throw new Error('Login failed');
-            }
+            throw new Error('Login failed');
         }
+    }
 
-        async function sendRequest(token) {
-            try {
-                const data = await makeRequest(
-                    'https://edusp-api.ip.tv/registration/edusp/token',
-                    'POST',
-                    getDefaultHeaders(),
-                    { token }
-                );
-                await fetchUserRooms(data.auth_token);
-            } catch {
-                showNotification('Erro de registro', 'Erro ao registrar token. Tente novamente.', 'error');
-                throw new Error('Registration failed');
-            }
+    async function sendRequest(token) {
+        try {
+            updateModalStatus('Acessando aluno...');
+            const data = await makeRequest(
+                'https://edusp-api.ip.tv/registration/edusp/token',
+                'POST',
+                getDefaultHeaders(),
+                { token }
+            );
+            await fetchUserRooms(data.auth_token);
+        } catch {
+            showNotification('Erro de registro', 'Tente novamente.', 'error');
+            progressModal.style.display = 'none';
+            throw new Error('Registration failed');
         }
+    }
 
-        async function fetchUserRooms(token) {
-            try {
-                const data = await makeRequest(
-                    'https://edusp-api.ip.tv/room/user?list_all=true&with_cards=true',
-                    'GET',
-                    { ...getDefaultHeaders(), 'x-api-key': token }
+    async function fetchUserRooms(token) {
+        try {
+            updateModalStatus('Buscando tarefas...');
+            const data = await makeRequest(
+                'https://edusp-api.ip.tv/room/user?list_all=true&with_cards=true',
+                'GET',
+                { ...getDefaultHeaders(), 'x-api-key': token }
+            );
+
+            if (data.rooms?.length > 0) {
+                allTasks = [];
+                shouldStopExecution = false;
+                
+                await Promise.all(
+                    data.rooms.map(room => fetchTasks(token, room.name, room.topic))
                 );
+                
+                document.getElementById('totalTasksFound').textContent = allTasks.length;
+                
+                if (allTasks.length === 0) {
+                    showNotification('Nenhuma tarefa', 'Não há tarefas pendentes.', 'info');
+                    progressModal.style.display = 'none';
+                } else {
+                    updateModalStatus(`Abrindo ${allTasks.length} tarefas...`);
+                    await openAllTasks(token);
+                    const minSeconds = parseInt(document.getElementById('tempoMin').value);
+                    const maxSeconds = parseInt(document.getElementById('tempoMax').value);
+                    startGlobalCountdown(minSeconds, maxSeconds, token);
+                }
+            } else {
+                showNotification('Nenhuma sala', 'Não encontramos salas.', 'info');
+                progressModal.style.display = 'none';
+            }
+        } catch {
+            progressModal.style.display = 'none';
+            throw new Error('Failed to fetch rooms');
+        } finally {
+            trava = false;
+        }
+    }
 
-                if (data.rooms && data.rooms.length > 0) {
-                    totalTasksFound = 0;
-                    shouldStopExecution = false;
-                    
-                    await Promise.all(
-                        data.rooms.map(room => fetchTasks(token, room.name, room.topic))
-                    );
-                    
-                    if (totalTasksFound === 0) {
-                        showNotification('Nenhuma tarefa encontrada', 'Não há tarefas pendentes para serem executadas no momento.', 'info');
+    async function fetchTasks(token, roomCode, name) {
+        try {
+            const roomResponse = await makeRequest(
+                `https://edusp-api.ip.tv/room/detail/${roomCode}?fields[]=id&fields[]=name&with_category_groups=true`,
+                'GET',
+                { ...getDefaultHeaders(), 'x-api-key': token }
+            );
+
+            const categoryIds = roomResponse.group_categories?.map(category => category.id) || [];
+            const taskConfigs = [
+                { 
+                    options: {
+                        expired_only: false,
+                        filter_expired: true,
+                        answer_statuses: 'pending'
+                    }
+                },
+                { 
+                    options: {
+                        expired_only: true,
+                        filter_expired: false,
+                        answer_statuses: 'pending'
+                    }
+                },
+                { 
+                    options: {
+                        expired_only: false,
+                        filter_expired: true,
+                        answer_statuses: 'draft'
                     }
                 }
-            } catch {
-                throw new Error('Failed to fetch rooms');
-            } finally {
-                trava = false;
-            }
-        }
-
-        async function fetchTasks(token, room, name) {
-            const endpoints = [
-                { label: 'Rascunho', url: `https://edusp-api.ip.tv/tms/task/todo?expired_only=false&filter_expired=true&with_answer=true&is_essay=false&publication_target=${room}&answer_statuses=draft&with_apply_moment=true` },
-                { label: 'Expirada', url: `https://edusp-api.ip.tv/tms/task/todo?expired_only=true&filter_expired=false&with_answer=true&is_essay=false&publication_target=${room}&answer_statuses=pending&with_apply_moment=true` },
-                { label: 'Normal', url: `https://edusp-api.ip.tv/tms/task/todo?expired_only=false&filter_expired=true&with_answer=true&is_essay=false&publication_target=${room}&answer_statuses=pending&with_apply_moment=false` }
             ];
 
-            const headers = { ...getDefaultHeaders(), 'x-api-key': token };
+            const endpoints = [];
+            taskConfigs.forEach(({ options }) => {
+                endpoints.push({ url: buildTasksUrlTypeA(roomCode, categoryIds, options) });
+                endpoints.push({ url: buildTasksUrlTypeB(roomCode, options) });
+            });
 
-            try {
-                const results = await Promise.all(
-                    endpoints.map(async ({ label, url }) => {
-                        try {
-                            const data = await makeRequest(url, 'GET', headers);
-                            return { label, data };
-                        } catch {
-                            return null;
-                        }
-                    })
-                );
-                processTaskResults(results, token, room, name);
-            } catch {
-                throw new Error('Failed to fetch tasks');
-            }
-        }
-
-        function getDefaultHeaders() {
-            return {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'x-api-realm': 'edusp',
-                'x-api-platform': 'webclient',
-                'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-                'Connection': 'keep-alive',
-                'Sec-Fetch-Site': 'same-origin',
-                'Sec-Fetch-Mode': 'cors',
-                'Sec-Fetch-Dest': 'empty'
-            };
-        }
-
-        async function makeRequest(url, method = 'GET', headers = {}, body = null) {
-            const options = {
-                method,
-                headers: {
-                    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-                    'Content-Type': 'application/json',
-                    ...headers
-                }
-            };
-
-            if (body) {
-                options.body = JSON.stringify(body);
-            }
-
-            const response = await fetch(url, options);
-            if (!response.ok) {
-                throw new Error(`HTTP ${method} ${url} => ${response.status}`);
-            }
-            return response.json();
-        }
-
-        function isRedacao(task) {
-            return task.tags?.some(t => t.toLowerCase().includes('redacao')) ||
-                task.title.toLowerCase().includes('redação');
-        }
-
-        function processTaskResults(results, token, room, name) {
+            const results = await Promise.all(
+                endpoints.map(async ({ url }) => {
+                    try {
+                        return await makeRequest(url, 'GET', { ...getDefaultHeaders(), 'x-api-key': token });
+                    } catch {
+                        return null;
+                    }
+                })
+            );
+            
             results.forEach(result => {
-                if (result && result.data.length > 0 && result.label !== 'Rascunho') {
-                    let filteredData = result.data;
-                    if (result.label === 'Expirada') {
+                if (result && result.length > 0) {
+                    let filteredData = result;
+                    if (result[0].expired) {
                         filteredData = filteredData.filter(task => !isRedacao(task));
                     }
-                    totalTasksFound += filteredData.length;
-                    loadTasks(filteredData, token, room, result.label);
-                }
-            });
-        }
-
-        async function loadTasks(tasks, token, room, tipo) {
-            if (!tasks || tasks.length === 0) {
-                return;
-            }
-
-            const redacaoTasks = tasks.filter(isRedacao);
-            const outrasTasks = tasks.filter(task => !isRedacao(task));
-            const orderedTasks = [...redacaoTasks, ...outrasTasks];
-
-            iniciarModalGlobal(orderedTasks.length);
-            let redacaoLogFeito = false;
-            let completedTasks = 0;
-
-            for (const [index, task] of orderedTasks.entries()) {
-                if (shouldStopExecution) {
-                    break;
-                }
-                
-                try {
-                    const taskDetails = await getTaskDetails(task.id, token);
-                    await processTask(task, taskDetails, token, room, index + 1, orderedTasks.length, redacaoLogFeito);
-                    completedTasks++;
-                } catch {
-                    continue;
-                }
-            }
-            
-            if (!shouldStopExecution && completedTasks > 0) {
-                progressModal.style.display = 'none';
-                clearInterval(countdownInterval);
-                showNotification('Tarefas concluídas!', `${completedTasks} tarefas foram feitas com sucesso.`, 'success');
-            }
-        }
-
-        async function getTaskDetails(taskId, token) {
-            const url = `https://edusp-api.ip.tv/tms/task/${taskId}/apply?preview_mode=false`;
-            const headers = { ...getDefaultHeaders(), 'x-api-key': token };
-            const response = await makeRequest(url, 'GET', headers);
-            return processTaskDetails(response);
-        }
-
-        function processTaskDetails(details) {
-            const answersData = {};
-
-            details.questions.forEach(question => {
-                if (question.type === 'info') return;
-
-                const questionId = question.id;
-                let answer = {};
-
-                if (question.type === 'media') {
-                    answer = { status: 'error', message: 'Type=media system require url' };
-                } else if (question.options && typeof question.options === 'object') {
-                    const options = Object.values(question.options);
-                    const correctIndex = Math.floor(Math.random() * options.length);
-
-                    options.forEach((_, i) => {
-                        answer[i] = i === correctIndex;
+                    
+                    filteredData.forEach(task => {
+                        task.room = roomCode;
+                        task.roomName = name;
                     });
+                    
+                    allTasks.push(...filteredData);
                 }
-
-                answersData[questionId] = {
-                    question_id: questionId,
-                    question_type: question.type,
-                    answer
-                };
             });
-
-            return answersData;
+        } catch {
+            throw new Error('Failed to fetch tasks');
         }
+    }
 
-        async function processTask(task, answersData, token, room, index, total, redacaoLogFeito) {
-            const taskTitle = task.title;
-            const taskId = task.id;
+    function buildTasksUrlTypeA(roomCode, categoryIds, options) {
+        let url = `https://edusp-api.ip.tv/tms/task/todo?expired_only=${options.expired_only}`;
+        url += `&room_code=${roomCode}`;
+        url += `&filter_expired=${options.filter_expired}`;
+        url += `&with_answer=true`;
+        url += `&limit=100`;
+        url += `&offset=0`;
+        
+        categoryIds.forEach(id => url += `&publication_target[]=${id}`);
+        if (options.answer_statuses) url += `&answer_statuses=${options.answer_statuses}`;
+        
+        return url;
+    }
 
-            if (isRedacao(task)) {
-                if (!redacaoLogFeito) {
-                    redacaoLogFeito = true;
-                }
-                return;
-            }
+    function buildTasksUrlTypeB(roomCode, options) {
+        let url = `https://edusp-api.ip.tv/tms/task/todo?expired_only=${options.expired_only}`;
+        url += `&filter_expired=${options.filter_expired}`;
+        url += `&with_answer=true`;
+        url += `&is_essay=false`;
+        url += `&publication_target=${roomCode}`;
+        
+        if (options.answer_statuses) url += `&answer_statuses=${options.answer_statuses}`;
+        if (options.answer_statuses === 'pending' && !options.expired_only) url += `&with_apply_moment=false`;
+        else if (options.expired_only || options.answer_statuses === 'draft') url += `&with_apply_moment=true`;
+        
+        return url;
+    }
 
-            if (true) {
-                await submitAnswers(taskId, answersData, token, room, taskTitle, index, total);
-            }
+    async function openAllTasks(token) {
+        for (const task of allTasks) {
+            if (shouldStopExecution) break;
+            await getTaskDetails(task.id, token);
+            await new Promise(resolve => setTimeout(resolve, 20));
         }
+    }
 
-        async function submitAnswers(taskId, answersData, token, room, taskTitle, index, total) {
-            const draftBody = {
-                status: 'submitted',
-                accessed_on: 'room',
-                executed_on: room,
-                answers: answersData
-            };
+    function startGlobalCountdown(minSeconds, maxSeconds, token) {
+        if (minSeconds > maxSeconds) [minSeconds, maxSeconds] = [maxSeconds, minSeconds];
+        const randomSeconds = Math.floor(Math.random() * (maxSeconds - minSeconds + 1)) + minSeconds;
+        
+        let remaining = randomSeconds;
+        updateTimeDisplay(remaining);
+        document.getElementById('progressBar').style.width = '0%';
+        document.getElementById('modalTitle').textContent = 'Contabilizando Tempo';
+        updateModalStatus(`Aguardando: entre ${getTimeLabel(minSeconds)} e ${getTimeLabel(maxSeconds)} (${getTimeLabel(randomSeconds)})`);
 
-            const tempoSelecionado = parseInt(tempoSelect.value);
-            atualizarModalGlobal(taskTitle, tempoSelecionado, index, total);
-            
-            if (tempoSelecionado > 0) {
-                await delay(tempoSelecionado * 1000);
-            }
-
-            try {
-                const response = await makeRequest(
-                    `https://edusp-api.ip.tv/tms/task/${taskId}/answer`,
-                    'POST',
-                    { 'x-api-key': token },
-                    draftBody
-                );
-
-                const newTaskId = response.id;
-                await fetchAndUpdateCorrectAnswers(taskId, newTaskId, token, taskTitle);
-            } catch {
-                throw new Error('Failed to submit answers');
-            }
-        }
-
-        async function fetchAndUpdateCorrectAnswers(taskId, answerId, token, taskTitle) {
-            try {
-                const url = `https://edusp-api.ip.tv/tms/task/${taskId}/answer/${answerId}?with_task=true&with_genre=true&with_questions=true&with_assessed_skills=true`;
-                const respostasAnteriores = await makeRequest(url, 'GET', { 'x-api-key': token });
-                await putAnswer(respostasAnteriores, taskId, answerId, token, taskTitle);
-            } catch {
-                throw new Error('Failed to update answers');
-            }
-        }
-
-        async function putAnswer(respostasAnteriores, taskId, answerId, token, taskTitle) {
-            try {
-                const url = `https://edusp-api.ip.tv/tms/task/${taskId}/answer/${answerId}`;
-                const novasRespostasPayload = transformJson(respostasAnteriores);
-                await makeRequest(url, 'PUT', { 'x-api-key': token }, novasRespostasPayload);
-            } catch {
-                throw new Error('Failed to put answer');
-            }
-        }
-
-        function transformJson(jsonOriginal) {
-            if (!jsonOriginal?.task?.questions) {
-                throw new Error("Invalid data structure");
-            }
-
-            const novoJson = {
-                accessed_on: jsonOriginal.accessed_on,
-                executed_on: jsonOriginal.executed_on,
-                answers: {}
-            };
-
-            for (const questionId in jsonOriginal.answers) {
-                const questionData = jsonOriginal.answers[questionId];
-                const taskQuestion = jsonOriginal.task.questions.find(q => q.id === parseInt(questionId));
-
-                if (!taskQuestion) continue;
-
-                try {
-                    const answerPayload = createAnswerPayload(taskQuestion);
-                    if (answerPayload) {
-                        novoJson.answers[questionId] = answerPayload;
-                    }
-                } catch {
-                    continue;
-                }
-            }
-
-            return novoJson;
-        }
-
-        function createAnswerPayload(taskQuestion) {
-            const answerPayload = {
-                question_id: taskQuestion.id,
-                question_type: taskQuestion.type,
-                answer: null
-            };
-
-            switch (taskQuestion.type) {
-                case "order-sentences":
-                    if (taskQuestion.options?.sentences?.length) {
-                        answerPayload.answer = taskQuestion.options.sentences.map(s => s.value);
-                    }
-                    break;
-                case "fill-words":
-                    if (taskQuestion.options?.phrase?.length) {
-                        answerPayload.answer = taskQuestion.options.phrase
-                            .map((item, index) => index % 2 !== 0 ? item.value : null)
-                            .filter(Boolean);
-                    }
-                    break;
-                case "text_ai":
-                    answerPayload.answer = { "0": removeTags(taskQuestion.comment || '') };
-                    break;
-                case "fill-letters":
-                    if (taskQuestion.options?.answer !== undefined) {
-                        answerPayload.answer = taskQuestion.options.answer;
-                    }
-                    break;
-                case "cloud":
-                    if (taskQuestion.options?.ids?.length) {
-                        answerPayload.answer = taskQuestion.options.ids;
-                    }
-                    break;
-                default:
-                    if (taskQuestion.options && typeof taskQuestion.options === 'object') {
-                        answerPayload.answer = Object.fromEntries(
-                            Object.entries(taskQuestion.options).map(([id, opt]) => [
-                                id,
-                                opt?.answer !== undefined ? opt.answer : false
-                            ])
-                        );
-                    }
-                    break;
-            }
-
-            return answerPayload;
-        }
-
-        function removeTags(htmlString) {
-            return htmlString.replace(/<[^>]*>?/gm, '');
-        }
-
-        function delay(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-        function iniciarModalGlobal(totalTasks) {
-            document.getElementById('totalTasks').textContent = totalTasks;
-            document.getElementById('taskProgress').textContent = '0';
-            document.getElementById('progressBar').style.width = '0%';
-            progressModal.style.display = 'flex';
-        }
-
-        function atualizarModalGlobal(taskTitle, secondsRemaining, currentIndex, totalTasks) {
-            document.getElementById('currentTask').textContent = taskTitle;
-            document.getElementById('taskProgress').textContent = currentIndex;
-            document.getElementById('progressBar').style.width = '100%';
-
-            clearInterval(countdownInterval);
-            if (secondsRemaining > 0) {
-                startCountdown(secondsRemaining);
-            } else {
-                document.getElementById('timeRemaining').textContent = 'Instantâneo';
-                document.getElementById('progressBar').style.width = '0%';
-            }
-        }
-
-        function startCountdown(seconds) {
-            let remaining = seconds;
+        countdownInterval = setInterval(() => {
+            remaining--;
             updateTimeDisplay(remaining);
-            document.getElementById('progressBar').style.width = '100%';
+            const percentageElapsed = ((randomSeconds - remaining) / randomSeconds) * 100;
+            document.getElementById('progressBar').style.width = `${percentageElapsed}%`;
 
-            countdownInterval = setInterval(() => {
-                remaining--;
-                updateTimeDisplay(remaining);
+            if (remaining <= 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('progressBar').style.width = '100%';
+                processAllTasksNow(token);
+            }
+        }, 1000);
+    }
+
+    async function processAllTasksNow(token) {
+        if (allTasks.length === 0 || shouldStopExecution) {
+            progressModal.style.display = 'none';
+            return;
+        }
+
+        document.getElementById('modalTitle').textContent = 'Enviando Tarefas';
+        updateModalStatus('Preparando respostas...');
+        
+        const redacaoTasks = allTasks.filter(isRedacao);
+        const outrasTasks = allTasks.filter(task => !isRedacao(task));
+        const orderedTasks = [...outrasTasks, ...redacaoTasks];
+        
+        let completedTasks = 0;
+        let failedTasks = 0;
+        const totalTasks = orderedTasks.length;
+        const timeRemainingElement = document.getElementById('timeRemaining');
+        timeRemainingElement.textContent = `00/${totalTasks}`;
+        
+        for (const task of orderedTasks) {
+            if (shouldStopExecution) break;
+            
+            try {
+                updateModalStatus(`Enviando: ${task.title.substring(0, 30)}...`);
+                const taskDetails = await getTaskDetails(task.id, token);
+                await submitTaskNow(task, taskDetails, token);
+                completedTasks++;
                 
-                const percentageRemaining = (remaining / seconds) * 100;
-                document.getElementById('progressBar').style.width = `${percentageRemaining}%`;
+                const currentTaskNumber = completedTasks + failedTasks;
+                timeRemainingElement.textContent = `${String(currentTaskNumber).padStart(2, '0')}/${totalTasks}`;
+                const progress = Math.round((currentTaskNumber / totalTasks) * 100);
+                document.getElementById('progressBar').style.width = `${progress}%`;
+                
+                if (orderedTasks.length > 1) await new Promise(resolve => setTimeout(resolve, 500));
+            } catch {
+                failedTasks++;
+                const currentTaskNumber = completedTasks + failedTasks;
+                timeRemainingElement.textContent = `${String(currentTaskNumber).padStart(2, '0')}/${totalTasks}`;
+            }
+        }
+        
+        progressModal.style.display = 'none';
+        if (completedTasks > 0) {
+            showNotification('Concluído!', `${totalTasks} tarefas enviadas!`, 'success');
+        } else {
+            showNotification('Erro', 'Nenhuma tarefa enviada.', 'error');
+        }
+    }
 
-                if (remaining <= 0) {
-                    clearInterval(countdownInterval);
-                    document.getElementById('progressBar').style.width = '0%';
+    async function submitTaskNow(task, answersData, token) {
+        if (isRedacao(task)) return;
+
+        const draftBody = {
+            status: 'submitted',
+            accessed_on: 'room',
+            executed_on: task.room,
+            answers: answersData
+        };
+
+        try {
+            const response = await makeRequest(
+                `https://edusp-api.ip.tv/tms/task/${task.id}/answer`,
+                'POST',
+                { 'x-api-key': token },
+                draftBody
+            );
+            await fetchAndUpdateCorrectAnswers(task.id, response.id, token);
+        } catch {
+            throw new Error('Falha ao enviar');
+        }
+    }
+
+    async function getTaskDetails(taskId, token) {
+        const url = `https://edusp-api.ip.tv/tms/task/${taskId}/apply?preview_mode=false`;
+        const headers = { ...getDefaultHeaders(), 'x-api-key': token };
+        const response = await makeRequest(url, 'GET', headers);
+        return processTaskDetails(response);
+    }
+
+    function processTaskDetails(details) {
+        const answersData = {};
+
+        details.questions?.forEach(question => {
+            if (question.type === 'info') return;
+
+            const questionId = question.id;
+            let answer = {};
+
+            if (question.type === 'media') {
+                answer = { status: 'error', message: 'Type=media system require url' };
+            } else if (question.options && typeof question.options === 'object') {
+                const options = Object.values(question.options);
+                const correctIndex = Math.floor(Math.random() * options.length);
+
+                options.forEach((_, i) => {
+                    answer[i] = i === correctIndex;
+                });
+            }
+
+            answersData[questionId] = {
+                question_id: questionId,
+                question_type: question.type,
+                answer
+            };
+        });
+
+        return answersData;
+    }
+
+    async function fetchAndUpdateCorrectAnswers(taskId, answerId, token) {
+        try {
+            const url = `https://edusp-api.ip.tv/tms/task/${taskId}/answer/${answerId}?with_task=true&with_genre=true&with_questions=true&with_assessed_skills=true`;
+            const respostasAnteriores = await makeRequest(url, 'GET', { 'x-api-key': token });
+            await putAnswer(respostasAnteriores, taskId, answerId, token);
+        } catch {
+            throw new Error('Failed to update answers');
+        }
+    }
+
+    async function putAnswer(respostasAnteriores, taskId, answerId, token) {
+        try {
+            const url = `https://edusp-api.ip.tv/tms/task/${taskId}/answer/${answerId}`;
+            const novasRespostasPayload = transformJson(respostasAnteriores);
+            await makeRequest(url, 'PUT', { 'x-api-key': token }, novasRespostasPayload);
+        } catch {
+            throw new Error('Failed to put answer');
+        }
+    }
+
+    function transformJson(jsonOriginal) {
+        if (!jsonOriginal?.task?.questions) throw new Error("Invalid data structure");
+
+        const novoJson = {
+            accessed_on: jsonOriginal.accessed_on,
+            executed_on: jsonOriginal.executed_on,
+            answers: {}
+        };
+
+        for (const questionId in jsonOriginal.answers) {
+            const questionData = jsonOriginal.answers[questionId];
+            const taskQuestion = jsonOriginal.task.questions.find(q => q.id === parseInt(questionId));
+
+            if (!taskQuestion) continue;
+
+            try {
+                const answerPayload = createAnswerPayload(taskQuestion);
+                if (answerPayload) novoJson.answers[questionId] = answerPayload;
+            } catch {
+                continue;
+            }
+        }
+
+        return novoJson;
+    }
+
+    function createAnswerPayload(taskQuestion) {
+        const answerPayload = {
+            question_id: taskQuestion.id,
+            question_type: taskQuestion.type,
+            answer: null
+        };
+
+        switch (taskQuestion.type) {
+            case "order-sentences":
+                if (taskQuestion.options?.sentences?.length) {
+                    answerPayload.answer = taskQuestion.options.sentences.map(s => s.value);
                 }
-            }, 1000);
-        }
-
-        function updateTimeDisplay(seconds) {
-            const mins = Math.floor(seconds / 60);
-            const secs = seconds % 60;
-            document.getElementById('timeRemaining').textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-        }
-
-        function showNotification(title, message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            
-            notification.innerHTML = `
-                <div class="notification-header">
-                    <div class="notification-title">${title}</div>
-                </div>
-                <div class="notification-message">${message}</div>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.style.animation = 'slideOutRight 0.3s ease';
-                    setTimeout(() => {
-                        if (notification.parentNode) {
-                            notification.parentNode.removeChild(notification);
-                        }
-                    }, 300);
+                break;
+            case "fill-words":
+                if (taskQuestion.options?.phrase?.length) {
+                    answerPayload.answer = taskQuestion.options.phrase
+                        .map((item, index) => index % 2 !== 0 ? item.value : null)
+                        .filter(Boolean);
                 }
-            }, 5000);
+                break;
+            case "text_ai":
+                answerPayload.answer = { "0": removeTags(taskQuestion.comment || '') };
+                break;
+            case "fill-letters":
+                if (taskQuestion.options?.answer !== undefined) {
+                    answerPayload.answer = taskQuestion.options.answer;
+                }
+                break;
+            case "cloud":
+                if (taskQuestion.options?.ids?.length) {
+                    answerPayload.answer = taskQuestion.options.ids;
+                }
+                break;
+            default:
+                if (taskQuestion.options && typeof taskQuestion.options === 'object') {
+                    answerPayload.answer = Object.fromEntries(
+                        Object.entries(taskQuestion.options).map(([id, opt]) => [
+                            id,
+                            opt?.answer !== undefined ? opt.answer : false
+                        ])
+                    );
+                }
+                break;
         }
-    </script>
+
+        return answerPayload;
+    }
+
+    function isRedacao(task) {
+        return task.tags?.some(t => t.toLowerCase().includes('redacao')) ||
+            task.title.toLowerCase().includes('redação');
+    }
+
+    function removeTags(htmlString) {
+        return htmlString.replace(/<[^>]*>?/gm, '');
+    }
+
+    function iniciarModalGlobal() {
+        document.getElementById('modalTitle').textContent = 'Carregando Tarefas';
+        document.getElementById('currentStatus').textContent = 'Iniciando...';
+        document.getElementById('totalTasksFound').textContent = '0';
+        document.getElementById('progressBar').style.width = '0%';
+        progressModal.style.display = 'flex';
+    }
+
+    function updateModalStatus(status) {
+        document.getElementById('currentStatus').textContent = status;
+    }
+
+    function updateTimeDisplay(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        document.getElementById('timeRemaining').textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    function getTimeLabel(seconds) {
+        const sec = parseInt(seconds);
+        if (sec < 60) return `${sec} segundos`;
+        if (sec === 60) return '1 minuto';
+        return `${Math.floor(sec / 60)} minutos`;
+    }
+
+    function getDefaultHeaders() {
+        return {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'x-api-realm': 'edusp',
+            'x-api-platform': 'webclient',
+            'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+        };
+    }
+
+    async function makeRequest(url, method = 'GET', headers = {}, body = null) {
+        const options = {
+            method,
+            headers: {
+                'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+                'Content-Type': 'application/json',
+                ...headers
+            }
+        };
+
+        if (body) options.body = JSON.stringify(body);
+
+        const response = await fetch(url, options);
+        if (!response.ok) throw new Error(`HTTP ${method} ${url} => ${response.status}`);
+        return response.json();
+    }
+
+    function showNotification(title, message, type = 'info', duration = 5000) {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        
+        notification.innerHTML = `
+            <div class="notification-header">
+                <div class="notification-title">${title}</div>
+            </div>
+            <div class="notification-message">${message}</div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, duration);
+    }
+</script>
 </body>
 </html>
