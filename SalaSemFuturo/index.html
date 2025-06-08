@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <!-- Informações básicas da página -->
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Uma das melhores alternativas caso o site da Doritos caia ou fique offline!"/>
-    <meta name="keywords" content="TarefaSP hacks, TarefaSP scripts, Sala do Futuro hacks, Sala do Futuro scripts, Sala Sem Futuro hacks, Sala dos sem futuro scripts, CMSP Plataformas hacks, CMSP Plataformas scripts, LeiaMe CMSP hacks, Arvore de Livros hacks, Khan Academy automação, Scripts para Khan Academy, Hacks para Matific, Scripts Matific CMSP, Prova Paulista hacks, Redação Paulista scripts, Hacks para SPeak CMSP, Scripts para Alura educação, Expansão Noturno hacks, Ferramentas para estudantes CMSP, Automação de tarefas escolares SP, Scripts de ensino remoto, Hacks educacionais SP, Scripts de provas online, Gamificação na educação CMSP, Estudo online otimizado CMSP, Plataformas educacionais hacks SP, Sala dos Sem Futuro plataformas, Scripts Sala Sem Futuro"/>
-    <link rel="icon" href="https://i.imgur.com/4JEb2u5.png" type="image/png"/>
-    <meta name="author" content="DarkMode"/>
-    <title>Sala dos sem futuros</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Uma das melhores alternativas caso o site da Doritos caia ou fique offline!" />
+    <meta name="keywords"
+        content="TarefaSP hacks, TarefaSP scripts, Sala do Futuro hacks, Sala do Futuro scripts, Sala Sem Futuro hacks, Sala dos sem futuro scripts, CMSP Plataformas hacks, CMSP Plataformas scripts, LeiaMe CMSP hacks, Arvore de Livros hacks, Khan Academy automação, Scripts para Khan Academy, Hacks para Matific, Scripts Matific CMSP, Prova Paulista hacks, Redação Paulista scripts, Hacks para SPeak CMSP, Scripts para Alura educação, Expansão Noturno hacks, Ferramentas para estudantes CMSP, Automação de tarefas escolares SP, Scripts de ensino remoto, Hacks educacionais SP, Scripts de provas online, Gamificação na educação CMSP, Estudo online otimizado CMSP, Plataformas educacionais hacks SP, Sala dos Sem Futuro plataformas, Scripts Sala Sem Futuro" />
+    <link rel="icon" href="https://i.imgur.com/4JEb2u5.png" type="image/png" />
+    <meta name="author" content="DarkMode" />
+    <title>Sala dos Sem Futuro</title>
 
     <!-- Meta tags para redes sociais (Open Graph) -->
-    <meta property="og:title" content="Sala dos sem futuros"/>
-    <meta property="og:description" content="Uma das melhores alternativas caso o site da Doritos caia ou fique offline!"/>
-    <meta property="og:image" content="https://i.imgur.com/hEUwNdP.png"/>
-    <meta property="og:url" content="https://darkmodde.github.io/SalaSemFuturo/"/>
-    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Sala dos Sem Futuro" />
+    <meta property="og:description"
+        content="Uma das melhores alternativas caso o site da Doritos caia ou fique offline!" />
+    <meta property="og:image" content="https://i.imgur.com/hEUwNdP.png" />
+    <meta property="og:url" content="https://darkmodde.github.io/SalaSemFuturo/" />
+    <meta property="og:type" content="website" />
 
     <!-- Meta tags para Twitter -->
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="Sala dos sem futuros"/>
-    <meta name="twitter:description" content="Uma das melhores alternativas caso o site da Doritos caia ou fique offline!"/>
-    <meta name="twitter:image" content="https://i.imgur.com/hEUwNdP.png"/>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sala dos Sem Futuro" />
+    <meta name="twitter:description"
+        content="Uma das melhores alternativas caso o site da Doritos caia ou fique offline!" />
+    <meta name="twitter:image" content="https://i.imgur.com/hEUwNdP.png" />
 
     <!-- Otimização de fontes externas -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
 
     <!-- Script de análise -->
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3181c0dc1eed48ca871c007a700ac85f"}'></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "3181c0dc1eed48ca871c007a700ac85f"}'></script>
     <style>
         :root {
             --bg-primary: #0a0a0a;
@@ -107,7 +114,8 @@
             color: var(--text-primary);
         }
 
-        input, select {
+        input,
+        select {
             width: 100%;
             padding: 12px 15px;
             background-color: var(--bg-tertiary);
@@ -118,7 +126,8 @@
             color: var(--text-primary);
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             border-color: var(--accent-color);
             outline: none;
             box-shadow: 0 0 0 2px rgba(74, 128, 240, 0.2);
@@ -166,6 +175,10 @@
             align-items: center;
             z-index: 1000;
             backdrop-filter: blur(5px);
+        }
+
+        .modal.closing {
+            animation: modalFadeOut 0.3s ease;
         }
 
         .modal-content {
@@ -245,21 +258,48 @@
             margin-bottom: 10px;
         }
 
+        .submit-btn-loading {
+            position: relative;
+            pointer-events: none;
+        }
+
+        .submit-btn-loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-top-color: #000;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideUp {
-            from { 
+            from {
                 opacity: 0;
                 transform: translateY(20px);
             }
-            to { 
+
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
@@ -270,9 +310,22 @@
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes modalFadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
             }
         }
 
@@ -328,6 +381,7 @@
                 transform: translateX(100%);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -355,12 +409,23 @@
             width: 100%;
             margin-top: 5px;
         }
+
+        .warning-message {
+            color: #ffcc00;
+            background-color: rgba(255, 204, 0, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ffcc00;
+            font-size: 14px;
+        }
     </style>
 </head>
+
 <body oncontextmenu="return false;">
     <div class="container">
         <img src="https://i.imgur.com/kFb0sct.png" alt="Perfil" class="profile-image">
-        <h1>Sala dos sem futuros</h1>
+        <h1>Sala dos Sem Futuro</h1>
 
         <form id="Enviar">
             <div class="form-group">
@@ -418,585 +483,671 @@
                         <div class="progress" id="progressBar"></div>
                     </div>
                 </div>
+                <div class="warning-message">
+                    <strong>Atenção:</strong> Mantenha o site aberto enquanto as tarefas são feitas senão suas tarefas
+                    não serão concluídas!
+                </div>
                 <button class="close-modal" id="closeModal">Cancelar</button>
             </div>
         </div>
     </div>
 
-<script>
-    const securityConfig = {
-    disableSecurity: false,
-    blockedKeys: { F12: true, I: true, C: true, J: true, U: true },
-    keyCodeMap: { 123: 'F12', 73: 'I', 67: 'C', 74: 'J', 85: 'U' }
-};
-
-document.addEventListener('contextmenu', (e) => {
-    if (!securityConfig.disableSecurity) e.preventDefault();
-});
-
-document.addEventListener('keydown', (e) => {
-    if (securityConfig.disableSecurity) return;
-    const key = securityConfig.keyCodeMap[e.keyCode] || e.key;
-    if (key === 'F12' || (e.ctrlKey && e.shiftKey && securityConfig.blockedKeys[key])) e.preventDefault();
-    if (e.ctrlKey && key === 'U') e.preventDefault();
-});
-
-const consoleProtection = new Error();
-Object.defineProperties(consoleProtection, {
-    toString: {
-        value() {
-            if ((new Error()).stack.includes('toString@')) location.reload();
-        }
-    },
-    message: {
-        get() { location.reload(); }
-    }
-});
-console.log(consoleProtection);
-
-    const senhaInput = document.getElementById("senha");
-    const enviarForm = document.getElementById('Enviar');
-    const progressModal = document.getElementById('progressModal');
-    const closeModalBtn = document.getElementById('closeModal');
-
-    let trava = false;
-    let countdownInterval;
-    let shouldStopExecution = false;
-    let allTasks = [];
-
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.addEventListener('selectstart', e => e.preventDefault());
-    document.addEventListener('dragstart', e => e.preventDefault());
-
-    document.getElementById('tempoMin').addEventListener('change', validateTimeOnChange);
-    document.getElementById('tempoMax').addEventListener('change', validateTimeOnChange);
-
-    enviarForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (trava || !validateTimeInputs()) return;
-        trava = true;
-        try {
-            await loginRequest();
-        } catch {
-            trava = false;
-        }
-    });
-
-    closeModalBtn.addEventListener('click', () => {
-        progressModal.style.display = 'none';
-        shouldStopExecution = true;
-        clearInterval(countdownInterval);
-        showNotification('Processo interrompido', 'A execução foi cancelada.', 'info');
-    });
-
-    function validateTimeOnChange() {
-        const min = parseInt(document.getElementById('tempoMin').value);
-        const max = parseInt(document.getElementById('tempoMax').value);
-        if (min > max) {
-            showNotification('Aviso', 'O tempo mínimo está maior que o máximo. Isso será corrigido ao enviar.', 'info', 3000);
-        }
-    }
-
-    function validateTimeInputs() {
-        const min = parseInt(document.getElementById('tempoMin').value);
-        const max = parseInt(document.getElementById('tempoMax').value);
-        
-        if (isNaN(min)) {
-            showNotification('Erro', 'Tempo mínimo inválido', 'error');
-            return false;
-        }
-        
-        if (isNaN(max)) {
-            showNotification('Erro', 'Tempo máximo inválido', 'error');
-            return false;
-        }
-        
-        if (min < 60) {
-            showNotification('Tempo mínimo', 'O tempo mínimo deve ser pelo menos 1 minuto (60 segundos)', 'error');
-            return false;
-        }
-        
-        if (max > 600) {
-            showNotification('Tempo máximo', 'O tempo máximo não pode exceder 10 minutos (600 segundos)', 'error');
-            return false;
-        }
-        
-        if (min > max) {
-            showNotification('Intervalo inválido', 'O tempo mínimo não pode ser maior que o máximo. Corrigindo automaticamente...', 'error');
-            document.getElementById('tempoMin').value = max;
-            document.getElementById('tempoMax').value = min;
-            return false;
-        }
-        
-        return true;
-    }
-
-    async function loginRequest() {
-        let raInput = document.getElementById('ra').value.trim().toUpperCase();
-        if (!raInput.endsWith('SP')) raInput += 'SP';
-
-        const loginData = {
-            user: raInput,
-            senha: senhaInput.value
+    <script>
+        const securityConfig = {
+            disableSecurity: false,
+            blockedKeys: { F12: true, I: true, C: true, J: true, U: true },
+            keyCodeMap: { 123: 'F12', 73: 'I', 67: 'C', 74: 'J', 85: 'U' }
         };
 
-        const headers = {
-            'Accept': 'application/json',
-            'Ocp-Apim-Subscription-Key': '2b03c1db3884488795f79c37c069381a',
-            'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
-        };
+        document.addEventListener('contextmenu', (e) => {
+            if (!securityConfig.disableSecurity) e.preventDefault();
+        });
 
-        try {
-            iniciarModalGlobal();
-            const data = await makeRequest(
-                'https://sedintegracoes.educacao.sp.gov.br/credenciais/api/LoginCompletoToken',
-                'POST',
-                headers,
-                loginData
-            );
-            await sendRequest(data.token);
-        } catch {
-            showNotification('Erro de login', 'Verifique suas credenciais.', 'error');
-            progressModal.style.display = 'none';
-            throw new Error('Login failed');
+        document.addEventListener('keydown', (e) => {
+            if (securityConfig.disableSecurity) return;
+            const key = securityConfig.keyCodeMap[e.keyCode] || e.key;
+            if (key === 'F12' || (e.ctrlKey && e.shiftKey && securityConfig.blockedKeys[key])) e.preventDefault();
+            if (e.ctrlKey && key === 'U') e.preventDefault();
+        });
+
+        const consoleProtection = new Error();
+        Object.defineProperties(consoleProtection, {
+            toString: {
+                value() {
+                    if ((new Error()).stack.includes('toString@')) location.reload();
+                }
+            },
+            message: {
+                get() { location.reload(); }
+            }
+        });
+        console.log(consoleProtection);
+
+        const senhaInput = document.getElementById("senha");
+        const enviarForm = document.getElementById('Enviar');
+        const progressModal = document.getElementById('progressModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const submitBtn = document.getElementById('submitBtn');
+
+        let trava = false;
+        let countdownInterval;
+        let shouldStopExecution = false;
+        let allTasks = [];
+
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('selectstart', e => e.preventDefault());
+        document.addEventListener('dragstart', e => e.preventDefault());
+
+        document.getElementById('tempoMin').addEventListener('change', validateTimeOnChange);
+        document.getElementById('tempoMax').addEventListener('change', validateTimeOnChange);
+
+        enviarForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Verificar se já está processando
+            if (trava) {
+                showNotification('Aguarde', 'Já existe um processo em andamento.', 'info');
+                return;
+            }
+            
+            // Validar campos
+            if (!document.getElementById('ra').value.trim()) {
+                showNotification('Campo obrigatório', 'Por favor, informe seu RA.', 'error');
+                return;
+            }
+            
+            if (!senhaInput.value) {
+                showNotification('Campo obrigatório', 'Por favor, informe sua senha.', 'error');
+                return;
+            }
+            
+            if (!validateTimeInputs()) return;
+            
+            // Adicionar indicador de carregamento ao botão
+            submitBtn.classList.add('submit-btn-loading');
+            trava = true;
+            
+            try {
+                await loginRequest();
+            } catch (error) {
+                trava = false;
+            } finally {
+                submitBtn.classList.remove('submit-btn-loading');
+            }
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            closeModal();
+            showNotification('Processo interrompido', 'A execução foi cancelada.', 'info');
+        });
+
+        function closeModal() {
+            progressModal.classList.add('closing');
+            setTimeout(() => {
+                progressModal.style.display = 'none';
+                progressModal.classList.remove('closing');
+                shouldStopExecution = true;
+                clearInterval(countdownInterval);
+                trava = false;
+            }, 300);
         }
-    }
 
-    async function sendRequest(token) {
-        try {
-            updateModalStatus('Acessando aluno...');
-            const data = await makeRequest(
-                'https://edusp-api.ip.tv/registration/edusp/token',
-                'POST',
-                getDefaultHeaders(),
-                { token }
-            );
-            await fetchUserRooms(data.auth_token);
-        } catch {
-            showNotification('Erro de registro', 'Tente novamente.', 'error');
-            progressModal.style.display = 'none';
-            throw new Error('Registration failed');
+        function resetModal() {
+            document.getElementById('modalTitle').textContent = 'Carregando Tarefas';
+            document.getElementById('currentStatus').textContent = 'Iniciando...';
+            document.getElementById('totalTasksFound').textContent = '0';
+            document.getElementById('timeRemaining').textContent = '0:00';
+            document.getElementById('progressBar').style.width = '0%';
+            allTasks = [];
+            shouldStopExecution = false;
+            clearInterval(countdownInterval);
         }
-    }
 
-    async function fetchUserRooms(token) {
-        try {
-            updateModalStatus('Buscando tarefas...');
-            const data = await makeRequest(
-                'https://edusp-api.ip.tv/room/user?list_all=true&with_cards=true',
-                'GET',
-                { ...getDefaultHeaders(), 'x-api-key': token }
-            );
+        function iniciarModalGlobal() {
+            resetModal();
+            progressModal.style.display = 'flex';
+        }
 
-            if (data.rooms?.length > 0) {
-                allTasks = [];
-                shouldStopExecution = false;
+        function validateTimeOnChange() {
+            const min = parseInt(document.getElementById('tempoMin').value);
+            const max = parseInt(document.getElementById('tempoMax').value);
+            if (min > max) {
+                showNotification('Aviso', 'O tempo mínimo está maior que o máximo. Isso será corrigido ao enviar.', 'info', 3000);
+            }
+        }
+
+        function validateTimeInputs() {
+            const min = parseInt(document.getElementById('tempoMin').value);
+            const max = parseInt(document.getElementById('tempoMax').value);
+
+            if (isNaN(min)) {
+                showNotification('Erro', 'Tempo mínimo inválido', 'error');
+                return false;
+            }
+
+            if (isNaN(max)) {
+                showNotification('Erro', 'Tempo máximo inválido', 'error');
+                return false;
+            }
+
+            if (min < 60) {
+                showNotification('Tempo mínimo', 'O tempo mínimo deve ser pelo menos 1 minuto (60 segundos)', 'error');
+                return false;
+            }
+
+            if (max > 600) {
+                showNotification('Tempo máximo', 'O tempo máximo não pode exceder 10 minutos (600 segundos)', 'error');
+                return false;
+            }
+
+            if (min > max) {
+                showNotification('Intervalo inválido', 'O tempo mínimo não pode ser maior que o máximo. Corrigindo automaticamente...', 'error');
+                document.getElementById('tempoMin').value = max;
+                document.getElementById('tempoMax').value = min;
+                return false;
+            }
+
+            return true;
+        }
+
+        async function loginRequest() {
+            let raInput = document.getElementById('ra').value.trim().toUpperCase();
+            
+            // Validação do RA
+            if (!raInput) {
+                showNotification('Campo obrigatório', 'Por favor, informe seu RA.', 'error');
+                trava = false;
+                return;
+            }
+            
+            if (!raInput.endsWith('SP')) raInput += 'SP';
+            
+            // Validação da senha
+            if (!senhaInput.value) {
+                showNotification('Campo obrigatório', 'Por favor, informe sua senha.', 'error');
+                trava = false;
+                return;
+            }
+
+            const loginData = {
+                user: raInput,
+                senha: senhaInput.value
+            };
+
+            const headers = {
+                'Accept': 'application/json',
+                'Ocp-Apim-Subscription-Key': '2b03c1db3884488795f79c37c069381a',
+                'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+            };
+
+            try {
+                iniciarModalGlobal();
+                updateModalStatus('Validando credenciais...');
                 
-                await Promise.all(
-                    data.rooms.map(room => fetchTasks(token, room.name, room.topic))
+                const data = await makeRequest(
+                    'https://sedintegracoes.educacao.sp.gov.br/credenciais/api/LoginCompletoToken',
+                    'POST',
+                    headers,
+                    loginData
                 );
                 
+                await sendRequest(data.token);
+            } catch (error) {
+                showNotification('Erro de login', 'Verifique suas credenciais e tente novamente.', 'error');
+                closeModal();
+            }
+        }
+
+        async function sendRequest(token) {
+            try {
+                updateModalStatus('Acessando aluno...');
+                const data = await makeRequest(
+                    'https://edusp-api.ip.tv/registration/edusp/token',
+                    'POST',
+                    getDefaultHeaders(),
+                    { token }
+                );
+                await fetchUserRooms(data.auth_token);
+            } catch (error) {
+                showNotification('Erro de registro', 'Tente novamente.', 'error');
+                closeModal();
+            }
+        }
+
+        async function fetchUserRooms(token) {
+            try {
+                updateModalStatus('Buscando tarefas...');
+                const data = await makeRequest(
+                    'https://edusp-api.ip.tv/room/user?list_all=true&with_cards=true',
+                    'GET',
+                    { ...getDefaultHeaders(), 'x-api-key': token }
+                );
+
+                if (!data.rooms || data.rooms.length === 0) {
+                    showNotification('Nenhuma sala encontrada', 'Não encontramos salas com tarefas pendentes.', 'info');
+                    closeModal();
+                    return;
+                }
+
+                allTasks = [];
+                shouldStopExecution = false;
+
+                    await Promise.all(
+                        data.rooms.map(room => fetchTasks(token, room.name, room.topic))
+                    );
+
                 document.getElementById('totalTasksFound').textContent = allTasks.length;
-                
+
                 if (allTasks.length === 0) {
-                    showNotification('Nenhuma tarefa', 'Não há tarefas pendentes.', 'info');
-                    progressModal.style.display = 'none';
+                    showNotification('Nenhuma tarefa pendente', 'Não há tarefas para concluir no momento.', 'info');
+                    closeModal();
                 } else {
-                    updateModalStatus(`Abrindo ${allTasks.length} tarefas...`);
+                    updateModalStatus(`Preparando ${allTasks.length} tarefas...`);
                     await openAllTasks(token);
                     const minSeconds = parseInt(document.getElementById('tempoMin').value);
                     const maxSeconds = parseInt(document.getElementById('tempoMax').value);
                     startGlobalCountdown(minSeconds, maxSeconds, token);
                 }
-            } else {
-                showNotification('Nenhuma sala', 'Não encontramos salas.', 'info');
-                progressModal.style.display = 'none';
+            } catch (error) {
+                showNotification('Erro', 'Ocorreu um problema ao buscar as tarefas. Tente novamente.', 'error');
+                closeModal();
             }
-        } catch {
-            progressModal.style.display = 'none';
-            throw new Error('Failed to fetch rooms');
-        } finally {
-            trava = false;
-        }
-    }
-
-    async function fetchTasks(token, roomCode, name) {
-        try {
-            const roomResponse = await makeRequest(
-                `https://edusp-api.ip.tv/room/detail/${roomCode}?fields[]=id&fields[]=name&with_category_groups=true`,
-                'GET',
-                { ...getDefaultHeaders(), 'x-api-key': token }
-            );
-
-            const categoryIds = roomResponse.group_categories?.map(category => category.id) || [];
-            const taskConfigs = [
-                { 
-                    options: {
-                        expired_only: false,
-                        filter_expired: true,
-                        answer_statuses: 'pending'
-                    }
-                },
-                { 
-                    options: {
-                        expired_only: true,
-                        filter_expired: false,
-                        answer_statuses: 'pending'
-                    }
-                },
-                { 
-                    options: {
-                        expired_only: false,
-                        filter_expired: true,
-                        answer_statuses: 'draft'
-                    }
-                }
-            ];
-
-            const endpoints = [];
-            taskConfigs.forEach(({ options }) => {
-                endpoints.push({ url: buildTasksUrlTypeA(roomCode, categoryIds, options) });
-                endpoints.push({ url: buildTasksUrlTypeB(roomCode, options) });
-            });
-
-            const results = await Promise.all(
-                endpoints.map(async ({ url }) => {
-                    try {
-                        return await makeRequest(url, 'GET', { ...getDefaultHeaders(), 'x-api-key': token });
-                    } catch {
-                        return null;
-                    }
-                })
-            );
-            
-            results.forEach(result => {
-                if (result && result.length > 0) {
-                    let filteredData = result;
-                    if (result[0].expired) {
-                        filteredData = filteredData.filter(task => !isRedacao(task));
-                    }
-                    
-                    filteredData.forEach(task => {
-                        task.room = roomCode;
-                        task.roomName = name;
-                    });
-                    
-                    allTasks.push(...filteredData);
-                }
-            });
-        } catch {
-            throw new Error('Failed to fetch tasks');
-        }
-    }
-
-    function buildTasksUrlTypeA(roomCode, categoryIds, options) {
-        let url = `https://edusp-api.ip.tv/tms/task/todo?expired_only=${options.expired_only}`;
-        url += `&room_code=${roomCode}`;
-        url += `&filter_expired=${options.filter_expired}`;
-        url += `&with_answer=true`;
-        url += `&limit=100`;
-        url += `&offset=0`;
-        
-        categoryIds.forEach(id => url += `&publication_target[]=${id}`);
-        if (options.answer_statuses) url += `&answer_statuses=${options.answer_statuses}`;
-        
-        return url;
-    }
-
-    function buildTasksUrlTypeB(roomCode, options) {
-        let url = `https://edusp-api.ip.tv/tms/task/todo?expired_only=${options.expired_only}`;
-        url += `&filter_expired=${options.filter_expired}`;
-        url += `&with_answer=true`;
-        url += `&is_essay=false`;
-        url += `&publication_target=${roomCode}`;
-        
-        if (options.answer_statuses) url += `&answer_statuses=${options.answer_statuses}`;
-        if (options.answer_statuses === 'pending' && !options.expired_only) url += `&with_apply_moment=false`;
-        else if (options.expired_only || options.answer_statuses === 'draft') url += `&with_apply_moment=true`;
-        
-        return url;
-    }
-
-    async function openAllTasks(token) {
-        for (const task of allTasks) {
-            if (shouldStopExecution) break;
-            await getTaskDetails(task.id, token);
-            await new Promise(resolve => setTimeout(resolve, 20));
-        }
-    }
-
-    function startGlobalCountdown(minSeconds, maxSeconds, token) {
-        if (minSeconds > maxSeconds) [minSeconds, maxSeconds] = [maxSeconds, minSeconds];
-        const randomSeconds = Math.floor(Math.random() * (maxSeconds - minSeconds + 1)) + minSeconds;
-        
-        let remaining = randomSeconds;
-        updateTimeDisplay(remaining);
-        document.getElementById('progressBar').style.width = '0%';
-        document.getElementById('modalTitle').textContent = 'Contabilizando Tempo';
-        updateModalStatus(`Aguardando: entre ${getTimeLabel(minSeconds)} e ${getTimeLabel(maxSeconds)} (${getTimeLabel(randomSeconds)})`);
-
-        countdownInterval = setInterval(() => {
-            remaining--;
-            updateTimeDisplay(remaining);
-            const percentageElapsed = ((randomSeconds - remaining) / randomSeconds) * 100;
-            document.getElementById('progressBar').style.width = `${percentageElapsed}%`;
-
-            if (remaining <= 0) {
-                clearInterval(countdownInterval);
-                document.getElementById('progressBar').style.width = '100%';
-                processAllTasksNow(token);
-            }
-        }, 1000);
-    }
-
-    async function processAllTasksNow(token) {
-        if (allTasks.length === 0 || shouldStopExecution) {
-            progressModal.style.display = 'none';
-            return;
         }
 
-        document.getElementById('modalTitle').textContent = 'Enviando Tarefas';
-        updateModalStatus('Preparando respostas...');
-        
-        const redacaoTasks = allTasks.filter(isRedacao);
-        const outrasTasks = allTasks.filter(task => !isRedacao(task));
-        const orderedTasks = [...outrasTasks, ...redacaoTasks];
-        
-        let completedTasks = 0;
-        let failedTasks = 0;
-        const totalTasks = orderedTasks.length;
-        const timeRemainingElement = document.getElementById('timeRemaining');
-        timeRemainingElement.textContent = `00/${totalTasks}`;
-        
-        for (const task of orderedTasks) {
-            if (shouldStopExecution) break;
-            
+        async function fetchTasks(token, roomCode, name) {
             try {
-                updateModalStatus(`Enviando: ${task.title.substring(0, 30)}...`);
-                const taskDetails = await getTaskDetails(task.id, token);
-                await submitTaskNow(task, taskDetails, token);
-                completedTasks++;
-                
-                const currentTaskNumber = completedTasks + failedTasks;
-                timeRemainingElement.textContent = `${String(currentTaskNumber).padStart(2, '0')}/${totalTasks}`;
-                const progress = Math.round((currentTaskNumber / totalTasks) * 100);
-                document.getElementById('progressBar').style.width = `${progress}%`;
-                
-                if (orderedTasks.length > 1) await new Promise(resolve => setTimeout(resolve, 500));
+                const roomResponse = await makeRequest(
+                    `https://edusp-api.ip.tv/room/detail/${roomCode}?fields[]=id&fields[]=name&with_category_groups=true`,
+                    'GET',
+                    { ...getDefaultHeaders(), 'x-api-key': token }
+                );
+
+                const categoryIds = roomResponse.group_categories?.map(category => category.id) || [];
+                const taskConfigs = [
+                    {
+                        options: {
+                            expired_only: false,
+                            filter_expired: true,
+                            answer_statuses: 'pending'
+                        }
+                    },
+                    {
+                        options: {
+                            expired_only: true,
+                            filter_expired: false,
+                            answer_statuses: 'pending'
+                        }
+                    },
+                    {
+                        options: {
+                            expired_only: false,
+                            filter_expired: true,
+                            answer_statuses: 'draft'
+                        }
+                    }
+                ];
+
+                const endpoints = [];
+                taskConfigs.forEach(({ options }) => {
+                    endpoints.push({ url: buildTasksUrlTypeA(roomCode, categoryIds, options) });
+                    endpoints.push({ url: buildTasksUrlTypeB(roomCode, options) });
+                });
+
+                const results = await Promise.all(
+                    endpoints.map(async ({ url }) => {
+                        try {
+                            return await makeRequest(url, 'GET', { ...getDefaultHeaders(), 'x-api-key': token });
+                        } catch {
+                            return null;
+                        }
+                    })
+                );
+
+                results.forEach(result => {
+                    if (result && result.length > 0) {
+                        let filteredData = result;
+                        if (result[0].expired) {
+                            filteredData = filteredData.filter(task => !isRedacao(task));
+                        }
+
+                        filteredData.forEach(task => {
+                            task.room = roomCode;
+                            task.roomName = name;
+                        });
+
+                        allTasks.push(...filteredData);
+                    }
+                });
             } catch {
-                failedTasks++;
-                const currentTaskNumber = completedTasks + failedTasks;
-                timeRemainingElement.textContent = `${String(currentTaskNumber).padStart(2, '0')}/${totalTasks}`;
+                throw new Error('Failed to fetch tasks');
             }
         }
-        
-        progressModal.style.display = 'none';
-        if (completedTasks > 0) {
-            showNotification('Concluído!', `${totalTasks} tarefas enviadas!`, 'success');
-        } else {
-            showNotification('Erro', 'Nenhuma tarefa enviada.', 'error');
+
+        function buildTasksUrlTypeA(roomCode, categoryIds, options) {
+            let url = `https://edusp-api.ip.tv/tms/task/todo?expired_only=${options.expired_only}`;
+            url += `&room_code=${roomCode}`;
+            url += `&filter_expired=${options.filter_expired}`;
+            url += `&with_answer=true`;
+            url += `&limit=100`;
+            url += `&offset=0`;
+
+            categoryIds.forEach(id => url += `&publication_target[]=${id}`);
+            if (options.answer_statuses) url += `&answer_statuses=${options.answer_statuses}`;
+
+            return url;
+        }
+
+        function buildTasksUrlTypeB(roomCode, options) {
+            let url = `https://edusp-api.ip.tv/tms/task/todo?expired_only=${options.expired_only}`;
+            url += `&filter_expired=${options.filter_expired}`;
+            url += `&with_answer=true`;
+            url += `&is_essay=false`;
+            url += `&publication_target=${roomCode}`;
+
+            if (options.answer_statuses) url += `&answer_statuses=${options.answer_statuses}`;
+            if (options.answer_statuses === 'pending' && !options.expired_only) url += `&with_apply_moment=false`;
+            else if (options.expired_only || options.answer_statuses === 'draft') url += `&with_apply_moment=true`;
+
+            return url;
+        }
+
+async function openAllTasks(token) {
+    for (const task of allTasks) {
+        if (shouldStopExecution) break;
+        try {
+            const taskDetails = await getTaskDetails(task.id, token);
+            if (taskDetails) { // Só processa se obteve os detalhes com sucesso
+                task.details = taskDetails; // Armazena os detalhes na tarefa
+            }
+            await new Promise(resolve => setTimeout(resolve, 20));
+        } catch (error) {
+            console.error(`Erro ao processar tarefa ${task.id}:`, error);
+            continue; // Continua para a próxima tarefa
         }
     }
+}
 
-    async function submitTaskNow(task, answersData, token) {
-        if (isRedacao(task)) return;
+        function startGlobalCountdown(minSeconds, maxSeconds, token) {
+            if (minSeconds > maxSeconds) [minSeconds, maxSeconds] = [maxSeconds, minSeconds];
+            const randomSeconds = Math.floor(Math.random() * (maxSeconds - minSeconds + 1)) + minSeconds;
 
-        const draftBody = {
-            status: 'submitted',
-            accessed_on: 'room',
-            executed_on: task.room,
-            answers: answersData
-        };
+            let remaining = randomSeconds;
+            updateTimeDisplay(remaining);
+            document.getElementById('progressBar').style.width = '0%';
+            document.getElementById('modalTitle').textContent = 'Contabilizando Tempo';
+            updateModalStatus(`Aguardando: entre ${getTimeLabel(minSeconds)} e ${getTimeLabel(maxSeconds)} (${getTimeLabel(randomSeconds)})`);
+
+            countdownInterval = setInterval(() => {
+                remaining--;
+                updateTimeDisplay(remaining);
+                const percentageElapsed = ((randomSeconds - remaining) / randomSeconds) * 100;
+                document.getElementById('progressBar').style.width = `${percentageElapsed}%`;
+
+                if (remaining <= 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('progressBar').style.width = '100%';
+                    processAllTasksNow(token);
+                }
+            }, 1000);
+        }
+
+async function processAllTasksNow(token) {
+    if (allTasks.length === 0 || shouldStopExecution) {
+        closeModal();
+        return;
+    }
+
+    document.getElementById('modalTitle').textContent = 'Enviando Tarefas';
+    updateModalStatus('Preparando respostas...');
+
+    // Filtra apenas tarefas que têm detalhes
+    const tasksWithDetails = allTasks.filter(task => task.details);
+    
+    const redacaoTasks = tasksWithDetails.filter(isRedacao);
+    const outrasTasks = tasksWithDetails.filter(task => !isRedacao(task));
+    const orderedTasks = [...outrasTasks, ...redacaoTasks];
+
+    let completedTasks = 0;
+    let failedTasks = 0;
+    const totalTasks = orderedTasks.length;
+    const timeRemainingElement = document.getElementById('timeRemaining');
+    timeRemainingElement.textContent = `00/${totalTasks}`;
+
+    for (const task of orderedTasks) {
+        if (shouldStopExecution) break;
 
         try {
-            const response = await makeRequest(
-                `https://edusp-api.ip.tv/tms/task/${task.id}/answer`,
-                'POST',
-                { 'x-api-key': token },
-                draftBody
-            );
-            await fetchAndUpdateCorrectAnswers(task.id, response.id, token);
-        } catch {
-            throw new Error('Falha ao enviar');
+            updateModalStatus(`Enviando: ${task.title.substring(0, 30)}...`);
+            await submitTaskNow(task, task.details, token); // Usa os detalhes já armazenados
+            completedTasks++;
+
+            const currentTaskNumber = completedTasks + failedTasks;
+            timeRemainingElement.textContent = `${String(currentTaskNumber).padStart(2, '0')}/${totalTasks}`;
+            const progress = Math.round((currentTaskNumber / totalTasks) * 100);
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            if (orderedTasks.length > 1) await new Promise(resolve => setTimeout(resolve, 500));
+        } catch (error) {
+            console.error(`Erro ao enviar tarefa ${task.id}:`, error);
+            failedTasks++;
+            const currentTaskNumber = completedTasks + failedTasks;
+            timeRemainingElement.textContent = `${String(currentTaskNumber).padStart(2, '0')}/${totalTasks}`;
         }
     }
 
-    async function getTaskDetails(taskId, token) {
+    closeModal();
+    if (completedTasks > 0) {
+        showNotification('Concluído!', `${completedTasks} tarefas enviadas (${failedTasks} falhas).`, 'success');
+    } else {
+        showNotification('Erro', 'Nenhuma tarefa enviada.', 'error');
+    }
+}
+
+        async function submitTaskNow(task, answersData, token) {
+            if (isRedacao(task)) return;
+
+            const draftBody = {
+                status: 'submitted',
+                accessed_on: 'room',
+                executed_on: task.room,
+                answers: answersData
+            };
+
+            try {
+                const response = await makeRequest(
+                    `https://edusp-api.ip.tv/tms/task/${task.id}/answer`,
+                    'POST',
+                    { 'x-api-key': token },
+                    draftBody
+                );
+                await fetchAndUpdateCorrectAnswers(task.id, response.id, token);
+            } catch {
+                throw new Error('Falha ao enviar');
+            }
+        }
+
+async function getTaskDetails(taskId, token) {
+    try {
         const url = `https://edusp-api.ip.tv/tms/task/${taskId}/apply?preview_mode=false`;
         const headers = { ...getDefaultHeaders(), 'x-api-key': token };
         const response = await makeRequest(url, 'GET', headers);
         return processTaskDetails(response);
+    } catch (error) {
+        console.error(`Erro ao obter detalhes da tarefa ${taskId}:`, error);
+        return null; // Retorna null para indicar que falhou
     }
+}
 
-    function processTaskDetails(details) {
-        const answersData = {};
+        function processTaskDetails(details) {
+            const answersData = {};
 
-        details.questions?.forEach(question => {
-            if (question.type === 'info') return;
+            details.questions?.forEach(question => {
+                if (question.type === 'info') return;
 
-            const questionId = question.id;
-            let answer = {};
+                const questionId = question.id;
+                let answer = {};
 
-            if (question.type === 'media') {
-                answer = { status: 'error', message: 'Type=media system require url' };
-            } else if (question.options && typeof question.options === 'object') {
-                const options = Object.values(question.options);
-                const correctIndex = Math.floor(Math.random() * options.length);
+                if (question.type === 'media') {
+                    answer = { status: 'error', message: 'Type=media system require url' };
+                } else if (question.options && typeof question.options === 'object') {
+                    const options = Object.values(question.options);
+                    const correctIndex = Math.floor(Math.random() * options.length);
 
-                options.forEach((_, i) => {
-                    answer[i] = i === correctIndex;
-                });
-            }
+                    options.forEach((_, i) => {
+                        answer[i] = i === correctIndex;
+                    });
+                }
 
-            answersData[questionId] = {
-                question_id: questionId,
-                question_type: question.type,
-                answer
-            };
-        });
+                answersData[questionId] = {
+                    question_id: questionId,
+                    question_type: question.type,
+                    answer
+                };
+            });
 
-        return answersData;
-    }
-
-    async function fetchAndUpdateCorrectAnswers(taskId, answerId, token) {
-        try {
-            const url = `https://edusp-api.ip.tv/tms/task/${taskId}/answer/${answerId}?with_task=true&with_genre=true&with_questions=true&with_assessed_skills=true`;
-            const respostasAnteriores = await makeRequest(url, 'GET', { 'x-api-key': token });
-            await putAnswer(respostasAnteriores, taskId, answerId, token);
-        } catch {
-            throw new Error('Failed to update answers');
+            return answersData;
         }
-    }
 
-    async function putAnswer(respostasAnteriores, taskId, answerId, token) {
-        try {
-            const url = `https://edusp-api.ip.tv/tms/task/${taskId}/answer/${answerId}`;
-            const novasRespostasPayload = transformJson(respostasAnteriores);
-            await makeRequest(url, 'PUT', { 'x-api-key': token }, novasRespostasPayload);
-        } catch {
-            throw new Error('Failed to put answer');
-        }
-    }
-
-    function transformJson(jsonOriginal) {
-        if (!jsonOriginal?.task?.questions) throw new Error("Invalid data structure");
-
-        const novoJson = {
-            accessed_on: jsonOriginal.accessed_on,
-            executed_on: jsonOriginal.executed_on,
-            answers: {}
-        };
-
-        for (const questionId in jsonOriginal.answers) {
-            const questionData = jsonOriginal.answers[questionId];
-            const taskQuestion = jsonOriginal.task.questions.find(q => q.id === parseInt(questionId));
-
-            if (!taskQuestion) continue;
-
+        async function fetchAndUpdateCorrectAnswers(taskId, answerId, token) {
             try {
-                const answerPayload = createAnswerPayload(taskQuestion);
-                if (answerPayload) novoJson.answers[questionId] = answerPayload;
+                const url = `https://edusp-api.ip.tv/tms/task/${taskId}/answer/${answerId}?with_task=true&with_genre=true&with_questions=true&with_assessed_skills=true`;
+                const respostasAnteriores = await makeRequest(url, 'GET', { 'x-api-key': token });
+                await putAnswer(respostasAnteriores, taskId, answerId, token);
             } catch {
-                continue;
+                throw new Error('Failed to update answers');
             }
         }
 
-        return novoJson;
-    }
-
-    function createAnswerPayload(taskQuestion) {
-        const answerPayload = {
-            question_id: taskQuestion.id,
-            question_type: taskQuestion.type,
-            answer: null
-        };
-
-        switch (taskQuestion.type) {
-            case "order-sentences":
-                if (taskQuestion.options?.sentences?.length) {
-                    answerPayload.answer = taskQuestion.options.sentences.map(s => s.value);
-                }
-                break;
-            case "fill-words":
-                if (taskQuestion.options?.phrase?.length) {
-                    answerPayload.answer = taskQuestion.options.phrase
-                        .map((item, index) => index % 2 !== 0 ? item.value : null)
-                        .filter(Boolean);
-                }
-                break;
-            case "text_ai":
-                answerPayload.answer = { "0": removeTags(taskQuestion.comment || '') };
-                break;
-            case "fill-letters":
-                if (taskQuestion.options?.answer !== undefined) {
-                    answerPayload.answer = taskQuestion.options.answer;
-                }
-                break;
-            case "cloud":
-                if (taskQuestion.options?.ids?.length) {
-                    answerPayload.answer = taskQuestion.options.ids;
-                }
-                break;
-            default:
-                if (taskQuestion.options && typeof taskQuestion.options === 'object') {
-                    answerPayload.answer = Object.fromEntries(
-                        Object.entries(taskQuestion.options).map(([id, opt]) => [
-                            id,
-                            opt?.answer !== undefined ? opt.answer : false
-                        ])
-                    );
-                }
-                break;
+        async function putAnswer(respostasAnteriores, taskId, answerId, token) {
+            try {
+                const url = `https://edusp-api.ip.tv/tms/task/${taskId}/answer/${answerId}`;
+                const novasRespostasPayload = transformJson(respostasAnteriores);
+                await makeRequest(url, 'PUT', { 'x-api-key': token }, novasRespostasPayload);
+            } catch {
+                throw new Error('Failed to put answer');
+            }
         }
 
-        return answerPayload;
-    }
+        function transformJson(jsonOriginal) {
+            if (!jsonOriginal?.task?.questions) throw new Error("Invalid data structure");
 
-    function isRedacao(task) {
-        return task.tags?.some(t => t.toLowerCase().includes('redacao')) ||
-            task.title.toLowerCase().includes('redação');
-    }
+            const novoJson = {
+                accessed_on: jsonOriginal.accessed_on,
+                executed_on: jsonOriginal.executed_on,
+                answers: {}
+            };
 
-    function removeTags(htmlString) {
-        return htmlString.replace(/<[^>]*>?/gm, '');
-    }
+            for (const questionId in jsonOriginal.answers) {
+                const questionData = jsonOriginal.answers[questionId];
+                const taskQuestion = jsonOriginal.task.questions.find(q => q.id === parseInt(questionId));
 
-    function iniciarModalGlobal() {
-        document.getElementById('modalTitle').textContent = 'Carregando Tarefas';
-        document.getElementById('currentStatus').textContent = 'Iniciando...';
-        document.getElementById('totalTasksFound').textContent = '0';
-        document.getElementById('progressBar').style.width = '0%';
-        progressModal.style.display = 'flex';
-    }
+                if (!taskQuestion) continue;
 
-    function updateModalStatus(status) {
-        document.getElementById('currentStatus').textContent = status;
-    }
+                try {
+                    const answerPayload = createAnswerPayload(taskQuestion);
+                    if (answerPayload) novoJson.answers[questionId] = answerPayload;
+                } catch {
+                    continue;
+                }
+            }
 
-    function updateTimeDisplay(seconds) {
-        const mins = Math.floor(seconds / 60);
-        const secs = seconds % 60;
-        document.getElementById('timeRemaining').textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-    }
+            return novoJson;
+        }
 
-    function getTimeLabel(seconds) {
-        const sec = parseInt(seconds);
-        if (sec < 60) return `${sec} segundos`;
-        if (sec === 60) return '1 minuto';
-        return `${Math.floor(sec / 60)} minutos`;
-    }
+        function createAnswerPayload(taskQuestion) {
+            const answerPayload = {
+                question_id: taskQuestion.id,
+                question_type: taskQuestion.type,
+                answer: null
+            };
 
-    function getDefaultHeaders() {
-        return {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'x-api-realm': 'edusp',
-            'x-api-platform': 'webclient',
-            'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
-        };
-    }
+            switch (taskQuestion.type) {
+                case "order-sentences":
+                    if (taskQuestion.options?.sentences?.length) {
+                        answerPayload.answer = taskQuestion.options.sentences.map(s => s.value);
+                    }
+                    break;
+                case "fill-words":
+                    if (taskQuestion.options?.phrase?.length) {
+                        answerPayload.answer = taskQuestion.options.phrase
+                            .map((item, index) => index % 2 !== 0 ? item.value : null)
+                            .filter(Boolean);
+                    }
+                    break;
+                case "text_ai":
+                    answerPayload.answer = { "0": removeTags(taskQuestion.comment || '') };
+                    break;
+                case "fill-letters":
+                    if (taskQuestion.options?.answer !== undefined) {
+                        answerPayload.answer = taskQuestion.options.answer;
+                    }
+                    break;
+                case "cloud":
+                    if (taskQuestion.options?.ids?.length) {
+                        answerPayload.answer = taskQuestion.options.ids;
+                    }
+                    break;
+                default:
+                    if (taskQuestion.options && typeof taskQuestion.options === 'object') {
+                        answerPayload.answer = Object.fromEntries(
+                            Object.entries(taskQuestion.options).map(([id, opt]) => [
+                                id,
+                                opt?.answer !== undefined ? opt.answer : false
+                            ])
+                        );
+                    }
+                    break;
+            }
 
-    async function makeRequest(url, method = 'GET', headers = {}, body = null) {
+            return answerPayload;
+        }
+
+        function isRedacao(task) {
+            return task.tags?.some(t => t.toLowerCase().includes('redacao')) ||
+                task.title.toLowerCase().includes('redação');
+        }
+
+        function removeTags(htmlString) {
+            return htmlString.replace(/<[^>]*>?/gm, '');
+        }
+
+        function iniciarModalGlobal() {
+            document.getElementById('modalTitle').textContent = 'Carregando Tarefas';
+            document.getElementById('currentStatus').textContent = 'Iniciando...';
+            document.getElementById('totalTasksFound').textContent = '0';
+            document.getElementById('progressBar').style.width = '0%';
+            progressModal.style.display = 'flex';
+        }
+
+        function updateModalStatus(status) {
+            document.getElementById('currentStatus').textContent = status;
+        }
+
+        function updateTimeDisplay(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            document.getElementById('timeRemaining').textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        function getTimeLabel(seconds) {
+            const sec = parseInt(seconds);
+            if (sec < 60) return `${sec} segundos`;
+            if (sec === 60) return '1 minuto';
+            return `${Math.floor(sec / 60)} minutos`;
+        }
+
+        function getDefaultHeaders() {
+            return {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'x-api-realm': 'edusp',
+                'x-api-platform': 'webclient',
+                'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+            };
+        }
+
+async function makeRequest(url, method = 'GET', headers = {}, body = null) {
+    try {
         const options = {
             method,
             headers: {
@@ -1009,28 +1160,38 @@ console.log(consoleProtection);
         if (body) options.body = JSON.stringify(body);
 
         const response = await fetch(url, options);
-        if (!response.ok) throw new Error(`HTTP ${method} ${url} => ${response.status}`);
-        return response.json();
-    }
-
-    function showNotification(title, message, type = 'info', duration = 5000) {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
         
-        notification.innerHTML = `
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => null);
+            throw new Error(errorData?.message || `HTTP ${method} ${url} => ${response.status}`);
+        }
+        
+        return response.json();
+    } catch (error) {
+        console.error(`Erro na requisição para ${url}:`, error);
+        throw error; // Re-lança o erro para ser tratado pelo chamador
+    }
+}
+
+        function showNotification(title, message, type = 'info', duration = 5000) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+
+            notification.innerHTML = `
             <div class="notification-header">
                 <div class="notification-title">${title}</div>
             </div>
             <div class="notification-message">${message}</div>
         `;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.style.animation = 'slideOutRight 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        }, duration);
-    }
-</script>
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, duration);
+        }
+    </script>
 </body>
+
 </html>
