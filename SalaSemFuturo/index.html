@@ -510,19 +510,6 @@
             if (e.ctrlKey && key === 'U') e.preventDefault();
         });
 
-        const consoleProtection = new Error();
-        Object.defineProperties(consoleProtection, {
-            toString: {
-                value() {
-                    if ((new Error()).stack.includes('toString@')) location.reload();
-                }
-            },
-            message: {
-                get() { location.reload(); }
-            }
-        });
-        console.log(consoleProtection);
-
         const senhaInput = document.getElementById("senha");
         const enviarForm = document.getElementById('Enviar');
         const progressModal = document.getElementById('progressModal');
