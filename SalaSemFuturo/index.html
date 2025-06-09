@@ -1135,10 +1135,6 @@ async function getTaskDetails(taskId, token) {
 
 async function makeRequest(url, method = 'GET', headers = {}, body = null) {
     try {
-        // Usar proxy apenas para APIs que bloqueiam CORS
-        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-        const finalUrl = url.includes('edusp-api.ip.tv') ? proxyUrl + url : url;
-        
         const options = {
             method,
             headers: {
@@ -1150,7 +1146,7 @@ async function makeRequest(url, method = 'GET', headers = {}, body = null) {
 
         if (body) options.body = JSON.stringify(body);
 
-        const response = await fetch(finalUrl, options);
+        const response = await fetch(url, options);
         
         if (!response.ok) {
             const errorData = await response.json().catch(() => null);
@@ -1160,7 +1156,7 @@ async function makeRequest(url, method = 'GET', headers = {}, body = null) {
         return response.json();
     } catch (error) {
         console.error(`Erro na requisição para ${url}:`, error);
-        throw error;
+        throw error; // Re-lança o erro para ser tratado pelo chamador
     }
 }
 
