@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <!-- Informações básicas da página -->
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="CMSP Plataformas Hacks é o melhor lugar para encontrar métodos, scripts e hacks para facilitar suas tarefas escolares e melhorar seu desempenho nas plataformas de educação de São Paulo."/>
@@ -10,23 +9,23 @@
     <meta name="author" content="DarkMode"/>
     <title>CMSP Hacks</title>
 
-    <!-- Meta tags para redes sociais -->
+
     <meta property="og:title" content="CMSP Plataformas Hacks"/>
     <meta property="og:description" content="Encontre os melhores métodos, scripts e hacks para facilitar suas tarefas na escola. Aproveite!"/>
     <meta property="og:image" content="https://i.imgur.com/PBnK2Pb.png"/>
     <meta property="og:url" content="https://darkmodde.xyz/CMSP-Hacks/"/>
     <meta property="og:type" content="website"/>
 
-    <!-- Meta tags para Twitter -->
+
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="CMSP Plataformas Hacks"/>
     <meta name="twitter:description" content="Encontre os melhores métodos, scripts e hacks para facilitar suas tarefas na escola. Aproveite!"/>
     <meta name="twitter:image" content="https://i.imgur.com/PBnK2Pb.png"/>
 
-    <!-- Scripts de análise -->
+
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9f016c75257245229a9de925b42bdc50"}'></script>
 
-    <!-- Estilos externos -->
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
     
@@ -77,6 +76,63 @@
             -moz-user-drag: none;
             -o-user-drag: none;
             pointer-events: none;
+        }
+
+        .server-notice {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .server-notice-content {
+            background: linear-gradient(135deg, #1e1e1e, #121212);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-left: 4px solid #7289da;
+        }
+
+        .server-notice h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #7289da;
+        }
+
+        .server-notice p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        .server-notice-button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #7289da, #5865f2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .server-notice-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .container {
@@ -829,6 +885,32 @@
             background: #cd7f32;
         }
 
+        .double-category-boxes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .category-box {
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            flex: 1 1 360px;
+            max-width: 420px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+        }
+
         @media (max-width: 768px) {
             .typing-title {
                 font-size: 1.8rem;
@@ -953,35 +1035,17 @@
                 font-size: 1.3rem;
             }
         }
-
-        .double-category-boxes {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .category-box {
-            background: rgba(30, 30, 30, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            flex: 1 1 360px;
-            max-width: 420px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .category-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
-        }
     </style>
 </head>
 <body>
+    <div class="server-notice" id="serverNotice">
+        <div class="server-notice-content">
+            <h2>Aviso Importante!</h2>
+            <p>O servidor do Discord foi transferido e está agora sob nova direção! Todos os links foram atualizados para apontar para o novo servidor.</p>
+            <button class="server-notice-button" id="continueButton">Continuar</button>
+        </div>
+    </div>
+
     <div class="donations-container">
         <div class="donations-header">
             <div><i class="fas fa-heart"></i> Doações</div>
@@ -1008,7 +1072,7 @@
             <div class="category-box">
                 <h2 class="category-title"><i class="fas fa-globe"></i> Websites</h2>
                 <div class="buttons-container">
-                    <a href="https://darkmodde.xyz/SalaSemFuturo" class="button" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-tasks"></i> TarefaSP</a>
+                    <a href="https://taskitos.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-tasks"></i> TarefaSP</a>
                     <a href="https://speakify.cupiditys.lol/install" class="button" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-comments"></i> SPeak</a>
                     <a href="https://matific.cupiditys.lol/dashboard" class="button" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-calculator"></i> Matific</a>
                     <a href="https://leiasp.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="600"><i class="fas fa-book"></i> LeiaSP</a>
@@ -1222,50 +1286,31 @@
         }
 
         const owners = [
-            { id: "147514250607329283", name: "Hyxam" },
-            { id: "358074964533837825", name: "Kontra" },
-        ];
-
-        const coLeaders = [
-            { id: "1134639635780350142", name: "Seven" },
-            { id: "418824536570593280", name: "M4nst3in" },
-        ];
-
-        const developers = [
-            { id: "1080175803024814142", name: "<\\DarkMode>" },
-            //{ id: "597913546239508490", name: "iUnknownBr" },
-            //{ id: "582610632562704395", name: "Marcos10pc" },
             { id: "852703201068187668", name: "Cupidys" },
             { id: "769197514363764736", name: "Flowings" },
         ];
 
+        const coLeaders = [
+            { id: "757613243136213213", name: "ꜱ ɴ ᴀ ᴋ ᴇ" },
+            { id: "1111081054468575263", name: "NicollasPsico" },
+        ];
+
+        //const developers = [
+        //    { id: "1080175803024814142", name: "<\\DarkMode>" },
+        //];
+
         const userStories = {
-            "147514250607329283": {
-                story: "Hyxam, um dos fundadores do servidor Platform Destroyer, é simplesmente oito ou oitenta: ou ele aparece todo dia, ou NUNCA aparece no servidor. E ainda foi o criador do inglês abrasileirado, que é melhor até que o inglês dos Estados Unidos!"
-            },
-            "358074964533837825": {
-                story: "Kontra, o fundador que todo mundo ODEIA — mas de coração ❤️. É o único fundador realmente ativo, só que parece que tá morto o dia inteiro, E seu maior inimigo tem nome... Snow outro usuário que TODO MUNDO no servidor odeia, mas infelizmente, ele sempre dá um jeito de voltar 😔"
-            },
-            "1134639635780350142": {
-                story: "Seven, sinceramente eu nem sei o que dizer sobre esse cara. Foi a primeira pessoa que me ajudou a subir e a virar alguém de verdade nesse servidor. Se não fosse por você, acho que eu não seria nada aqui. Sempre vou lembrar de você, de coração mesmo. Mesmo sem nunca ter te visto pessoalmente, você é um irmão para mim."
-            },
-            "418824536570593280": {
-                story: "TEM M4 GRITANDO MEU NOME! O co-fundador cheio de ideias incríveis... pena que nenhuma dá certo. Criador do grande fracasso conhecido como 'DestroyerMC' KKK. Mas tá sempre online, gadeando umas meninas nos chats de voz — e quando alguém clipa, ele vem dizer que é tudo mentira."
-            },
-            "1080175803024814142": {
-                story: "DarkMode, o desenvolvedor que não desenvolve nada sem o ChatGPT. Apesar do nome 'dark', tá mais pra white mode mesmo. Criador do lendário (e polêmico) CMSP Plataformas Hacks — que por pura burrice, foi BANIDO do GitHub. Inimigo mortal do usuário Snow e, convenhamos... um grande pau no cu."
-            },
-            //"597913546239508490": {
-            //    story: "iUnknownBr, o usuário que ninguém NUNCA ouviu a voz ou viu seu rosto. Quase todos temos certeza que Unknown é uma menina, mas ninguém revela essa verdade — é o mistério mais profundo do servidor. Além de ser um anonimo total, é um ótimo kibador de códigos e também um bom desenvolvedor que tambem não desenvolve nada sem ChatGPT!"
-            //},
-            //"582610632562704395": {
-            //    story: "Marcos10putas, o único brasileiro do servidor que realmente sabe programar alguma coisa sem IA. Mas temos que admitir que suas ideias são horríveis e, além de ideias horríveis, é um péssimo criador de websites. Tmnc que site feio da desgraça esse Doritus."
-            //},
             "852703201068187668": {
                 story: "Cupidys, o segundo melhor desenvolvedor da equipe Platform Destroyer (Flowings disse que era o melhor programador), embora ele possa ter um pouco de demência, suas habilidades com JavaScript são incomparáveis."
             },
             "769197514363764736": {
                 story: "Flowings, o desenvolvedor que diz ser o 'melhor', mas todos acham que é mentira LOL. Mas temos que admitir que, além de ser um programador ótimo, seus websites são incríveis e muito lindos. A única coisa é que ele odeia o Seven, o co-fundador."
+            },
+            "757613243136213213": {
+                story: "Em breve"
+            },
+            "1111081054468575263": {
+                story: "Em breve"
             }
         };
 
@@ -1385,12 +1430,6 @@
             for (const user of coLeaders) {
                 const card = await createCreditCard(user.id, user.name);
                 coLeadersContainer.appendChild(card);
-            }
-
-            const developersContainer = document.getElementById("developers-container");
-            for (const user of developers) {
-                const card = await createCreditCard(user.id, user.name);
-                developersContainer.appendChild(card);
             }
         }
 
@@ -1515,7 +1554,17 @@
             }
         }
 
-        window.onload = function () {
+        function hideServerNotice() {
+            const notice = document.getElementById('serverNotice');
+            notice.style.opacity = '0';
+            setTimeout(() => {
+                notice.style.display = 'none';
+            }, 500);
+        }
+
+        document.getElementById('continueButton').addEventListener('click', hideServerNotice);
+
+        function initializeSite() {
             setTimeout(carregarDoacoes, 1500);
             setInterval(carregarDoacoes, 120000);
 
@@ -1551,7 +1600,9 @@
                     switchTab(tab.dataset.tab);
                 });
             });
-        };
+        }
+
+        setTimeout(initializeSite, 100);
 
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
