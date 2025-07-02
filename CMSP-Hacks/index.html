@@ -23,7 +23,7 @@
     <meta name="twitter:image" content="https://i.imgur.com/PBnK2Pb.png"/>
 
 
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9f016c75257245229a9de925b42bdc50"}'></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f04a2200ffb246399e814a8147fa94a8"}'></script>
 
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
@@ -76,63 +76,6 @@
             -moz-user-drag: none;
             -o-user-drag: none;
             pointer-events: none;
-        }
-
-        .server-notice {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .server-notice-content {
-            background: linear-gradient(135deg, #1e1e1e, #121212);
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 600px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border-left: 4px solid #7289da;
-        }
-
-        .server-notice h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #7289da;
-        }
-
-        .server-notice p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #cccccc;
-        }
-
-        .server-notice-button {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #7289da, #5865f2);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .server-notice-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .container {
@@ -556,7 +499,7 @@
             max-width: 500px;
         }
 
-        .developers-title {
+        .managers-title {
             margin-top: 40px;
         }
 
@@ -1038,14 +981,6 @@
     </style>
 </head>
 <body>
-    <div class="server-notice" id="serverNotice">
-        <div class="server-notice-content">
-            <h2>Aviso Importante!</h2>
-            <p>O servidor do Discord foi transferido e está agora sob nova direção! Todos os links foram atualizados para apontar para o novo servidor.</p>
-            <button class="server-notice-button" id="continueButton">Continuar</button>
-        </div>
-    </div>
-
     <div class="donations-container">
         <div class="donations-header">
             <div><i class="fas fa-heart"></i> Doações</div>
@@ -1072,20 +1007,19 @@
             <div class="category-box">
                 <h2 class="category-title"><i class="fas fa-globe"></i> Websites</h2>
                 <div class="buttons-container">
-                    <a href="https://taskitos.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-tasks"></i> TarefaSP</a>
-                    <a href="https://speakify.cupiditys.lol/install" class="button" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-comments"></i> SPeak</a>
-                    <a href="https://matific.cupiditys.lol/dashboard" class="button" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-calculator"></i> Matific</a>
-                    <a href="https://leiasp.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="600"><i class="fas fa-book"></i> LeiaSP</a>
+                    <a href="https://taskitos.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-clipboard-list"></i> TarefaSP</a>
+                    <a href="https://redacao.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-pen-fancy"></i> RedaçãoSP</a>
+                    <a href="https://crimsonstrauss.xyz/expansao.html" class="button" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-moon"></i> Expansão</a>
+                    <a href="https://matific.cupiditys.lol/dashboard" class="button" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-square-root-alt"></i> Matific</a>
+                    <a href="https://speakify.cupiditys.lol/install" class="button" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-comment-dots"></i> SPeak</a>
+                    <a href="https://leiasp.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="600"><i class="fas fa-book-open"></i> LeiaSP</a>
                 </div>
             </div>
             
             <div class="category-box">
                 <h2 class="category-title"><i class="fas fa-code"></i> Scripts</h2>
                 <div class="buttons-container">
-                    <button class="button" data-aos="fade-up" data-aos-delay="100" onclick="copyScript('Redação Paulista')"><i class="fas fa-pen-to-square"></i> Redação Paulista</button>
-                    <button class="button" data-aos="fade-up" data-aos-delay="200" onclick="copyScript('Expansão Noturno')"><i class="fas fa-moon"></i> Expansão Noturno</button>
                     <button class="button" data-aos="fade-up" data-aos-delay="300" onclick="copyScript('Khan Academy')"><i class="fas fa-graduation-cap"></i> Khan Academy</button>
-                    <button class="button" data-aos="fade-up" data-aos-delay="400" onclick="copyScript('Alura')"><i class="fas fa-laptop"></i> Alura</button>
                 </div>
             </div>
         </div>
@@ -1138,8 +1072,8 @@
                     <div class="credits-container" id="coleaders-container"></div>
                 </div>
             </div>
-            <h3 class="credit-category-title developers-title" data-aos="fade-up"><i class="fa-solid fa-laptop-code"></i>┃Desenvolvedores</h3>
-            <div class="credits-container" id="developers-container"></div>
+            <h3 class="credit-category-title managers-title" data-aos="fade-up"><i class="fa-solid fa-laptop-code"></i>┃Managers</h3>
+            <div class="credits-container" id="managers-container"></div>
         </div>
     </footer>
     
@@ -1287,30 +1221,33 @@
 
         const owners = [
             { id: "852703201068187668", name: "Cupidys" },
-            { id: "769197514363764736", name: "Flowings" },
         ];
 
         const coLeaders = [
             { id: "757613243136213213", name: "ꜱ ɴ ᴀ ᴋ ᴇ" },
-            { id: "1111081054468575263", name: "NicollasPsico" },
         ];
 
-        //const developers = [
-        //    { id: "1080175803024814142", name: "<\\DarkMode>" },
-        //];
+        const managers = [
+            { id: "1080175803024814142", name: "<\\DarkMode>" },
+            { id: "547235580145303553", name: "NGX1305" },
+            { id: "1303721536158699572", name: "R the Real" }
+        ];
 
         const userStories = {
             "852703201068187668": {
-                story: "Cupidys, o segundo melhor desenvolvedor da equipe Platform Destroyer (Flowings disse que era o melhor programador), embora ele possa ter um pouco de demência, suas habilidades com JavaScript são incomparáveis."
-            },
-            "769197514363764736": {
-                story: "Flowings, o desenvolvedor que diz ser o 'melhor', mas todos acham que é mentira LOL. Mas temos que admitir que, além de ser um programador ótimo, seus websites são incríveis e muito lindos. A única coisa é que ele odeia o Seven, o co-fundador."
+                story: "EM BREVE"
             },
             "757613243136213213": {
-                story: "Em breve"
+                story: "EM BREVE"
             },
-            "1111081054468575263": {
-                story: "Em breve"
+            "1080175803024814142": {
+                story: "EM BREVE"
+            },
+            "547235580145303553": {
+                story: "EM BREVE"
+            },
+            "1303721536158699572": {
+                story: "EM BREVE"
             }
         };
 
@@ -1430,6 +1367,12 @@
             for (const user of coLeaders) {
                 const card = await createCreditCard(user.id, user.name);
                 coLeadersContainer.appendChild(card);
+            }
+
+            const managersContainer = document.getElementById("managers-container");
+            for (const user of managers) {
+                const card = await createCreditCard(user.id, user.name);
+                managersContainer.appendChild(card);
             }
         }
 
@@ -1553,16 +1496,6 @@
                 doacoesList.innerHTML = '<div class="donations-empty">Erro ao carregar doações. Tente novamente mais tarde.</div>';
             }
         }
-
-        function hideServerNotice() {
-            const notice = document.getElementById('serverNotice');
-            notice.style.opacity = '0';
-            setTimeout(() => {
-                notice.style.display = 'none';
-            }, 500);
-        }
-
-        document.getElementById('continueButton').addEventListener('click', hideServerNotice);
 
         function initializeSite() {
             setTimeout(carregarDoacoes, 1500);
