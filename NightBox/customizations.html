@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Coleção premium de wallpapers e cursores personalizados para seu PC"/>
+    <meta name="keywords" content="wallpapers, cursores, personalização, temas, windows, download"/>
+    <link rel="icon" href="https://i.imgur.com/3sYObPa.png" type="image/png"/>
+    <meta name="author" content="DarkMode">
+    <title>NightBox - Wallpapers & Cursores</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --text: #e5e7eb;
+            --text-muted: #9ca3af;
+            --surface: #111111;
+            --surface-light: #1a1a1a;
+            --border: rgba(59, 130, 246, 0.2);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        /* Estrutura básica */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--primary);
+        }
+        
+        .floating-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .orb:nth-child(1) { width: 300px; height: 300px; top: 10%; left: 10%; background: var(--gradient-1); }
+        .orb:nth-child(2) { width: 200px; height: 200px; top: 60%; right: 10%; background: var(--gradient-2); animation-delay: -7s; }
+        .orb:nth-child(3) { width: 250px; height: 250px; bottom: 20%; left: 50%; background: var(--gradient-3); animation-delay: -14s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(50px, -50px) rotate(120deg); }
+            66% { transform: translate(-50px, 50px) rotate(240deg); }
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--accent);
+            font-size: 1.8rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        /* Categorias */
+        .category-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            text-align: center;
+            padding-top: 2rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .item-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+        
+        .item-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .item-image:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Botões */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--secondary);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+        }
+        
+        .category-separator {
+            height: 1px;
+            background: var(--border);
+            margin: 4rem auto;
+            max-width: 800px;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+        }
+        
+        .close-lightbox {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .close-lightbox:hover {
+            transform: rotate(90deg);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .hero { padding: 6rem 1.5rem 3rem; }
+            .items-grid { gap: 1.5rem; }
+            .item-card { padding: 1.25rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .hero { padding: 5rem 1rem 2rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 1.8rem; }
+            .section-subtitle { font-size: 1rem; }
+            .category-container { padding: 0 1.5rem 3rem; }
+            .item-image { height: 160px; }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container { padding: 0.75rem 1rem; }
+            .logo { font-size: 1.2rem; }
+            .logo i { font-size: 1.5rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .section-title { font-size: 1.6rem; }
+            .items-grid { grid-template-columns: 1fr; }
+            .category-container { padding: 0 1rem 2rem; }
+            .close-lightbox { top: 1rem; right: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animated"></div>
+    
+    <div class="floating-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+    
+    <header id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-bolt"></i>
+                NightBox
+            </a>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Wallpapers & Cursores</h1>
+            <p>Coleção exclusiva de wallpapers em alta resolução e cursores personalizados para deixar seu PC único.</p>
+        </div>
+    </section>
+    
+    <div class="category-container">
+        <h2 class="section-title">Wallpapers</h2>
+        <p class="section-subtitle">Imagens em alta resolução para personalizar sua área de trabalho</p>
+        
+        <div class="items-grid" id="wallpapers-grid">
+            <!-- Wallpapers serão inseridos via JavaScript -->
+        </div>
+    </div>
+    
+    <div class="category-separator"></div>
+    
+    <div class="category-container">
+        <h2 class="section-title">Cursores</h2>
+        <p class="section-subtitle">Pacotes de cursores personalizados para deixar seu mouse único</p>
+        
+        <div class="items-grid" id="cursors-grid">
+            <!-- Cursores serão inseridos via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-image" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        const wallpapers = [
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/AnimeCar.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/AnimeCar.png",
+                name: "Anime Car" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/AnimeGirl.jpg",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/AnimeGirl.jpg",
+                name: "Anime Girl" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/AnimeGirl.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/AnimeGirl.png",
+                name: "Anime Girl" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/ArchLinux.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/ArchLinux.png",
+                name: "Arch Linux" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/BestHouse.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/BestHouse.png",
+                name: "Girl House" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/Black Skull.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/Black Skull.png",
+                name: "Black Skull" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/Black Wolf.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/Black Wolf.png",
+                name: "Black Wolf" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/DemonGirl.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/DemonGirl.png",
+                name: "Demon Girl" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/DevGirl.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/DevGirl.png",
+                name: "Developer Girl" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/Ghost Face.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/Ghost Face.png",
+                name: "Ghost Face" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/HouseKK.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/HouseKK.png",
+                name: "House" 
+            },
+
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/IA.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/IA.png",
+                name: "Colored" 
+            },{ 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/KatanaGirl.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/KatanaGirl.png",
+                name: "Katana Girl" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/Purple Snake.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/Purple Snake.png",
+                name: "Purple Snake" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/Red Dragon.png",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/Red Dragon.png",
+                name: "Red Dragon" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/Skull.jpeg",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/Skull.jpeg",
+                name: "Skull" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/SpeedCar.jpg",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/SpeedCar.jpg",
+                name: "Colored Car" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/XP.jpg",
+                download: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Wallpapers/XP.jpg",
+                name: "Windows XP" 
+            }
+        ];
+
+        const cursors = [
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Cursor/Cursor%20Concept%20V3/Preview.png",
+                download: "https://github.com/DarkModde/NightBox/raw/refs/heads/main/Cursor/Cursor%20Concept%20V3/Cursor.rar",
+                name: "Concept V3" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Cursor/Cursor%20TailsOS/Preview.jpg",
+                download: "https://github.com/DarkModde/NightBox/raw/refs/heads/main/Cursor/Cursor%20TailsOS/Cursor.rar",
+                name: "Tails OS" 
+            },
+            { 
+                preview: "https://raw.githubusercontent.com/DarkModde/NightBox/refs/heads/main/Cursor/Cursor%20Win11/Preview.jpg",
+                download: "https://github.com/DarkModde/NightBox/raw/refs/heads/main/Cursor/Cursor%20Win11/Cursor.rar",
+                name: "Windows 11" 
+            }
+        ];
+
+        // Função para criar os cards
+        function createCard(item, isWallpaper = true) {
+            return `
+                <div class="item-card">
+                    <img src="${item.preview}" alt="${item.name}" class="item-image" data-src="${item.preview}">
+                    <button class="btn btn-primary" data-download="${item.download}" data-filename="${item.name}${isWallpaper ? '.png' : '.zip'}">
+                        <i class="fas fa-download"></i>${isWallpaper ? 'Download' : 'Download Pack'}
+                    </button>
+                </div>
+            `;
+        }
+
+        // Renderizar wallpapers
+        const wallpapersGrid = document.getElementById('wallpapers-grid');
+        wallpapers.forEach(wallpaper => {
+            wallpapersGrid.innerHTML += createCard(wallpaper);
+        });
+
+        // Renderizar cursores
+        const cursorsGrid = document.getElementById('cursors-grid');
+        cursors.forEach(cursor => {
+            cursorsGrid.innerHTML += createCard(cursor, false);
+        });
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-image');
+        const closeLightbox = document.querySelector('.close-lightbox');
+        const images = document.querySelectorAll('.item-image');
+
+        images.forEach(image => {
+            image.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                lightboxImg.src = image.src;
+                lightboxImg.alt = image.alt;
+            });
+        });
+
+        closeLightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Função para forçar download
+        function forceDownload(url, filename) {
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // Gerenciador de downloads
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            button.addEventListener('click', function() {
+                const downloadUrl = this.getAttribute('data-download');
+                const filename = this.getAttribute('data-filename');
+                
+                // Efeito visual no botão
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparando...';
+                this.style.pointerEvents = 'none';
+                
+                setTimeout(() => {
+                    // Inicia o download
+                    forceDownload(downloadUrl, filename);
+                    
+                    // Feedback visual
+                    this.innerHTML = '<i class="fas fa-check"></i> Download Iniciado!';
+                    this.style.background = '#10b981';
+                    
+                    // Reseta o botão após 2 segundos
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.background = '';
+                        this.style.pointerEvents = '';
+                    }, 2000);
+                }, 500);
+            });
+        });
+
+        // Proteções
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('dragstart', e => e.target.tagName === 'IMG' && e.preventDefault());
+        document.addEventListener('selectstart', e => {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') e.preventDefault();
+        });
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
