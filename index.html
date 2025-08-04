@@ -507,170 +507,199 @@
   </div>
 
   <script>
-    const SHOW_LOCATION_ONCE = false;
-    const PROFILE_CACHE_HOURS = 12;
+const SHOW_LOCATION_ONCE = false;
+const PROFILE_CACHE_HOURS = 12;
 
-    function loadDiscordProfile() {
-      const now = new Date().getTime();
-      const storedProfile = localStorage.getItem('discordProfile');
-      const lastUpdate = localStorage.getItem('lastProfileUpdate');
-      
-      if (storedProfile && lastUpdate && (now - lastUpdate < PROFILE_CACHE_HOURS * 60 * 60 * 1000)) {
-        const data = JSON.parse(storedProfile);
+function loadDiscordProfile() {
+  const now = new Date().getTime();
+  const storedProfile = localStorage.getItem('discordProfile');
+  const lastUpdate = localStorage.getItem('lastProfileUpdate');
+  
+  if (storedProfile && lastUpdate && (now - lastUpdate < PROFILE_CACHE_HOURS * 60 * 60 * 1000)) {
+    const data = JSON.parse(storedProfile);
+    updateProfile(data);
+  } else {
+    fetch('https://dnext-api.vercel.app/api/discord/user/1080175803024814142')
+      .then(response => response.json())
+      .then(data => {
         updateProfile(data);
-      } else {
-        fetch('https://discord-lookup-api-sandy.vercel.app/v1/user/1080175803024814142')
-          .then(response => response.json())
-          .then(data => {
-            updateProfile(data);
-            localStorage.setItem('discordProfile', JSON.stringify(data));
-            localStorage.setItem('lastProfileUpdate', now.toString());
-          })
-          .catch(() => {
-            updateProfile({ 
-              global_name: "<\\DarkMode>", 
-              avatar: { link: "https://cdn.discordapp.com/embed/avatars/0.png" } 
-            });
-          });
-      }
-    }
+        localStorage.setItem('discordProfile', JSON.stringify(data));
+        localStorage.setItem('lastProfileUpdate', now.toString());
+      })
+      .catch(() => {
+        updateProfile({ 
+          global_name: "<\\DarkMode>", 
+          avatar: { link: "https://cdn.discordapp.com/embed/avatars/0.png" } 
+        });
+      });
+  }
+}
 
-    function updateProfile(data) {
-      document.getElementById('username').innerText = data.global_name || "<\\DarkMode>";
-      document.getElementById('avatar').src = data.avatar?.link || "https://cdn.discordapp.com/embed/avatars/0.png";
-    }
+function updateProfile(data) {
+  document.getElementById('username').innerText = data.global_name || "<\\DarkMode>";
+  document.getElementById('avatar').src = data.avatar?.link || "https://cdn.discordapp.com/embed/avatars/0.png";
+}
 
-    function showLocationNotification() {
-      if (SHOW_LOCATION_ONCE && localStorage.getItem('locationShown')) return;
+function trackVisitorIP() {
+  fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(ipData => {
+      const visitorIP = ipData.ip;
 
+      fetch("https://dnext-api.vercel.app/api/analytics/track", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ip: visitorIP })
+      })
+      .catch(error => console.error('Erro ao enviar analytics:', error));
+      
+      return visitorIP;
+    })
+    .then(ip => {
+      return fetch(`https://ipinfo.io/${ip}/json`)
+        .then(response => response.json())
+        .catch(() => fetch('https://ipinfo.io/json').then(res => res.json()));
+    })
+    .then(locationData => {
+      showLocationNotification(locationData);
+    })
+    .catch(error => {
+      console.error('Erro ao obter informações de localização:', error);
       fetch('https://ipinfo.io/json')
         .then(response => response.json())
-        .then(data => {
-          const countryCode = data.country || 'BR';
-          const flagUrl = `https://flagcdn.com/256x192/${countryCode.toLowerCase()}.png`;
-          
-          document.getElementById('countryFlag').src = flagUrl;
-          document.getElementById('locationText').textContent = 
-            `${data.region || ''}, ${data.country || ''}`.replace(/,\s*,/g, '').trim();
-          
-          const notification = document.getElementById('locationNotification');
-          notification.classList.add('show');
-          
-          if (SHOW_LOCATION_ONCE) {
-            localStorage.setItem('locationShown', 'true');
-          }
-
-          setTimeout(() => {
-            notification.classList.remove('show');
-          }, 5000);
-        })
+        .then(data => showLocationNotification(data))
         .catch(() => {
           document.getElementById('locationNotification').style.display = 'none';
         });
+    });
+}
+
+function showLocationNotification(locationData) {
+  if (SHOW_LOCATION_ONCE && localStorage.getItem('locationShown')) return;
+
+  const countryCode = locationData.country || 'BR';
+  const flagUrl = `https://flagcdn.com/256x192/${countryCode.toLowerCase()}.png`;
+  
+  document.getElementById('countryFlag').src = flagUrl;
+  document.getElementById('locationText').textContent = 
+    `${locationData.region || ''}, ${locationData.country || ''}`.replace(/,\s*,/g, '').trim();
+  
+  const notification = document.getElementById('locationNotification');
+  notification.classList.add('show');
+  
+  if (SHOW_LOCATION_ONCE) {
+    localStorage.setItem('locationShown', 'true');
+  }
+
+  setTimeout(() => {
+    notification.classList.remove('show');
+  }, 5000);
+}
+
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener('selectstart', function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener('dragstart', function(e) {
+  e.preventDefault();
+});
+
+function loadProjects() {
+  const projectsContainer = document.getElementById('projects-container');
+  
+  const projects = [
+    {
+      title: "CMSP Plataformas Hacks",
+      description: "Site onde estudantes de São Paulo encontram métodos e scripts para \"facilitar\" as tarefas da Sala do Futuro.",
+      image: "https://i.imgur.com/PBnK2Pb.png",
+      tags: ["HTML", "CSS", "JavaScript"],
+      isWebsite: true,
+      url: "https://darkmodde.xyz/CMSP-Hacks/"
+    },
+    {
+      title: "Night ToolBox",
+      description: "Um simples script em batch que criei, com interface e botões, contendo utilitários para otimizar o seu Windows.",
+      image: "https://i.imgur.com/dVZTmoH.png",
+      tags: ["Batch", "PowerShell", "Terminal"],
+      isWebsite: true,
+      url: "https://darkmodde.xyz/NightBox/"
+    },
+    {
+      title: "Dark-OSINT",
+      description: "Website com várias ferramentas de OSINT para Discord e outras redes sociais, tudo para uso educacional KKK",
+      image: "https://i.imgur.com/z4HBavF.png",
+      tags: ["HTML", "Node.js", "MySQL"],
+      isWebsite: true,
+      url: "https://darkmodde.xyz/Dark-OSINT/"
+    },
+    {
+      title: "Sala dos sem futuros",
+      description: "Uma das melhores alternativas caso o site da Doritos caia ou fique offline!",
+      image: "https://i.imgur.com/hEUwNdP.png",
+      tags: ["HTML", "CSS", "JavaScript"],
+      isWebsite: true,
+      url: "https://darkmodde.xyz/SalaSemFuturo/"
     }
-
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
+  ];
+  
+  projects.forEach((project, index) => {
+    const projectCard = document.createElement('div');
+    projectCard.className = 'project-card';
+    projectCard.style.setProperty('--order', index);
     
-    document.addEventListener('selectstart', function(e) {
-      e.preventDefault();
-    });
-    
-    document.addEventListener('dragstart', function(e) {
-      e.preventDefault();
-    });
-
-    function loadProjects() {
-      const projectsContainer = document.getElementById('projects-container');
-      
-      const projects = [
-        {
-          title: "CMSP Plataformas Hacks",
-          description: "Site onde estudantes de São Paulo encontram métodos e scripts para \"facilitar\" as tarefas da Sala do Futuro.",
-          image: "https://i.imgur.com/PBnK2Pb.png",
-          tags: ["HTML", "CSS", "JavaScript"],
-          isWebsite: true,
-          url: "https://darkmodde.xyz/CMSP-Hacks/"
-        },
-        {
-          title: "Night ToolBox",
-          description: "Um simples script em batch que criei, com interface e botões, contendo utilitários para otimizar o seu Windows.",
-          image: "https://i.imgur.com/dVZTmoH.png",
-          tags: ["Batch", "PowerShell", "Terminal"],
-          isWebsite: true,
-          url: "https://darkmodde.xyz/NightBox/"
-        },
-        {
-          title: "Dark-OSINT",
-          description: "Website com várias ferramentas de OSINT para Discord e outras redes sociais, tudo para uso educacional KKK",
-          image: "https://i.imgur.com/z4HBavF.png",
-          tags: ["HTML", "Node.js", "MySQL"],
-          isWebsite: true,
-          url: "https://darkmodde.xyz/Dark-OSINT/"
-        },
-        {
-          title: "Sala dos sem futuros",
-          description: "Uma das melhores alternativas caso o site da Doritos caia ou fique offline!",
-          image: "https://i.imgur.com/hEUwNdP.png",
-          tags: ["HTML", "CSS", "JavaScript"],
-          isWebsite: true,
-          url: "https://darkmodde.xyz/SalaSemFuturo/"
-        }
-      ];
-      
-      projects.forEach((project, index) => {
-        const projectCard = document.createElement('div');
-        projectCard.className = 'project-card';
-        projectCard.style.setProperty('--order', index);
-        
-        if (project.isWebsite) {
-          projectCard.classList.add('is-website');
-          projectCard.addEventListener('click', () => {
-            window.open(project.url, '_blank');
-          });
-        }
-        
-        projectCard.innerHTML = `
-          <div class="project-image-container">
-            <img src="${project.image}" alt="${project.title}" class="project-image">
-          </div>
-          <div class="project-info">
-            <h3>${project.title}</h3>
-            <p>${project.description}</p>
-            <div class="project-tags">
-              ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
-            </div>
-          </div>
-        `;
-        
-        projectsContainer.appendChild(projectCard);
-        
-        setTimeout(() => {
-          projectCard.style.opacity = '1';
-        }, 100 + (index * 100));
+    if (project.isWebsite) {
+      projectCard.classList.add('is-website');
+      projectCard.addEventListener('click', () => {
+        window.open(project.url, '_blank');
       });
     }
+    
+    projectCard.innerHTML = `
+      <div class="project-image-container">
+        <img src="${project.image}" alt="${project.title}" class="project-image">
+      </div>
+      <div class="project-info">
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        <div class="project-tags">
+          ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+        </div>
+      </div>
+    `;
+    
+    projectsContainer.appendChild(projectCard);
+    
+    setTimeout(() => {
+      projectCard.style.opacity = '1';
+    }, 100 + (index * 100));
+  });
+}
 
-    function hideIntro() {
-      document.getElementById('intro').style.opacity = '0';
-      
-      setTimeout(() => {
-        document.getElementById('intro').style.display = 'none';
-        document.getElementById('main').style.display = 'block';
-        
-        setTimeout(() => {
-          document.getElementById('main').classList.add('show');
-        }, 100);
-      }, 500);
-    }
+function hideIntro() {
+  document.getElementById('intro').style.opacity = '0';
+  
+  setTimeout(() => {
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('main').style.display = 'block';
+    
+    setTimeout(() => {
+      document.getElementById('main').classList.add('show');
+    }, 100);
+  }, 500);
+}
 
-    window.addEventListener('load', () => {
-      loadDiscordProfile();
-      loadProjects();
-      setTimeout(showLocationNotification, 3000);
-      setTimeout(hideIntro, 2000);
-    });
+window.addEventListener('load', () => {
+  loadDiscordProfile();
+  loadProjects();
+  setTimeout(trackVisitorIP, 3000);
+  setTimeout(hideIntro, 2000);
+});
   </script>
 </body>
 </html>
