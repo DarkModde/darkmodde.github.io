@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dark-Privacy - Guia de Privacidade Digital</title>
+  <meta name="description" content="Aprenda como proteger sua privacidade na internet com recomendações de navegadores, extensões, DNS e ferramentas seguras." />
+  <meta name="author" content="Privacy Guide" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <meta property="og:title" content="Dark-Privacy - Guia de Privacidade Digital" />
+  <meta property="og:description" content="Aprenda como proteger sua privacidade na internet com recomendações de navegadores, extensões, DNS e ferramentas seguras." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --background: 220 13% 9%;
+      --foreground: 220 9% 95%;
+      --muted: 220 13% 15%;
+      --muted-foreground: 220 9% 60%;
+      --popover: 220 13% 12%;
+      --popover-foreground: 220 9% 95%;
+      --card: 220 13% 12%;
+      --card-foreground: 220 9% 95%;
+      --border: 220 13% 20%;
+      --input: 220 13% 20%;
+      --primary: 262 80% 50%;
+      --primary-foreground: 220 9% 95%;
+      --secondary: 220 13% 15%;
+      --secondary-foreground: 220 9% 95%;
+      --accent: 220 13% 15%;
+      --accent-foreground: 220 9% 95%;
+      --destructive: 0 84% 60%;
+      --destructive-foreground: 220 9% 95%;
+      --ring: 262 80% 50%;
+      --radius: 0.5rem;
+      --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(262 90% 60%));
+      --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(220 13% 8%));
+      --glow-primary: 0 0 40px hsl(var(--primary) / 0.3);
+      --glow-success: 0 0 30px hsl(142 76% 36% / 0.4);
+      --glow-destructive: 0 0 30px hsl(var(--destructive) / 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.1), transparent 50%),
+                  radial-gradient(circle at 70% 80%, hsl(262 90% 60% / 0.1), transparent 50%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+      z-index: 1;
+    }
+
+    .hero-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      box-shadow: var(--glow-primary);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+
+    .section {
+      background: hsl(var(--card));
+      border-radius: var(--radius);
+      border: 1px solid hsl(var(--border));
+      margin-bottom: 3rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .section:hover {
+      border-color: hsl(var(--primary) / 0.5);
+      box-shadow: var(--glow-primary);
+    }
+
+    .section-header {
+      padding: 2rem;
+      background: var(--gradient-card);
+      border-bottom: 1px solid hsl(var(--border));
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: hsl(var(--foreground));
+    }
+
+    .section-content {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .category {
+      margin-bottom: 0;
+    }
+
+    .category-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: hsl(var(--foreground));
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .recommended-title {
+      color: hsl(142 76% 36%);
+    }
+
+    .avoid-title {
+      color: hsl(var(--destructive));
+    }
+
+    .items-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .item-card {
+      background: hsl(var(--muted));
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid hsl(var(--border));
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .item-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .recommended-card:hover {
+      border-color: hsl(142 76% 36% / 0.5);
+      box-shadow: var(--glow-success);
+    }
+
+    .avoid-card:hover {
+      border-color: hsl(var(--destructive) / 0.5);
+      box-shadow: var(--glow-destructive);
+    }
+
+    .item-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .item-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: white;
+    }
+
+    .item-name {
+      font-weight: 600;
+      color: hsl(var(--foreground));
+    }
+
+    .item-description {
+      color: hsl(var(--muted-foreground));
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .bg-blue-500 { background-color: hsl(217 91% 60%); }
+    .bg-green-500 { background-color: hsl(142 76% 36%); }
+    .bg-purple-500 { background-color: hsl(var(--primary)); }
+    .bg-orange-500 { background-color: hsl(25 95% 53%); }
+    .bg-cyan-500 { background-color: hsl(189 94% 43%); }
+    .bg-red-500 { background-color: hsl(var(--destructive)); }
+    .bg-yellow-500 { background-color: hsl(48 96% 53%); }
+    .bg-indigo-500 { background-color: hsl(239 84% 67%); }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: var(--glow-primary);
+      }
+      to {
+        box-shadow: 0 0 60px hsl(var(--primary) / 0.5);
+      }
+    }
+
+    @media (max-width: 968px) {
+      .section-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        min-height: 80vh;
+        padding: 2rem 1rem;
+      }
+
+      .section-header {
+        padding: 1.5rem;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .section-content {
+        padding: 1.5rem;
+      }
+
+      .items-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      
+      <h1 class="hero-title">Dark-Privacy</h1>
+      
+      <p class="hero-description">
+        Descubra as melhores ferramentas e práticas para proteger sua privacidade digital. 
+        Navegue com segurança e mantenha seus dados protegidos.
+      </p>
+    </div>
+  </div>
+
+  <main class="container" style="padding-bottom: 5rem;">
+    <div id="sections-container"></div>
+  </main>
+
+  <script>
+    const privacyData = {
+      browsers: {
+        title: "Navegadores",
+        icon: "fas fa-globe",
+        iconColor: "bg-blue-500",
+        recommended: [
+          {
+            name: "Brave",
+            description: "Navegador focado em privacidade com bloqueador de anúncios integrado",
+            icon: "fab fa-brave",
+            website: "https://brave.com"
+          },
+          {
+            name: "Firefox",
+            description: "Navegador open-source com excelentes recursos de privacidade",
+            icon: "fab fa-firefox",
+            website: "https://firefox.com"
+          },
+          {
+            name: "Vivaldi",
+            description: "Navegador altamente personalizável com foco na privacidade do usuário",
+            icon: "fas fa-rectangle-xmark",
+            website: "https://vivaldi.com"
+          }
+        ],
+        avoid: [
+          {
+            name: "Chrome",
+            reason: "Coleta extensivamente dados dos usuários para o Google",
+            icon: "fab fa-chrome"
+          },
+          {
+            name: "Microsoft Edge",
+            reason: "Integração profunda com serviços Microsoft e telemetria",
+            icon: "fab fa-edge"
+          },
+          {
+            name: "Opera GX",
+            reason: "Empresa chinesa com histórico questionável de privacidade",
+            icon: "fab fa-opera"
+          }
+        ]
+      },
+      extensions: {
+        title: "Extensões",
+        icon: "fas fa-puzzle-piece",
+        iconColor: "bg-green-500",
+        recommended: [
+          {
+            name: "uBlock Origin",
+            description: "Bloqueador de anúncios e rastreadores mais eficiente",
+            icon: "fas fa-shield-alt",
+            website: "https://ublockorigin.com"
+          },
+          {
+            name: "Decentraleyes",
+            description: "Protege contra rastreamento através de CDNs",
+            icon: "fas fa-network-wired",
+            website: "https://decentraleyes.org"
+          },
+          {
+            name: "ClearURLs",
+            description: "Remove parâmetros de rastreamento das URLs",
+            icon: "fas fa-link",
+            website: "https://clearurls.xyz"
+          },
+          {
+            name: "Urban VPN Proxy",
+            description: "Proxy gratuito para mascarar sua localização",
+            icon: "fas fa-user-secret",
+            website: "https://urban-vpn.com/free-products/free-browser-extension/"
+          }
+        ],
+        avoid: [
+          {
+            name: "Adblock Plus",
+            reason: "Permite anúncios pagos através do programa 'Acceptable Ads'",
+            icon: "fas fa-ad"
+          },
+          {
+            name: "Hotspot Shield",
+            reason: "Coleta e vende dados de navegação dos usuários",
+            icon: "fas fa-compass"
+          }
+        ]
+      },
+      searchEngines: {
+        title: "Motores de Busca",
+        icon: "fas fa-search",
+        iconColor: "bg-purple-500",
+        recommended: [
+          {
+            name: "DuckDuckGo",
+            description: "Buscador que não rastreia nem armazena dados pessoais",
+            icon: "fas fa-search",
+            website: "https://duckduckgo.com"
+          },
+          {
+            name: "Brave Search",
+            description: "Motor de busca independente focado em privacidade",
+            icon: "fab fa-brave",
+            website: "https://search.brave.com"
+          },
+          {
+            name: "StartPage",
+            description: "Resultados do Google sem rastreamento",
+            icon: "fas fa-home",
+            website: "https://startpage.com"
+          }
+        ],
+        avoid: [
+          {
+            name: "Google Search",
+            reason: "Rastreia extensivamente para criar perfis de usuário",
+            icon: "fab fa-google"
+          },
+          {
+            name: "Bing Search",
+            reason: "Coleta dados para a Microsoft e parceiros publicitários",
+            icon: "fab fa-microsoft"
+          }
+        ]
+      },
+      emails: {
+        title: "Provedores de Email",
+        icon: "fas fa-envelope",
+        iconColor: "bg-orange-500",
+        recommended: [
+          {
+            name: "ProtonMail",
+            description: "Email criptografado de ponta a ponta baseado na Suíça",
+            icon: "fas fa-lock",
+            website: "https://protonmail.com"
+          },
+          {
+            name: "Tutanota",
+            description: "Serviço de email seguro e privado com criptografia",
+            icon: "fas fa-shield-alt",
+            website: "https://tutanota.com"
+          },
+          {
+            name: "Mailfence",
+            description: "Email privado com recursos avançados de segurança",
+            icon: "fas fa-envelope-open-text",
+            website: "https://mailfence.com"
+          }
+        ],
+        avoid: [
+          {
+            name: "Gmail",
+            reason: "Google lê emails para anúncios direcionados",
+            icon: "fab fa-google"
+          },
+          {
+            name: "Hotmail/Outlook",
+            reason: "Microsoft acessa emails para melhorar serviços",
+            icon: "fab fa-microsoft"
+          }
+        ]
+      },
+      dns: {
+        title: "Servidores DNS",
+        icon: "fas fa-server",
+        iconColor: "bg-cyan-500",
+        recommended: [
+          {
+            name: "Cloudflare DNS",
+            description: "DNS rápido e privado (1.1.1.1)",
+            icon: "fab fa-cloudflare",
+            website: "https://1.1.1.1"
+          },
+          {
+            name: "NextDNS",
+            description: "DNS configurável com bloqueio de anúncios e rastreadores",
+            icon: "fas fa-cog",
+            website: "https://nextdns.io"
+          },
+          {
+            name: "AdGuard DNS",
+            description: "DNS com bloqueio automático de anúncios",
+            icon: "fas fa-shield-alt",
+            website: "https://adguard.com/dns"
+          }
+        ],
+        avoid: [
+          {
+            name: "Google DNS",
+            reason: "Google registra e analisa consultas DNS",
+            icon: "fab fa-google"
+          },
+          {
+            name: "DNS do Provedor",
+            reason: "ISPs podem registrar e vender dados de navegação",
+            icon: "fas fa-building"
+          }
+        ]
+      },
+      torrents: {
+        title: "Clientes Torrent",
+        icon: "fas fa-download",
+        iconColor: "bg-indigo-500",
+        recommended: [
+          {
+            name: "qBittorrent",
+            description: "Cliente torrent open-source sem anúncios",
+            icon: "fas fa-download",
+            website: "https://qbittorrent.org"
+          },
+          {
+            name: "Transmission",
+            description: "Cliente leve e eficiente para torrents",
+            icon: "fas fa-exchange-alt",
+            website: "https://transmissionbt.com"
+          }
+        ],
+        avoid: [
+          {
+            name: "uTorrent",
+            reason: "Contém malware, mineradores de criptomoeda e anúncios",
+            icon: "fas fa-bug"
+          },
+          {
+            name: "BitTorrent Web",
+            reason: "Repleto de anúncios e software indesejado",
+            icon: "fas fa-ad"
+          }
+        ]
+      }
+    };
+
+    const categoryOrder = [
+      'browsers',
+      'extensions', 
+      'searchEngines',
+      'emails',
+      'dns',
+      'torrents'
+    ];
+
+    function createSection(categoryData) {
+      const section = document.createElement('div');
+      section.className = 'section';
+      
+      section.innerHTML = `
+        <div class="section-header">
+          <div class="section-icon ${categoryData.iconColor}">
+            <i class="${categoryData.icon}"></i>
+          </div>
+          <h2 class="section-title">${categoryData.title}</h2>
+        </div>
+        <div class="section-content">
+          <div class="category">
+            <h3 class="category-title recommended-title">
+              <i class="fas fa-check-circle"></i>
+              Recomendado
+            </h3>
+            <div class="items-grid">
+              ${categoryData.recommended.map(item => `
+                <div class="item-card recommended-card" ${item.website ? `onclick="window.open('${item.website}', '_blank')"` : ''}>
+                  <div class="item-header">
+                    <div class="item-icon bg-green-500">
+                      <i class="${item.icon}"></i>
+                    </div>
+                    <h4 class="item-name">${item.name}</h4>
+                  </div>
+                  <p class="item-description">${item.description}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          
+          <div class="category">
+            <h3 class="category-title avoid-title">
+              <i class="fas fa-times-circle"></i>
+              Evitar
+            </h3>
+            <div class="items-grid">
+              ${categoryData.avoid.map(item => `
+                <div class="item-card avoid-card">
+                  <div class="item-header">
+                    <div class="item-icon bg-red-500">
+                      <i class="${item.icon}"></i>
+                    </div>
+                    <h4 class="item-name">${item.name}</h4>
+                  </div>
+                  <p class="item-description">${item.reason}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+      
+      return section;
+    }
+
+    function initializeApp() {
+      const container = document.getElementById('sections-container');
+      
+      categoryOrder.forEach((categoryKey, index) => {
+        setTimeout(() => {
+          const section = createSection(privacyData[categoryKey]);
+          container.appendChild(section);
+        }, index * 200);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initializeApp);
+  </script>
+</body>
+</html>
