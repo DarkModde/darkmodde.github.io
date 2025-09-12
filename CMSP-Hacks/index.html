@@ -1273,7 +1273,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
+<script>
         lucide.createIcons();
 
         function applyIconColors() {
@@ -1312,6 +1312,25 @@
             "1059673695230103582": { story: "CrimsonStrauss, o desenvolvedor alternativo dos websites e scripts. Um cara sinceramente muito foda e muito amigavel. Ele deu conta de criar a maioria dos scripts para a maioria das plataformas da Sala do Futuro." },
             "1303163875386069017": { story: "Xeonno, não conheço, não quero conhecer e foda-se também... o único “desenvolvedor” do servidor que nunca desenvolveu nada! Gosta de ficar zoando quem usa ChatGPT, mas nunca faz nada no servidor – e ainda é broxa!" }
         };
+
+        // Função para fazer requisições com fallback de API
+        async function fetchWithFallback(url, fallbackUrl, options = {}) {
+            try {
+                const response = await fetch(url, options);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return await response.json();
+            } catch (error) {
+                console.warn(`Falha na API principal, tentando API de recuperação: ${error}`);
+                try {
+                    const fallbackResponse = await fetch(fallbackUrl, options);
+                    if (!fallbackResponse.ok) throw new Error(`HTTP error! status: ${fallbackResponse.status}`);
+                    return await fallbackResponse.json();
+                } catch (fallbackError) {
+                    console.error(`Ambas as APIs falharam: ${fallbackError}`);
+                    throw new Error('Todas as APIs de fallback falharam');
+                }
+            }
+        }
 
         function typeTitle() {
             const currentText = titleElement.textContent;
@@ -1501,10 +1520,10 @@
             }
 
             try {
-                const response = await fetch(
-                    `https://dnext-api.vercel.app/api/discord/user/${userId}`
+                const data = await fetchWithFallback(
+                    `https://dnext-api.vercel.app/api/discord/user/${userId}`,
+                    `https://dnext-apii.vercel.app/api/discord/user/${userId}`
                 );
-                const data = await response.json();
 
                 if (data && data.avatar && data.avatar.link) {
                     const avatarUrl = `${data.avatar.link}.png?size=2048`;
@@ -1514,6 +1533,7 @@
                     return null;
                 }
             } catch (error) {
+                console.error("Erro ao buscar avatar:", error);
                 return null;
             }
         }
@@ -1680,8 +1700,12 @@
             doacoesList.innerHTML = '<div class="donation-loading"><div class="spinner"></div><span>Carregando doações...</span></div>';
 
             try {
-                const response = await fetch('https://dnext-api.vercel.app/api/pixgg/donations');
-                donationsData = await response.json();
+                const data = await fetchWithFallback(
+                    'https://dnext-api.vercel.app/api/pixgg/donations',
+                    'https://dnext-apii.vercel.app/api/pixgg/donations'
+                );
+                
+                donationsData = data;
                 renderDonations();
             } catch (error) {
                 doacoesList.innerHTML = '<div class="donations-empty">Erro ao carregar doações. Tente novamente mais tarde.</div>';
@@ -1738,4 +1762,5 @@
 </body>
 
 </html>
+
 
