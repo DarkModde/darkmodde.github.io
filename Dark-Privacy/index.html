@@ -248,6 +248,8 @@
     .bg-red-500 { background-color: hsl(var(--destructive)); }
     .bg-yellow-500 { background-color: hsl(48 96% 53%); }
     .bg-indigo-500 { background-color: hsl(239 84% 67%); }
+    .bg-pink-500 { background-color: hsl(330 81% 60%); }
+    .bg-teal-500 { background-color: hsl(173 80% 36%); }
 
     @keyframes fadeInUp {
       from {
@@ -334,19 +336,19 @@
             name: "Brave",
             description: "Navegador focado em privacidade com bloqueador de anúncios integrado",
             icon: "fab fa-brave",
-            website: "https://brave.com"
+            website: "https://brave.com/pt-br/download/"
           },
           {
             name: "Firefox",
             description: "Navegador open-source com excelentes recursos de privacidade",
             icon: "fab fa-firefox",
-            website: "https://firefox.com"
+            website: "https://www.firefox.com/pt-BR/download"
           },
           {
             name: "Vivaldi",
             description: "Navegador altamente personalizável com foco na privacidade do usuário",
             icon: "fas fa-rectangle-xmark",
-            website: "https://vivaldi.com"
+            website: "https://vivaldi.com/pt-br/download/"
           }
         ],
         avoid: [
@@ -367,34 +369,28 @@
           }
         ]
       },
-      extensions: {
-        title: "Extensões",
-        icon: "fas fa-puzzle-piece",
+      blockers: {
+        title: "Extensões - Bloqueadores",
+        icon: "fas fa-shield-alt",
         iconColor: "bg-green-500",
         recommended: [
           {
             name: "uBlock Origin",
             description: "Bloqueador de anúncios e rastreadores mais eficiente",
-            icon: "fas fa-shield-alt",
-            website: "https://ublockorigin.com"
+            icon: "fas fa-ban",
+            website: "https://ublockorigin.com/"
           },
           {
-            name: "Decentraleyes",
-            description: "Protege contra rastreamento através de CDNs",
-            icon: "fas fa-network-wired",
-            website: "https://decentraleyes.org"
+            name: "AdGuard AdBlocker",
+            description: "Bloqueador de anúncios com recursos avançados de filtragem",
+            icon: "fas fa-shield-virus",
+            website: "https://adguard.com/pt_br/adguard-browser-extension/overview.html"
           },
           {
-            name: "ClearURLs",
-            description: "Remove parâmetros de rastreamento das URLs",
-            icon: "fas fa-link",
-            website: "https://clearurls.xyz"
-          },
-          {
-            name: "Urban VPN Proxy",
-            description: "Proxy gratuito para mascarar sua localização",
-            icon: "fas fa-user-secret",
-            website: "https://urban-vpn.com/free-products/free-browser-extension/"
+            name: "PopUpOFF",
+            description: "Bloqueia pop-ups indesejados de forma eficiente",
+            icon: "fas fa-window-close",
+            website: "https://popupoff.org/"
           }
         ],
         avoid: [
@@ -404,71 +400,81 @@
             icon: "fas fa-ad"
           },
           {
-            name: "Hotspot Shield",
-            reason: "Coleta e vende dados de navegação dos usuários",
-            icon: "fas fa-compass"
+            name: "Secure Web",
+            reason: "Questionável eficácia e possíveis problemas de privacidade",
+            icon: "fas fa-lock"
+          },
+          {
+            name: "Cookie AutoDelete",
+            reason: "Pode interferir com funcionalidades de sites legítimos",
+            icon: "fas fa-cookie-bite"
           }
         ]
       },
-      searchEngines: {
-        title: "Motores de Busca",
-        icon: "fas fa-search",
+      privacyExtensions: {
+        title: "Extensões - Privacidade",
+        icon: "fas fa-user-secret",
         iconColor: "bg-purple-500",
         recommended: [
           {
-            name: "DuckDuckGo",
-            description: "Buscador que não rastreia nem armazena dados pessoais",
-            icon: "fas fa-search",
-            website: "https://duckduckgo.com"
+            name: "Urban VPN",
+            description: "Proxy gratuito para mascarar sua localização",
+            icon: "fas fa-user-shield",
+            website: "https://www.urban-vpn.com/pt-br/free-products/free-browser-extension/"
           },
           {
-            name: "Brave Search",
-            description: "Motor de busca independente focado em privacidade",
-            icon: "fab fa-brave",
-            website: "https://search.brave.com"
+            name: "ClearURLs",
+            description: "Remove parâmetros de rastreamento das URLs",
+            icon: "fas fa-link",
+            website: "https://docs.clearurls.xyz/1.27.3/#download"
           },
           {
-            name: "StartPage",
-            description: "Resultados do Google sem rastreamento",
-            icon: "fas fa-home",
-            website: "https://startpage.com"
+            name: "Decentraleyes",
+            description: "Protege contra rastreamento através de CDNs",
+            icon: "fas fa-network-wired",
+            website: "https://decentraleyes.org/"
           }
         ],
         avoid: [
           {
-            name: "Google Search",
-            reason: "Rastreia extensivamente para criar perfis de usuário",
-            icon: "fab fa-google"
+            name: "Hotspot Shield",
+            reason: "Coleta e vende dados de navegação dos usuários",
+            icon: "fas fa-shield-alt"
           },
           {
-            name: "Bing Search",
-            reason: "Coleta dados para a Microsoft e parceiros publicitários",
-            icon: "fab fa-microsoft"
+            name: "Hola VPN",
+            reason: "Rede P2P questionável que pode comprometer sua conexão",
+            icon: "fas fa-network-wired"
+          },
+          {
+            name: "Web Shield",
+            reason: "Eficácia questionável e possíveis problemas de privacidade",
+            icon: "fas fa-shield-virus"
           }
         ]
       },
-      emails: {
+      emailProviders: {
         title: "Provedores de Email",
         icon: "fas fa-envelope",
         iconColor: "bg-orange-500",
         recommended: [
           {
-            name: "ProtonMail",
+            name: "Proton Mail",
             description: "Email criptografado de ponta a ponta baseado na Suíça",
             icon: "fas fa-lock",
-            website: "https://protonmail.com"
+            website: "https://proton.me/pt-br/mail"
           },
           {
-            name: "Tutanota",
+            name: "Tuta Mail",
             description: "Serviço de email seguro e privado com criptografia",
             icon: "fas fa-shield-alt",
-            website: "https://tutanota.com"
+            website: "https://tuta.com/pt-br"
           },
           {
             name: "Mailfence",
             description: "Email privado com recursos avançados de segurança",
             icon: "fas fa-envelope-open-text",
-            website: "https://mailfence.com"
+            website: "https://mailfence.com/"
           }
         ],
         avoid: [
@@ -481,13 +487,70 @@
             name: "Hotmail/Outlook",
             reason: "Microsoft acessa emails para melhorar serviços",
             icon: "fab fa-microsoft"
+          },
+          {
+            name: "Yahoo",
+            reason: "Histórico de violações de dados e práticas questionáveis",
+            icon: "fas fa-mail-bulk"
           }
         ]
+      },
+      userScripts: {
+        title: "User Scripts",
+        icon: "fas fa-code",
+        iconColor: "bg-cyan-500",
+        recommended: [
+          {
+            name: "Violentmonkey",
+            description: "Gerenciador de userscripts para executar scripts personalizados",
+            icon: "fas fa-terminal",
+            website: "https://violentmonkey.github.io/get-it/"
+          },
+          {
+            name: "Bypass All Shortlinks",
+            description: "Ignora automaticamente encurtadores de URL",
+            icon: "fas fa-external-link-alt",
+            website: "https://codeberg.org/Amm0ni4/bypass-all-shortlinks-debloated#install"
+          },
+          {
+            name: "Bypass Paywalls Clean",
+            description: "Contorna paywalls de sites de notícias",
+            icon: "fas fa-newspaper",
+            website: "https://gitflic.ru/project/magnolia1234/bypass-paywalls-chrome-clean#installation"
+          }
+        ],
+        avoid: []
+      },
+      usefulExtensions: {
+        title: "Extensões Úteis",
+        icon: "fas fa-tools",
+        iconColor: "bg-indigo-500",
+        recommended: [
+          {
+            name: "Dark Reader",
+            description: "Modo escuro para todos os sites, reduz cansaço visual",
+            icon: "fas fa-moon",
+            website: "https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh?hl=pt-BR"
+          },
+          {
+            name: "OneTab",
+            description: "Consolida abas abertas para reduzir uso de memória",
+            icon: "fas fa-window-restore",
+            website: "https://chromewebstore.google.com/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall?hl=pt-BR"
+          },
+          {
+            name: "Buster: Captcha Resolver",
+            description: "Resolve automaticamente captchas",
+            icon: "fas fa-robot",
+            website: "https://chromewebstore.google.com/detail/buster-captcha-solver-for/mpbjkejclgfgadiemmefgebjfooflfhl?hl=pt-BR"
+          }
+        ],
+        avoid: []
       },
       dns: {
         title: "Servidores DNS",
         icon: "fas fa-server",
-        iconColor: "bg-cyan-500",
+        iconColor: "bg-teal-500",
         recommended: [
           {
             name: "Cloudflare DNS",
@@ -524,7 +587,7 @@
       torrents: {
         title: "Clientes Torrent",
         icon: "fas fa-download",
-        iconColor: "bg-indigo-500",
+        iconColor: "bg-pink-500",
         recommended: [
           {
             name: "qBittorrent",
@@ -556,9 +619,11 @@
 
     const categoryOrder = [
       'browsers',
-      'extensions', 
-      'searchEngines',
-      'emails',
+      'blockers', 
+      'privacyExtensions',
+      'emailProviders',
+      'userScripts',
+      'usefulExtensions',
       'dns',
       'torrents'
     ];
@@ -598,20 +663,23 @@
           <div class="category">
             <h3 class="category-title avoid-title">
               <i class="fas fa-times-circle"></i>
-              Evitar
+              ${categoryData.avoid.length > 0 ? 'Evitar' : 'Notas Adicionais'}
             </h3>
             <div class="items-grid">
-              ${categoryData.avoid.map(item => `
-                <div class="item-card avoid-card">
-                  <div class="item-header">
-                    <div class="item-icon bg-red-500">
-                      <i class="${item.icon}"></i>
+              ${categoryData.avoid.length > 0 ? 
+                categoryData.avoid.map(item => `
+                  <div class="item-card avoid-card">
+                    <div class="item-header">
+                      <div class="item-icon bg-red-500">
+                        <i class="${item.icon}"></i>
+                      </div>
+                      <h4 class="item-name">${item.name}</h4>
                     </div>
-                    <h4 class="item-name">${item.name}</h4>
+                    <p class="item-description">${item.reason}</p>
                   </div>
-                  <p class="item-description">${item.reason}</p>
-                </div>
-              `).join('')}
+                `).join('') : 
+                `<p class="item-description" style="padding: 1rem;">Não há itens específicos a serem evitados nesta categoria, mas sempre verifique a reputação de qualquer extensão antes de instalá-la.</p>`
+              }
             </div>
           </div>
         </div>
