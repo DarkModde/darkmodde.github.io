@@ -1194,16 +1194,16 @@
         <div class="notification-content">
             <div class="notification-title" style="color: #9b59b6;">
                 <div class="icon-text-container">
-                    <i data-lucide="rocket" class="lucide-icon" data-color="#9b59b6"></i>
-                    <span>DarkStore - Otimização</span>
+                    <i data-lucide="zap" class="lucide-icon" data-color="#9b59b6"></i>
+                    <span>DarkStore - Serviços</span>
                 </div>
             </div>
-            <div class="notification-message">Melhore o desempenho do seu computador com nossa otimização! Clique no botão abaixo para acessar o servidor do discord.</div>
+            <div class="notification-message">Tem preguiça de realizar suas tarefas? Entre na DarkStore que nós faremos para você! Serviços rápidos e confiáveis.</div>
             <div class="notification-button-container">
                 <button class="notification-button" style="background: #9b59b6;" onclick="joinOptimizationServer()">
                     <div class="icon-text-container">
                         <i data-lucide="square-plus" class="lucide-icon" data-color="#FFFFFF"></i>
-                        <span>Entrar no Servidor</span>
+                        <span>Acessar DarkStore</span>
                     </div>
                 </button>
                 <button class="dismiss-button" onclick="dismissOptimizationNotification()">Mais tarde</button>
@@ -1313,7 +1313,6 @@
             "1303163875386069017": { story: "Xeonno, não conheço, não quero conhecer e foda-se também... o único “desenvolvedor” do servidor que nunca desenvolveu nada! Gosta de ficar zoando quem usa ChatGPT, mas nunca faz nada no servidor – e ainda é broxa!" }
         };
 
-        // Função para fazer requisições com fallback de API
         async function fetchWithFallback(url, fallbackUrl, options = {}) {
             try {
                 const response = await fetch(url, options);
@@ -1716,8 +1715,8 @@
             setTimeout(carregarDoacoes, 1500);
             setInterval(carregarDoacoes, 120000);
             setTimeout(typeTitle, 1000);
-            setTimeout(showNotification, 1000);
-            setTimeout(showOptimizationNotification, 16000);
+            setTimeout(showOptimizationNotification, 1000);
+            setTimeout(showNotification, 16000);
             loadCreditCards();
             cleanAvatarCache();
 
@@ -1760,7 +1759,4 @@
         setTimeout(initializeSite, 100);
     </script>
 </body>
-
 </html>
-
-
