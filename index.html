@@ -553,18 +553,18 @@
       {
         title: "Night ToolBox",
         description: "Um simples Batch com ferramentas e utilitários para otimizar o Windows",
-        image: "https://i.imgur.com/dVZTmoH.png",
+        image: "https://i.imgur.com/FGvCjkO.png",
         tags: ["Program", "Optimizer", "Batch"],
         isWebsite: true,
         url: "https://darkmodde.xyz/NightBox/"
       },
       {
-        title: "Dark-OSINT",
-        description: "Website com ferramentas de OSINT para Discord e outras redes sociais",
-        image: "https://i.imgur.com/z4HBavF.png",
-        tags: ["Website", "OSINT", "Search & Info"],
+        title: "Dark-Privacy",
+        description: "Website com dicas de privacidade para uso diario do computador",
+        image: "https://i.imgur.com/5HC7i4d.png",
+        tags: ["Website", "Privacy", "Tips"],
         isWebsite: true,
-        url: "https://darkmodde.xyz/Dark-OSINT/"
+        url: "https://darkmodde.xyz/Dark-Privacy/"
       }
     ];
 
@@ -613,7 +613,7 @@
           } catch {
             DiscordProfile.update({ 
               global_name: "<\\DarkMode>", 
-              avatar: { link: "https://cdn.discordapp.com/embed/avatars/0.png" } 
+              avatar: { link: "https://i.imgur.com/lLkPufb.png" } 
             });
           }
         }
@@ -621,37 +621,12 @@
       
       update: (data) => {
         DOM.username.textContent = data.global_name || "<\\DarkMode>";
-        DOM.avatar.src = data.avatar?.link || "https://cdn.discordapp.com/embed/avatars/0.png";
+        DOM.avatar.src = data.avatar?.link || "https://i.imgur.com/lLkPufb.png";
       }
     };
 
     // Localização do visitante
     const LocationTracker = {
-      track: async () => {
-        try {
-          const ipData = await Utils.fetchWithTimeout('https://api.ipify.org?format=json');
-          const visitorIP = ipData.ip;
-          
-          // Envia dados analíticos (não bloqueia a execução)
-          fetch("https://dnext-api.vercel.app/api/analytics/track", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ip: visitorIP })
-          }).catch(console.error);
-          
-          const locationData = await LocationTracker.getLocationData(visitorIP);
-          LocationTracker.showNotification(locationData);
-        } catch (error) {
-          console.error('Erro ao obter localização:', error);
-          try {
-            const fallbackData = await Utils.fetchWithTimeout('https://ipinfo.io/json');
-            LocationTracker.showNotification(fallbackData);
-          } catch {
-            DOM.locationNotification.style.display = 'none';
-          }
-        }
-      },
-      
       getLocationData: async (ip) => {
         try {
           return await Utils.fetchWithTimeout(`https://ipinfo.io/${ip}/json`);
@@ -752,7 +727,6 @@
       Security.init();
       DiscordProfile.load();
       Projects.load();
-      setTimeout(LocationTracker.track, 3000);
       setTimeout(UI.hideIntro, 2000);
     });
   </script>
