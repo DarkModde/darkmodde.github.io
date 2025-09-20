@@ -1,46 +1,105 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detecção Avançada de Adblock</title>
-    <script src="https://cdn.jsdelivr.net/npm/blockadblock"></script>
+    <title>Teste de AdBlock</title>
     <style>
-        .adblock-warning {
-            color: red;
-            font-size: 20px;
-            display: none;
+        /* Tema escuro e centralização */
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
         }
 
-        .no-adblock-message {
-            color: green;
-            font-size: 20px;
-            display: none;
+        .content {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+        }
+
+        .adblock-detected {
+            background-color: #e74c3c;
+        }
+
+        .adblock-not-detected {
+            background-color: #2ecc71;
         }
     </style>
 </head>
 <body>
 
-    <div class="adblock-warning">Você está usando um bloqueador de anúncios!</div>
-    <div class="no-adblock-message">Você não está usando um bloqueador de anúncios!</div>
+    <div class="content">
+        <h1>Teste de AdBlock</h1>
+        <p>Este site irá detectar se você está usando o AdBlock.</p>
+        
+        <div id="alert" class="alert" style="display:none;">
+            <!-- Mensagem será inserida aqui -->
+        </div>
+    </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blockadblock/3.2.1/blockadblock.min.js"></script>
     <script>
-        // Inicializa o BlockAdBlock
-        var checkAdBlock = new BlockAdBlock();
+        // Função chamada quando AdBlock não é detectado
+        function adBlockNotDetected() {
+            const alertDiv = document.getElementById('alert');
+            alertDiv.classList.add('adblock-not-detected');
+            alertDiv.textContent = 'AdBlock não está ativado!';
+            alertDiv.style.display = 'block';
+        }
 
-        // Detecta o bloqueio de anúncios
-        checkAdBlock.onDetected(function() {
-            // Exibe a mensagem de adblock detectado
-            document.querySelector('.adblock-warning').style.display = 'block';
-        });
+        // Função chamada quando AdBlock é detectado
+        function adBlockDetected() {
+            const alertDiv = document.getElementById('alert');
+            alertDiv.classList.add('adblock-detected');
+            alertDiv.textContent = 'AdBlock está ativado!';
+            alertDiv.style.display = 'block';
+        }
 
-        checkAdBlock.onNotDetected(function() {
-            // Exibe a mensagem de adblock não detectado
-            document.querySelector('.no-adblock-message').style.display = 'block';
-        });
-
-        // Executa a verificação imediatamente
-        checkAdBlock.check();
+        // Verifica se o BlockAdBlock já está carregado
+        if (typeof blockAdBlock !== 'undefined' || typeof BlockAdBlock !== 'undefined') {
+            // Se já existe, significa que algo está tentando usar a identidade
+            // Considerando isso como uma detecção de AdBlock
+            adBlockDetected();
+        } else {
+            // Caso contrário, carrega o script BlockAdBlock
+            var importFAB = document.createElement('script');
+            importFAB.onload = function() {
+                // Configura a detecção após o carregamento
+                blockAdBlock.onDetected(adBlockDetected);
+                blockAdBlock.onNotDetected(adBlockNotDetected);
+            };
+            importFAB.onerror = function() {
+                // Se o script não carregar (bloqueado, erro de integridade, etc.)
+                // Também consideramos como detecção
+                adBlockDetected();
+            };
+            importFAB.integrity = 'sha256-xjwKUY/NgkPjZZBOtOxRYtK20GaqTwUCf7WYCJ1z69w=';
+            importFAB.crossOrigin = 'anonymous';
+            importFAB.src = 'https://cdnjs.cloudflare.com/ajax/libs/blockadblock/3.2.1/blockadblock.min.js';
+            document.head.appendChild(importFAB);
+        }
     </script>
 
 </body>
