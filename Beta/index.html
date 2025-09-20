@@ -3,333 +3,653 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de AdBlocker</title>
+    <title>Sistema Anti-AdBlock - Eclipse Lunar</title>
+    
+    <!-- SCRIPT PRINCIPAL DO GOOGLE ADSENSE -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7541876262806139"
+     crossorigin="anonymous"></script>
+
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-purple: rgb(76, 16, 214);
+            --dark-purple: #7c3aed;
+            --light-purple: rgb(144, 116, 243);
+            --light-purple-bg: rgba(76, 16, 214, 0.1);
+            --background-dark: #000000;
+            --background-medium: #1a1a1a;
+            --background-light: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --warning-color: rgb(255, 1, 1);
+            --eclipse-warning: rgb(255, 7, 7);
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-dark);
+            color: var(--text-primary);
             min-height: 100vh;
-            color: white;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(45, 45, 45, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #141414 100%);
         }
-        .container {
-            background: rgba(255, 255, 255, 0.1);
+
+        /* OVERLAY ANTI-ADBLOCK */
+        #adblock-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            animation: fadeIn 0.5s ease-in-out;
         }
-        h1 {
+
+        #adblock-overlay.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .adblock-modal {
+            background: linear-gradient(145deg, #1a1a1a, #21113b);
+            border: 2px solid var(--primary-purple);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.4);
+            animation: pulse 2s infinite;
         }
-        .status {
-            text-align: center;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-            font-size: 1.2em;
-            font-weight: bold;
-            transition: all 0.3s ease;
+
+        .adblock-icon {
+            font-size: 4rem;
+            color: var(--eclipse-warning);
+            margin-bottom: 1.5rem;
+            animation: bounce 1s infinite;
         }
-        .loading {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px dashed rgba(255, 255, 255, 0.5);
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
-        .no-adblock {
-            background: rgba(76, 175, 80, 0.3);
-            border: 2px solid #4CAF50;
-            color: #E8F5E8;
+
+        .adblock-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(76, 16, 214, 0.5);
         }
-        .adblock-detected {
-            background: rgba(244, 67, 54, 0.3);
-            border: 2px solid #F44336;
-            color: #FFEBEE;
+
+        .adblock-message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
         }
-        .spinner {
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 3px solid white;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+
+        .adblock-steps {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        .adblock-steps h3 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
         }
-        .info {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
+
+        .adblock-steps ol {
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
         }
-        .info h3 {
-            margin-top: 0;
-            color: #FFD700;
+
+        .adblock-steps li {
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
         }
-        button {
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+
+        .adblock-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-adblock {
+            padding: 0.8rem 1.5rem;
             border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 16px;
-            transition: transform 0.2s ease;
-            display: block;
-            margin: 20px auto;
-        }
-        button:hover {
-            transform: scale(1.05);
-        }
-        button:active {
-            transform: scale(0.95);
-        }
-        .test-methods {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .method-card {
-            background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
-            padding: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-purple);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-purple);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        /* ÁREA DE TESTE DE ANÚNCIOS */
+        .ad-test-container {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .ad-test-element {
+            width: 1px;
+            height: 1px;
+        }
+
+        /* CONTEÚDO PRINCIPAL BLUR QUANDO ADBLOCK DETECTADO */
+        body.adblock-detected .main-content {
+            filter: blur(5px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* SISTEMA DE NOTIFICAÇÃO */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #1a0d2e, #2d1b45);
+            border: 1px solid var(--primary-purple);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            color: white;
+            font-weight: 500;
+            transform: translateX(120%);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 10000;
+            max-width: 320px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* CONTEÚDO PRINCIPAL - SEUS ESTILOS ORIGINAIS */
+        .main-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 420px;
+        }
+        
+        .login-container {
+            width: 100%;
+            max-width: 380px;
+            padding: 2rem;
+            margin: 0;
+        }
+        
+        .header {
             text-align: center;
+            margin-bottom: 2rem;
         }
-        .method-status {
-            font-weight: bold;
-            margin-top: 10px;
-            padding: 5px;
-            border-radius: 5px;
+        
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 500;
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .blocked { background: rgba(244, 67, 54, 0.3); color: #FFEBEE; }
-        .allowed { background: rgba(76, 175, 80, 0.3); color: #E8F5E8; }
-        .testing { background: rgba(255, 193, 7, 0.3); color: #FFF8E1; }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .adblock-modal {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .adblock-title {
+                font-size: 1.5rem;
+            }
+            
+            .adblock-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-adblock {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .adblock-modal {
+                padding: 1.5rem;
+            }
+            
+            .adblock-icon {
+                font-size: 3rem;
+            }
+            
+            .adblock-title {
+                font-size: 1.3rem;
+            }
+            
+            .adblock-message {
+                font-size: 1rem;
+            }
+        }
     </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="container">
-        <h1>🛡️ Teste de AdBlocker</h1>
+    <!-- OVERLAY ANTI-ADBLOCK -->
+    <div id="adblock-overlay">
+        <div class="adblock-modal">
+            <div class="adblock-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h2 class="adblock-title">Bloqueador de Anúncios Detectado</h2>
+            <p class="adblock-message">
+                Para continuar aproveitando nosso conteúdo <strong>gratuito</strong>, por favor desative seu bloqueador de anúncios. 
+                Os anúncios nos ajudam a manter o Eclipse Lunar funcionando e sempre atualizado para você.
+            </p>
+            
+            <div class="adblock-steps">
+                <h3><i class="fas fa-info-circle"></i> Como desativar:</h3>
+                <ol>
+                    <li>Clique no ícone do seu bloqueador de anúncios na barra do navegador</li>
+                    <li>Selecione "Desativar neste site" ou "Pause no site"</li>
+                    <li>Recarregue a página</li>
+                    <li>Pronto! Agora você pode usar o site normalmente</li>
+                </ol>
+            </div>
+            
+            <div class="adblock-buttons">
+                <button class="btn-adblock btn-primary" onclick="reloadPage()">
+                    <i class="fas fa-sync-alt"></i> Já Desativei - Recarregar
+                </button>
+                <button class="btn-adblock btn-secondary" onclick="showWhyAds()">
+                    <i class="fas fa-question-circle"></i> Por que os Anúncios?
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ELEMENTOS DE TESTE PARA DETECÇÃO -->
+    <div class="ad-test-container">
+        <!-- Elementos que serão bloqueados por adblockers -->
+        <div class="ad-test-element" id="adsbox"></div>
+        <div class="ad-test-element" id="sponsor"></div>
+        <div class="ad-test-element" id="banner"></div>
+        <div class="ad-test-element" id="advertisement"></div>
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="ad-test-element" id="ad-banner" alt="">
+        <div class="ad-test-element ads" id="googleads"></div>
         
-        <div id="mainStatus" class="status loading">
-            <div class="spinner"></div>
-            <div>Verificando se AdBlocker está ativo...</div>
-        </div>
-
-        <button onclick="runTest()">🔄 Executar Teste Novamente</button>
-
-        <div class="test-methods">
-            <div class="method-card">
-                <h4>📊 Google AdSense</h4>
-                <div>Script Principal</div>
-                <div id="adsense-status" class="method-status testing">Testando...</div>
-            </div>
-            <div class="method-card">
-                <h4>🎯 Google Tag Manager</h4>
-                <div>Analytics/Ads</div>
-                <div id="gtm-status" class="method-status testing">Testando...</div>
-            </div>
-            <div class="method-card">
-                <h4>📱 Elemento Ads</h4>
-                <div>Div com classe "ads"</div>
-                <div id="ads-element-status" class="method-status testing">Testando...</div>
-            </div>
-            <div class="method-card">
-                <h4>🔍 Fetch API</h4>
-                <div>Requisição direta</div>
-                <div id="fetch-status" class="method-status testing">Testando...</div>
-            </div>
-        </div>
-
-        <div class="info">
-            <h3>ℹ️ Como funciona este teste?</h3>
-            <p>Este teste utiliza várias técnicas para detectar AdBlockers:</p>
-            <ul>
-                <li><strong>Script do AdSense:</strong> Tenta carregar o script oficial do Google AdSense</li>
-                <li><strong>Google Tag Manager:</strong> Verifica se scripts de tracking são bloqueados</li>
-                <li><strong>Elemento com classe "ads":</strong> Muitos AdBlockers ocultam elementos com nomes suspeitos</li>
-                <li><strong>Requisição Fetch:</strong> Tenta fazer uma requisição para servidores de anúncios</li>
-            </ul>
-            <p>Se qualquer um destes métodos for bloqueado, provavelmente você está usando um AdBlocker.</p>
-        </div>
+        <!-- Teste do Google AdSense -->
+        <ins class="adsbygoogle ad-test-element" 
+             style="display:block;width:1px;height:1px;"
+             data-ad-client="ca-pub-7541876262806139"
+             data-ad-slot="test"></ins>
     </div>
 
-    <!-- Elemento teste que AdBlockers costumam ocultar -->
-    <div class="ads advertisement banner-ad" id="test-ads-element" style="width: 1px; height: 1px; position: absolute; left: -9999px;">
-        Test Ad Element
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="main-wrapper">
+        <main class="main-content">
+            <div class="login-container">
+                <div class="header">
+                    <div class="logo-section">
+                        <h1 class="logo-text">Eclipse Lunar</h1>
+                    </div>
+                    <p class="subtitle">Sua plataforma do Futuro.</p>
+                    <p class="tagline">Tarefas SP</p>
+                </div>
+                
+                <div style="text-align: center; padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 12px;">
+                    <h3 style="color: var(--primary-purple); margin-bottom: 1rem;">
+                        <i class="fas fa-check-circle"></i> Sistema Anti-AdBlock Ativo
+                    </h3>
+                    <p style="color: var(--text-secondary);">
+                        Este sistema detecta bloqueadores de anúncios e solicita que os usuários os desativem.
+                        O conteúdo fica inacessível até que os anúncios sejam desbloqueados.
+                    </p>
+                    
+                    <div style="margin-top: 2rem; padding: 1rem; background: rgba(76, 16, 214, 0.1); border-radius: 8px; border-left: 4px solid var(--primary-purple);">
+                        <h4 style="color: var(--primary-purple); margin-bottom: 0.5rem;">Status do Sistema:</h4>
+                        <p id="adblock-status" style="color: var(--text-primary); font-weight: 600;">Verificando...</p>
+                    </div>
+                    
+                    <button onclick="testAdblock()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--primary-purple); color: white; border: none; border-radius: 6px; cursor: pointer;">
+                        <i class="fas fa-flask"></i> Testar Detecção
+                    </button>
+                </div>
+            </div>
+        </main>
     </div>
+
+    <!-- NOTIFICAÇÃO -->
+    <div id="notification" class="notification"></div>
 
     <script>
-        let testResults = {
-            adsense: false,
-            gtm: false,
-            adsElement: false,
-            fetchTest: false
+        // SISTEMA ANTI-ADBLOCK AVANÇADO
+        class AntiAdBlock {
+            constructor() {
+                this.isAdblockDetected = false;
+                this.testElements = [];
+                this.checkInterval = null;
+                this.init();
+            }
+
+            init() {
+                // Aguarda o DOM carregar completamente
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', () => this.startDetection());
+                } else {
+                    this.startDetection();
+                }
+            }
+
+            startDetection() {
+                // Múltiplos métodos de detecção
+                this.detectByElements();
+                this.detectByScript();
+                this.detectByGoogleAds();
+                this.detectByCSS();
+                
+                // Verificação contínua a cada 3 segundos
+                this.checkInterval = setInterval(() => {
+                    this.detectByElements();
+                }, 3000);
+                
+                // Parar verificação após 30 segundos
+                setTimeout(() => {
+                    if (this.checkInterval) {
+                        clearInterval(this.checkInterval);
+                    }
+                }, 30000);
+            }
+
+            // Método 1: Detecção por elementos DOM
+            detectByElements() {
+                const testSelectors = [
+                    '#adsbox', '#sponsor', '#banner', '#advertisement',
+                    '#ad-banner', '#googleads', '.ads', '.ad-test-element'
+                ];
+
+                let blocked = 0;
+                testSelectors.forEach(selector => {
+                    const element = document.querySelector(selector);
+                    if (element) {
+                        const style = window.getComputedStyle(element);
+                        if (style.display === 'none' || 
+                            style.visibility === 'hidden' || 
+                            element.offsetHeight === 0 || 
+                            element.offsetWidth === 0) {
+                            blocked++;
+                        }
+                    }
+                });
+
+                if (blocked >= 3) {
+                    this.handleAdblockDetected('Elementos bloqueados detectados');
+                }
+            }
+
+            // Método 2: Detecção por script
+            detectByScript() {
+                // Criar elemento de teste dinâmico
+                const testAd = document.createElement('div');
+                testAd.innerHTML = '&nbsp;';
+                testAd.className = 'adsbox ad sponsor advertisement banner';
+                testAd.style.position = 'absolute';
+                testAd.style.left = '-999px';
+                testAd.style.width = '1px';
+                testAd.style.height = '1px';
+                
+                document.body.appendChild(testAd);
+                
+                setTimeout(() => {
+                    const style = window.getComputedStyle(testAd);
+                    if (style.display === 'none' || testAd.offsetHeight === 0) {
+                        this.handleAdblockDetected('Script de teste bloqueado');
+                    }
+                    document.body.removeChild(testAd);
+                }, 100);
+            }
+
+            // Método 3: Detecção por Google Ads
+            detectByGoogleAds() {
+                // Verifica se o script do Google AdSense carregou
+                if (typeof adsbygoogle === 'undefined') {
+                    setTimeout(() => {
+                        if (typeof adsbygoogle === 'undefined') {
+                            this.handleAdblockDetected('Google AdSense bloqueado');
+                        }
+                    }, 3000);
+                }
+
+                // Testa elemento específico do AdSense
+                const adsenseTest = document.querySelector('.adsbygoogle.ad-test-element');
+                if (adsenseTest) {
+                    setTimeout(() => {
+                        const style = window.getComputedStyle(adsenseTest);
+                        if (style.display === 'none' || adsenseTest.offsetHeight === 0) {
+                            this.handleAdblockDetected('AdSense element bloqueado');
+                        }
+                    }, 2000);
+                }
+            }
+
+            // Método 4: Detecção por CSS
+            detectByCSS() {
+                // Criar folha de estilo de teste
+                const testCSS = document.createElement('style');
+                testCSS.innerHTML = '.adblock-test { display: block !important; }';
+                document.head.appendChild(testCSS);
+
+                const testDiv = document.createElement('div');
+                testDiv.className = 'adblock-test ads advertisement';
+                testDiv.style.position = 'absolute';
+                testDiv.style.left = '-999px';
+                document.body.appendChild(testDiv);
+
+                setTimeout(() => {
+                    const style = window.getComputedStyle(testDiv);
+                    if (style.display === 'none') {
+                        this.handleAdblockDetected('CSS ads rules detectadas');
+                    }
+                    document.head.removeChild(testCSS);
+                    document.body.removeChild(testDiv);
+                }, 500);
+            }
+
+            // Lidar com detecção de adblock
+            handleAdblockDetected(method) {
+                if (this.isAdblockDetected) return;
+                
+                this.isAdblockDetected = true;
+                console.warn('AdBlock detectado via:', method);
+                
+                // Mostrar overlay
+                document.getElementById('adblock-overlay').classList.add('show');
+                
+                // Adicionar classe ao body
+                document.body.classList.add('adblock-detected');
+                
+                // Atualizar status
+                this.updateStatus('🚫 Bloqueador de anúncios DETECTADO', '#ff0707');
+                
+                // Notificação
+                this.showNotification('Bloqueador de anúncios detectado! Por favor, desative-o para continuar.', 'warning');
+                
+                // Parar verificações
+                if (this.checkInterval) {
+                    clearInterval(this.checkInterval);
+                }
+            }
+
+            // Atualizar status na página
+            updateStatus(message, color = '#4c10d6') {
+                const statusElement = document.getElementById('adblock-status');
+                if (statusElement) {
+                    statusElement.textContent = message;
+                    statusElement.style.color = color;
+                }
+            }
+
+            // Mostrar notificação
+            showNotification(message, type = 'info') {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 5000);
+            }
+
+            // Teste manual
+            test() {
+                this.startDetection();
+                this.showNotification('Teste de detecção iniciado...', 'info');
+            }
+        }
+
+        // FUNÇÕES GLOBAIS
+        function reloadPage() {
+            window.location.reload();
+        }
+
+        function showWhyAds() {
+            alert('Os anúncios nos ajudam a:\n\n• Manter o servidor funcionando\n• Desenvolver novos recursos\n• Oferecer suporte gratuito\n• Manter o site sempre atualizado\n\nSeu apoio é fundamental para continuarmos oferecendo este serviço gratuitamente!');
+        }
+
+        function testAdblock() {
+            antiAdBlock.test();
+        }
+
+        // INICIALIZAR SISTEMA
+        const antiAdBlock = new AntiAdBlock();
+
+        // Status inicial
+        setTimeout(() => {
+            if (!antiAdBlock.isAdblockDetected) {
+                antiAdBlock.updateStatus('✅ Nenhum bloqueador detectado', '#10b981');
+                antiAdBlock.showNotification('Sistema funcionando normalmente!', 'success');
+            }
+        }, 5000);
+
+        // DETECÇÃO ADICIONAL POR NETWORK REQUESTS
+        const originalFetch = window.fetch;
+        window.fetch = function(...args) {
+            return originalFetch.apply(this, args).catch(error => {
+                if (error.message.includes('blocked')) {
+                    antiAdBlock.handleAdblockDetected('Network request bloqueado');
+                }
+                throw error;
+            });
         };
 
-        let testsCompleted = 0;
-        const totalTests = 4;
-
-        function updateMainStatus() {
-            const blockedTests = Object.values(testResults).filter(result => !result).length;
-            const mainStatus = document.getElementById('mainStatus');
-            
-            if (testsCompleted < totalTests) {
-                return; // Ainda testando
+        // PROTEÇÃO CONTRA MANIPULAÇÃO DO CONSOLE
+        const originalLog = console.log;
+        console.log = function(...args) {
+            // Detectar se alguém está tentando desabilitar o sistema
+            const message = args.join(' ').toLowerCase();
+            if (message.includes('adblock') && message.includes('disable')) {
+                antiAdBlock.handleAdblockDetected('Tentativa de desabilitar detecção');
             }
+            return originalLog.apply(this, args);
+        };
 
-            if (blockedTests === 0) {
-                mainStatus.className = 'status no-adblock';
-                mainStatus.innerHTML = '✅ Nenhum AdBlocker detectado!<br><small>Todos os testes passaram normalmente</small>';
-            } else if (blockedTests >= 2) {
-                mainStatus.className = 'status adblock-detected';
-                mainStatus.innerHTML = `🚫 AdBlocker detectado!<br><small>${blockedTests} de ${totalTests} testes foram bloqueados</small>`;
-            } else {
-                mainStatus.className = 'status adblock-detected';
-                mainStatus.innerHTML = `⚠️ Possível AdBlocker detectado<br><small>${blockedTests} de ${totalTests} testes foram bloqueados</small>`;
+        // VERIFICAÇÃO DE INTEGRIDADE DO SCRIPT
+        setInterval(() => {
+            if (!document.getElementById('adblock-overlay') && antiAdBlock.isAdblockDetected) {
+                // Se o overlay foi removido maliciosamente, recriar
+                location.reload();
             }
-        }
+        }, 5000);
+    </script>
 
-        function completeTest(testName, result) {
-            testResults[testName] = result;
-            testsCompleted++;
-            
-            const statusElement = document.getElementById(`${testName.replace(/([A-Z])/g, '-$1').toLowerCase()}-status`);
-            if (statusElement) {
-                statusElement.className = `method-status ${result ? 'allowed' : 'blocked'}`;
-                statusElement.textContent = result ? '✅ Permitido' : '🚫 Bloqueado';
-            }
-            
-            updateMainStatus();
-        }
-
-        // Teste 1: Google AdSense
-        function testAdSense() {
-            const script = document.createElement('script');
-            script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-            script.async = true;
-            
-            script.onload = function() {
-                // Se chegou aqui, o script carregou
-                setTimeout(() => {
-                    const adsByGoogle = window.adsbygoogle;
-                    completeTest('adsense', !!adsByGoogle);
-                }, 100);
-            };
-            
-            script.onerror = function() {
-                completeTest('adsense', false);
-            };
-            
-            // Timeout de segurança
-            setTimeout(() => {
-                if (!testResults.adsense && testsCompleted < totalTests) {
-                    completeTest('adsense', false);
-                }
-            }, 3000);
-            
-            document.head.appendChild(script);
-        }
-
-        // Teste 2: Google Tag Manager
-        function testGTM() {
-            const script = document.createElement('script');
-            script.src = 'https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID';
-            script.async = true;
-            
-            script.onload = function() {
-                completeTest('gtm', true);
-            };
-            
-            script.onerror = function() {
-                completeTest('gtm', false);
-            };
-            
-            setTimeout(() => {
-                if (testsCompleted === 0 || !testResults.gtm) {
-                    completeTest('gtm', false);
-                }
-            }, 3000);
-            
-            document.head.appendChild(script);
-        }
-
-        // Teste 3: Elemento com classe "ads"
-        function testAdsElement() {
-            setTimeout(() => {
-                const adsElement = document.getElementById('test-ads-element');
-                const computedStyle = window.getComputedStyle(adsElement);
-                const isHidden = computedStyle.display === 'none' || 
-                                computedStyle.visibility === 'hidden' || 
-                                adsElement.offsetHeight === 0;
-                
-                completeTest('adsElement', !isHidden);
-            }, 1000);
-        }
-
-        // Teste 4: Fetch para servidor de anúncios
-        function testFetch() {
-            fetch('https://googleads.g.doubleclick.net/pagead/id', {
-                method: 'GET',
-                mode: 'no-cors'
-            })
-            .then(() => {
-                completeTest('fetchTest', true);
-            })
-            .catch(() => {
-                completeTest('fetchTest', false);
-            });
-            
-            // Timeout de segurança
-            setTimeout(() => {
-                if (!testResults.fetchTest && Object.keys(testResults).every(key => key !== 'fetchTest' || testResults[key] !== undefined)) {
-                    completeTest('fetchTest', false);
-                }
-            }, 3000);
-        }
-
-        function runTest() {
-            // Reset
-            testResults = {
-                adsense: false,
-                gtm: false,
-                adsElement: false,
-                fetchTest: false
-            };
-            testsCompleted = 0;
-            
-            // Reset UI
-            document.getElementById('mainStatus').className = 'status loading';
-            document.getElementById('mainStatus').innerHTML = '<div class="spinner"></div><div>Verificando se AdBlocker está ativo...</div>';
-            
-            const statusElements = ['adsense-status', 'gtm-status', 'ads-element-status', 'fetch-status'];
-            statusElements.forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.className = 'method-status testing';
-                    element.textContent = 'Testando...';
-                }
-            });
-            
-            // Executar testes
-            testAdSense();
-            testGTM();
-            testAdsElement();
-            testFetch();
-        }
-
-        // Executar teste inicial
-        window.addEventListener('load', () => {
-            setTimeout(runTest, 500);
-        });
+    <!-- Teste de carregamento do AdSense -->
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </body>
 </html>
