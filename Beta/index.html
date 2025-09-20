@@ -267,41 +267,83 @@
         // Detectar AdBlock
         function detectAdBlock() {
             return new Promise((resolve) => {
-                // Método 1: Tentar criar um elemento que AdBlocks costumam bloquear
-                const adElement = document.createElement('div');
-                adElement.innerHTML = '&nbsp;';
-                adElement.className = 'adsbox';
-                adElement.style.position = 'absolute';
-                adElement.style.left = '-10000px';
-                adElement.style.top = '-1000px';
-                document.body.appendChild(adElement);
+                let adBlockDetected = false;
+                
+                // Método 1: Criar elemento com classes que AdBlocks costumam bloquear
+                const testAd = document.createElement('div');
+                testAd.innerHTML = '&nbsp;';
+                testAd.className = 'adsbox adsbygoogle ads advertisement banner-ads';
+                testAd.style.position = 'absolute';
+                testAd.style.left = '-10000px';
+                testAd.style.top = '-10000px';
+                testAd.style.width = '1px';
+                testAd.style.height = '1px';
+                testAd.setAttribute('id', 'ads-text-banner');
+                document.body.appendChild(testAd);
 
-                setTimeout(() => {
-                    const isBlocked = adElement.offsetHeight === 0 || 
-                                     adElement.offsetWidth === 0 || 
-                                     adElement.offsetLeft === 0 || 
-                                     adElement.offsetTop === 0 ||
-                                     window.getComputedStyle(adElement).display === 'none' ||
-                                     window.getComputedStyle(adElement).visibility === 'hidden';
-                    
-                    document.body.removeChild(adElement);
-                    
-                    // Método 2: Verificar se scripts de anúncio foram bloqueados
-                    const script = document.createElement('script');
-                    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-                    script.onerror = () => resolve(true);
-                    script.onload = () => resolve(isBlocked);
-                    
-                    // Se não carregar em 2 segundos, consideramos bloqueado
-                    setTimeout(() => resolve(true), 2000);
-                    
-                    document.head.appendChild(script);
-                    
-                    // Se o método 1 já detectou, resolve imediatamente
-                    if (isBlocked) {
+                // Método 2: Tentar carregar script de anúncios
+                const bait = document.createElement('script');
+                bait.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+                bait.style.display = 'none';
+                
+                let scriptLoaded = false;
+                let timeoutReached = false;
+                
+                bait.onload = () => {
+                    scriptLoaded = true;
+                    if (!timeoutReached) {
+                        checkResults();
+                    }
+                };
+                
+                bait.onerror = () => {
+                    adBlockDetected = true;
+                    if (!timeoutReached) {
                         resolve(true);
                     }
-                }, 100);
+                };
+                
+                document.head.appendChild(bait);
+                
+                // Aguardar um pouco e verificar os resultados
+                setTimeout(() => {
+                    timeoutReached = true;
+                    checkResults();
+                }, 1000);
+                
+                function checkResults() {
+                    try {
+                        // Verificar se o elemento foi modificado/bloqueado
+                        const computedStyle = window.getComputedStyle(testAd);
+                        const isElementHidden = testAd.offsetHeight === 0 || 
+                                              testAd.offsetWidth === 0 || 
+                                              computedStyle.display === 'none' || 
+                                              computedStyle.visibility === 'hidden' ||
+                                              computedStyle.opacity === '0';
+                        
+                        // Se o script não carregou OU o elemento foi escondido = AdBlock ativo
+                        if (!scriptLoaded || isElementHidden || adBlockDetected) {
+                            adBlockDetected = true;
+                        }
+                        
+                        // Método 3: Verificar se window.google existe (só existe se scripts carregaram)
+                        if (typeof window.google === 'undefined' && !scriptLoaded) {
+                            adBlockDetected = true;
+                        }
+                        
+                        // Limpar elementos criados
+                        try {
+                            document.body.removeChild(testAd);
+                            document.head.removeChild(bait);
+                        } catch(e) {}
+                        
+                        resolve(adBlockDetected);
+                        
+                    } catch(e) {
+                        // Em caso de erro, assumir que AdBlock está ativo
+                        resolve(true);
+                    }
+                }
             });
         }
 
