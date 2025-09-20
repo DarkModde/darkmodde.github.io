@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detecção Avançada de Adblock</title>
+    <script src="https://cdn.jsdelivr.net/npm/blockadblock"></script>
+    <style>
+        .adblock-warning {
+            color: red;
+            font-size: 20px;
+            display: none;
+        }
+
+        .no-adblock-message {
+            color: green;
+            font-size: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="adblock-warning">Você está usando um bloqueador de anúncios!</div>
+    <div class="no-adblock-message">Você não está usando um bloqueador de anúncios!</div>
+
+    <script>
+        // Inicializa o BlockAdBlock
+        var checkAdBlock = new BlockAdBlock();
+
+        // Detecta o bloqueio de anúncios
+        checkAdBlock.onDetected(function() {
+            // Exibe a mensagem de adblock detectado
+            document.querySelector('.adblock-warning').style.display = 'block';
+        });
+
+        checkAdBlock.onNotDetected(function() {
+            // Exibe a mensagem de adblock não detectado
+            document.querySelector('.no-adblock-message').style.display = 'block';
+        });
+
+        // Executa a verificação imediatamente
+        checkAdBlock.check();
+    </script>
+
+</body>
+</html>
