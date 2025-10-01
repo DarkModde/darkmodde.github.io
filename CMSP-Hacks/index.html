@@ -1484,8 +1484,7 @@
             if (cachedAvatar) return cachedAvatar;
             try {
                 const data = await fetchWithFallback(
-                    `https://dnext-api.vercel.app/api/discord/user/${userId}`,
-                    `https://dnext-apii.vercel.app/api/discord/user/${userId}`
+                    `https://next-api.squareweb.app/api/discord/user/${userId}`
                 );
                 if (data?.avatar?.link) {
                     const avatarUrl = `${data.avatar.link}.png?size=2048`;
@@ -1646,8 +1645,7 @@
 
             try {
                 const data = await fetchWithFallback(
-                    'https://dnext-apii.vercel.app/api/pixgg/donations',
-                    'https://dnext-apiii.vercel.app/api/pixgg/donations'
+                    'https://next-api.squareweb.app/api/pixgg/donations'
                 );
                 donationsData = Array.isArray(data) ? data : [];
                 renderDonations();
@@ -1706,6 +1704,7 @@
 </body>
 
 </html>
+
 
 
 
