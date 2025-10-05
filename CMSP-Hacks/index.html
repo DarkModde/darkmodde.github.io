@@ -24,16 +24,18 @@
     <meta name="twitter:image" content="https://i.imgur.com/PBnK2Pb.png">
 
     <!-- Cloudflare Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f04a2200ffb246399e814a8147fa94a8"}'></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "f04a2200ffb246399e814a8147fa94a8"}'></script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6416626749154410"
-     crossorigin="anonymous"></script>
-
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6416626749154410" crossorigin="anonymous"></script>
     <script src="https://cmp.gatekeeperconsent.com/min.js" data-cfasync="false"></script>
     <script src="https://the.gatekeeperconsent.com/cmp.min.js" data-cfasync="false"></script>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- CDNs -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide/dist/umd/lucide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/aos/dist/aos.min.css" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -279,16 +281,12 @@
             gap: 8px;
         }
 
-        .special-button.website {
-            background: linear-gradient(135deg, #4a69bd, #1e3799);
-        }
-
         .special-button.donation {
-            background: linear-gradient(135deg, #6ab04c, #4cd137);
+            background: #189c44;
         }
 
         .special-button.discord {
-            background: linear-gradient(135deg, #7289da, #5865f2);
+            background: #4169e1;
         }
 
         .special-button:before {
@@ -313,6 +311,12 @@
 
         .special-button:active {
             transform: translateY(1px);
+        }
+
+        .khan-button {
+            grid-column: span 2;
+            width: 100%;
+            justify-content: center;
         }
 
         .notification {
@@ -373,29 +377,6 @@
 
             90% {
                 transform: translateX(1px) rotate(0.5deg);
-            }
-        }
-
-        .notification-icon {
-            font-size: 1.8rem;
-            color: #4caf50;
-            margin-right: 15px;
-            animation: pulse 2s infinite;
-            flex-shrink: 0;
-            margin-top: 3px;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-
-            100% {
-                transform: scale(1);
             }
         }
 
@@ -466,10 +447,6 @@
             border-left: 4px solid #03a9f4;
         }
 
-        .copy-notification .notification-icon {
-            color: #03a9f4;
-        }
-
         .copy-notification .notification-title {
             color: #03a9f4;
         }
@@ -507,12 +484,6 @@
             text-align: left;
             color: #ccc;
             line-height: 1.6;
-        }
-
-        .credits-title {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: #e0e0e0;
         }
 
         .credit-category-title {
@@ -814,18 +785,6 @@
             font-style: italic;
         }
 
-        .doador-mes-tag {
-            margin-top: 8px;
-            font-size: 0.85rem;
-            background: #f1c40f;
-            color: #000;
-            padding: 3px 10px;
-            border-radius: 12px;
-            display: inline-block;
-            font-weight: bold;
-            animation: pulse 2s infinite;
-        }
-
         .donation-rank {
             display: flex;
             align-items: center;
@@ -867,12 +826,6 @@
             text-align: center;
         }
 
-        .khan-button {
-            grid-column: span 2;
-            width: 100%;
-            justify-content: center;
-        }
-
         .lucide-icon {
             width: 20px;
             height: 20px;
@@ -884,12 +837,6 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-        }
-
-        .category-title .icon-text-container,
-        .button .icon-text-container,
-        .special-button .icon-text-container {
-            justify-content: center;
         }
 
         .notification-title .icon-text-container {
@@ -975,10 +922,6 @@
             .buttons-container {
                 grid-template-columns: 1fr;
             }
-
-            .khan-button {
-                grid-column: span 1;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1056,7 +999,7 @@
         <span class="typing-cursor"></span>
         <div class="description">
             <p>Olá bem-vindo ao site do <strong>CMSP Hacks</strong>, onde você encontra os melhores métodos,
-                scripts và hacks para facilitar suas tarefas escolares.</p>
+                scripts e hacks para facilitar suas tarefas escolares.</p>
         </div>
 
         <div class="double-category-boxes">
@@ -1070,7 +1013,7 @@
                 <div class="buttons-container">
                     <a href="https://taskitos.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon-text-container">
-                            <i data-lucide="clipboard-list" class="lucide-icon" data-color="#FFFFFF"></i>
+                            <i data-lucide="clipboard-check" class="lucide-icon" data-color="#FFFFFF"></i>
                             <span>TarefaSP</span>
                         </div>
                     </a>
@@ -1164,7 +1107,7 @@
                 <a href="https://discord.gg/platformdestroyer" class="special-button discord" data-aos="fade-up"
                     data-aos-delay="300">
                     <div class="icon-text-container">
-                        <i data-lucide="message-square" class="lucide-icon" data-color="#FFFFFF"></i>
+                        <i data-lucide="leaf" class="lucide-icon" data-color="#FFFFFF"></i>
                         <span>Discord</span>
                     </div>
                 </a>
@@ -1189,7 +1132,8 @@
                         <span>Doar Agora</span>
                     </div>
                 </button>
-                <button class="dismiss-button" onclick="dismissNotification()">Mais tarde</button>
+                <button class="dismiss-button" onclick="dismissNotification(`donation-notification`)">Mais
+                    tarde</button>
             </div>
         </div>
     </div>
@@ -1207,18 +1151,18 @@
         </div>
     </div>
 
-    <div class="notification" id="optimization-notification" style="border-left-color: #9b59b6; display: none;">
+    <div class="notification" id="optimization-notification" style="border-left-color: #F5276C; display: none;">
         <div class="notification-content">
-            <div class="notification-title" style="color: #9b59b6;">
+            <div class="notification-title" style="color: #F5276C;">
                 <div class="icon-text-container">
-                    <i data-lucide="zap" class="lucide-icon" data-color="#9b59b6"></i>
+                    <i data-lucide="zap" class="lucide-icon" data-color="#F5276C"></i>
                     <span>DarkStore - Serviços</span>
                 </div>
             </div>
             <div class="notification-message">Tem preguiça de realizar suas tarefas? Entre na DarkStore que nós faremos
                 para você! Serviços rápidos e confiáveis.</div>
             <div class="notification-button-container">
-                <button class="notification-button" style="background: #9b59b6;" onclick="joinOptimizationServer()">
+                <button class="notification-button" style="background: #F5276C;" onclick="joinOptimizationServer()">
                     <div class="icon-text-container">
                         <i data-lucide="square-plus" class="lucide-icon" data-color="#FFFFFF"></i>
                         <span>Acessar DarkStore</span>
@@ -1288,7 +1232,7 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos/dist/aos.min.js"></script>
     <script>
         lucide.createIcons();
 
@@ -1304,7 +1248,6 @@
         let isDeleting = false;
         let currentTab = 'recent';
         let donationsData = [];
-        const DarkBlocker = false;
 
         const owners = [
             { id: "852703201068187668", name: "Cupiditys" },
@@ -1375,7 +1318,7 @@
             }, 15000);
         };
 
-        const showOptimizationNotification = () => {
+        const showStoreNotification = () => {
             const notification = document.getElementById("optimization-notification");
             if (!notification) return;
             notification.style.display = "block";
@@ -1466,17 +1409,6 @@
             const modal = document.getElementById('user-modal');
             modal.classList.remove('show');
             setTimeout(() => modal.style.display = 'none', 300);
-        };
-
-        const cleanAvatarCache = (maxAgeInDays = 7) => {
-            const currentTime = Date.now();
-            const cacheKey = 'avatar_cache_timestamp';
-            const lastCleanTime = localStorage.getItem(cacheKey);
-            if (lastCleanTime && (currentTime - parseInt(lastCleanTime) < maxAgeInDays * 24 * 60 * 60 * 1000)) return;
-            Object.keys(localStorage)
-                .filter(key => key.startsWith('discord_avatar_'))
-                .forEach(key => localStorage.removeItem(key));
-            localStorage.setItem(cacheKey, currentTime.toString());
         };
 
         const fetchDiscordAvatar = async (userId) => {
@@ -1654,24 +1586,14 @@
             }
         };
 
-        const loadAdBlocker = () => {
-            if (!DarkBlocker) return;
-            const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/gh/DarkModde/Dark-Scripts/DarkBlocker.js';
-            script.async = true;
-            document.head.appendChild(script);
-        };
-
         const initializeSite = () => {
             setTimeout(carregarDoacoes, 1500);
             setInterval(carregarDoacoes, 120000);
             setTimeout(typeTitle, 1000);
-            setTimeout(showOptimizationNotification, 1000);
+            setTimeout(showStoreNotification, 1000);
             setTimeout(showNotification, 16000);
 
             loadCreditCards();
-            cleanAvatarCache();
-            loadAdBlocker();
 
             AOS.init({
                 duration: 800,
@@ -1704,8 +1626,3 @@
 </body>
 
 </html>
-
-
-
-
-
