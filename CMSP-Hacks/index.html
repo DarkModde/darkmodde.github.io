@@ -74,39 +74,6 @@
             -o-user-drag: none;
             pointer-events: none;
         }
-        
-        /* Adicionado para Estrutura de Anúncios */
-        .main-layout-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            width: 100%;
-            padding: 0 20px;
-        }
-
-        .main-content {
-            flex-grow: 1;
-            max-width: 1000px;
-            width: 100%;
-        }
-
-        .side-ad-container {
-            width: 200px;
-            flex-shrink: 0;
-            margin-top: 40px;
-        }
-        
-        .top-bottom-ad-container {
-            margin: 20px auto;
-            width: 100%;
-        }
-
-        @media (max-width: 1500px) {
-            .side-ad-container {
-                display: none;
-            }
-        }
-        /* Fim dos Estilos de Anúncios */
 
         .container {
             max-width: 1000px;
@@ -924,226 +891,129 @@
         <i data-lucide="chevron-left" class="lucide-icon"></i>
     </div>
 
-    <div class="main-layout-container">
-        <div class="side-ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-6416626749154410"
-                 data-ad-slot="1273485651"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+    <div class="container">
+        <h1 class="typing-title" id="title"></h1>
+        <div class="description">
+            <p>Olá bem-vindo ao site do <strong>CMSP Hacks</strong>, onde você encontra os melhores métodos,
+                scripts e hacks para facilitar suas tarefas escolares.</p>
         </div>
-        <main class="main-content">
-            <div class="container">
-                <div class="top-bottom-ad-container">
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-6416626749154410"
-                         data-ad-slot="1273485651"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>
-                         (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </div>
-                <h1 class="typing-title" id="title"></h1>
-                <div class="description">
-                    <p>Olá bem-vindo ao site do <strong>CMSP Hacks</strong>, onde você encontra os melhores métodos,
-                        scripts e hacks para facilitar suas tarefas escolares.</p>
-                </div>
 
-                <div class="double-category-boxes">
-                    <div class="category-box">
-                        <h2 class="category-title">
-                            <div class="icon-text-container">
-                                <i data-lucide="globe" class="lucide-icon" data-color="#4169E1"></i>
-                                <span>Websites</span>
-                            </div>
-                        </h2>
-
-                        <div class="buttons-container">
-                            <a href="https://taskitos.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="100">
-                                <div class="icon-text-container">
-                                    <i data-lucide="clipboard-check" class="lucide-icon" data-color="#FFFFFF"></i>
-                                    <span>TarefaSP</span>
-                                </div>
-                            </a>
-
-                            <a href="https://redacao.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="200">
-                                <div class="icon-text-container">
-                                    <i data-lucide="pen-tool" class="lucide-icon" data-color="#FFFFFF"></i>
-                                    <span>RedaçãoSP</span>
-                                </div>
-                            </a>
-
-                            <a href="https://crimsonzerohub.xyz/expansao" class="button" data-aos="fade-up" data-aos-delay="300">
-                                <div class="icon-text-container">
-                                    <i data-lucide="moon" class="lucide-icon" data-color="#FFFFFF"></i>
-                                    <span>Expansão</span>
-                                </div>
-                            </a>
-
-                            <a href="https://matific.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="400">
-                                <div class="icon-text-container">
-                                    <i data-lucide="calculator" class="lucide-icon" data-color="#FFFFFF"></i>
-                                    <span>Matific</span>
-                                </div>
-                            </a>
-
-                            <a href="https://speakify.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="500">
-                                <div class="icon-text-container">
-                                    <i data-lucide="audio-lines" class="lucide-icon" data-color="#FFFFFF"></i>
-                                    <span>SPeak</span>
-                                </div>
-                            </a>
-
-                            <a href="https://leiasp.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="600">
-                                <div class="icon-text-container">
-                                    <i data-lucide="book-open" class="lucide-icon" data-color="#FFFFFF"></i>
-                                    <span>LeiaSP</span>
-                                </div>
-                            </a>
-
-                            <a href="https://crimsonzerohub.xyz/alura" class="button" data-aos="fade-up" data-aos-delay="700">
-                                <div class="icon-text-container">
-                                    <i data-lucide="laptop" class="lucide-icon" data-color="#FFFFFF"></i>
-                                    <span>Alura</span>
-                                </div>
-                            </a>
-
-                            <a href="https://crimsonzerohub.xyz/preparasp" class="button" data-aos="fade-up" data-aos-delay="800">
-                                <div class="icon-text-container">
-                                    <i data-lucide="feather" class="lucide-icon" data-color="#FFFFFF"></i>
-                                    <span>PreparaSP</span>
-                                </div>
-                            </a>
-
-                            <a href="https://apostilas-cmsp.vercel.app/" class="button" data-aos="fade-up" data-aos-delay="900" style="grid-column: span 2;">
-                                <div class="icon-text-container">
-                                    <i data-lucide="library-big" class="lucide-icon" data-color="#FFFFFF"></i>
-                                    <span>Apostilas</span>
-                                </div>
-                            </a>
-                        </div>
+        <div class="double-category-boxes">
+            <div class="category-box">
+                <h2 class="category-title">
+                    <div class="icon-text-container">
+                        <i data-lucide="globe" class="lucide-icon" data-color="#4169E1"></i>
+                        <span>Websites</span>
                     </div>
+                </h2>
 
-                    <div class="category-box">
-                        <h2 class="category-title">
-                            <div class="icon-text-container">
-                                <i data-lucide="file-code" class="lucide-icon" data-color="#4169E1"></i>
-                                <span>Scripts</span>
-                            </div>
-                        </h2>
-
-                        <div class="buttons-container">
-                            <button class="button khan-button" data-aos="fade-up" data-aos-delay="300" onclick="copyScript('Khan Academy')">
-                                <div class="icon-text-container">
-                                    <i data-lucide="graduation-cap" class="lucide-icon" data-color="#FFFFFF"></i>
-                                    <span>Khan Academy</span>
-                                </div>
-                            </button>
+                <div class="buttons-container">
+                    <a href="https://taskitos.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-text-container">
+                            <i data-lucide="clipboard-check" class="lucide-icon" data-color="#FFFFFF"></i>
+                            <span>TarefaSP</span>
                         </div>
+                    </a>
 
-                        <div class="script-tip">
-                            💡 Dica: Clique no botão para copiar o script e cole no favoritos do navegador
+                    <a href="https://redacao.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-text-container">
+                            <i data-lucide="pen-tool" class="lucide-icon" data-color="#FFFFFF"></i>
+                            <span>RedaçãoSP</span>
                         </div>
-                    </div>
-                </div>
+                    </a>
 
-                <div class="category-container">
-                    <div class="special-buttons-container">
-                        <a href="https://pixgg.com/DarkMode" class="special-button donation" data-aos="fade-up" data-aos-delay="200">
-                            <div class="icon-text-container">
-                                <i data-lucide="heart" class="lucide-icon" data-color="#FFFFFF"></i>
-                                <span>Doação</span>
-                            </div>
-                        </a>
+                    <a href="https://crimsonstrauss.xyz/expansao" class="button" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon-text-container">
+                            <i data-lucide="moon" class="lucide-icon" data-color="#FFFFFF"></i>
+                            <span>Expansão</span>
+                        </div>
+                    </a>
 
-                        <a href="https://discord.gg/platformdestroyer" class="special-button discord" data-aos="fade-up" data-aos-delay="300">
-                            <div class="icon-text-container">
-                                <i data-lucide="leaf" class="lucide-icon" data-color="#FFFFFF"></i>
-                                <span>Discord</span>
-                            </div>
-                        </a>
-                    </div>
+                    <a href="https://matific.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon-text-container">
+                            <i data-lucide="calculator" class="lucide-icon" data-color="#FFFFFF"></i>
+                            <span>Matific</span>
+                        </div>
+                    </a>
+
+                    <a href="https://speakify.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="500">
+                        <div class="icon-text-container">
+                            <i data-lucide="audio-lines" class="lucide-icon" data-color="#FFFFFF"></i>
+                            <span>SPeak</span>
+                        </div>
+                    </a>
+
+                    <a href="https://leiasp.cupiditys.lol/" class="button" data-aos="fade-up" data-aos-delay="600">
+                        <div class="icon-text-container">
+                            <i data-lucide="book-open" class="lucide-icon" data-color="#FFFFFF"></i>
+                            <span>LeiaSP</span>
+                        </div>
+                    </a>
+
+                    <a href="https://crimsonstrauss.xyz/alura" class="button" data-aos="fade-up" data-aos-delay="700">
+                        <div class="icon-text-container">
+                            <i data-lucide="laptop" class="lucide-icon" data-color="#FFFFFF"></i>
+                            <span>Alura</span>
+                        </div>
+                    </a>
+
+                    <a href="https://crimsonstrauss.xyz/preparasp" class="button" data-aos="fade-up" data-aos-delay="800">
+                        <div class="icon-text-container">
+                            <i data-lucide="feather" class="lucide-icon" data-color="#FFFFFF"></i>
+                            <span>PreparaSP</span>
+                        </div>
+                    </a>
+
+                    <a href="https://apostilas-cmsp.vercel.app/" class="button" data-aos="fade-up" data-aos-delay="900" style="grid-column: span 2;">
+                        <div class="icon-text-container">
+                            <i data-lucide="library-big" class="lucide-icon" data-color="#FFFFFF"></i>
+                            <span>Apostilas</span>
+                        </div>
+                    </a>
                 </div>
             </div>
 
-            <footer class="footer">
-                 <div class="top-bottom-ad-container">
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-6416626749154410"
-                         data-ad-slot="1273485651"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>
-                         (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </div>
-                <div class="about-section" data-aos="fade-up">
-                    <h2 class="section-title">Sobre</h2>
-                    <div class="about-content">
-                        <p>Olá, bem-vindo ao site do <strong>CMSP Hacks</strong>! Aqui vocês vão encontrar os
-                            melhores métodos, scripts e hacks para facilitar e automatizar suas tarefas da escola. Temos TODAS
-                            as plataformas do Sala do Futuro – então aproveitem!</p>
-                        <br>
-                        <p>Nossa equipe é formada por desenvolvedores e estudantes que já não aguentam mais essas plataformas de
-                            São Paulo, que não fazem diferença nenhuma e só atrapalham a vida dos alunos. Por isso estamos aqui:
-                            para facilitar a vida de vocês, alunos. Obrigado por apoiarem nossos projetos.</p>
-                        <br>
-                        <p><strong>Ass: <\DarkMode></strong></p>
+            <div class="category-box">
+                <h2 class="category-title">
+                    <div class="icon-text-container">
+                        <i data-lucide="file-code" class="lucide-icon" data-color="#4169E1"></i>
+                        <span>Scripts</span>
                     </div>
-                </div>
+                </h2>
 
-                <div class="credits-section">
-                    <div class="credits-row">
-                        <div class="credits-column">
-                            <h3 class="credit-category-title" data-aos="fade-up">
-                                <div class="icon-text-container">
-                                    <i data-lucide="crown" class="lucide-icon" data-color="#FFD700"></i>
-                                    <span>Fundadores</span>
-                                </div>
-                            </h3>
-                            <div class="credits-container" id="owners-container"></div>
-                        </div>
-                        <div class="credits-column">
-                            <h3 class="credit-category-title" data-aos="fade-up">
-                                <div class="icon-text-container">
-                                    <i data-lucide="star" class="lucide-icon" data-color="#4169E1"></i>
-                                    <span>Co-fundador</span>
-                                </div>
-                            </h3>
-                            <div class="credits-container" id="coleaders-container"></div>
-                        </div>
-                    </div>
-
-                    <h3 class="credit-category-title managers-title" data-aos="fade-up">
+                <div class="buttons-container">
+                    <button class="button khan-button" data-aos="fade-up" data-aos-delay="300" onclick="copyScript('Khan Academy')">
                         <div class="icon-text-container">
-                            <i data-lucide="code" class="lucide-icon" data-color="#32CD32"></i>
-                            <span>Desenvolvedores</span>
+                            <i data-lucide="graduation-cap" class="lucide-icon" data-color="#FFFFFF"></i>
+                            <span>Khan Academy</span>
                         </div>
-                    </h3>
-                    <div class="credits-container" id="managers-container"></div>
+                    </button>
                 </div>
-            </footer>
-        </main>
 
-        <div class="side-ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-6416626749154410"
-                 data-ad-slot="1273485651"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+                <div class="script-tip">
+                    💡 Dica: Clique no botão para copiar o script e cole no favoritos do navegador
+                </div>
+            </div>
         </div>
+
+        <div class="category-container">
+            <div class="special-buttons-container">
+                <a href="https://pixgg.com/DarkMode" class="special-button donation" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-text-container">
+                        <i data-lucide="heart" class="lucide-icon" data-color="#FFFFFF"></i>
+                        <span>Doação</span>
+                    </div>
+                </a>
+
+                <a href="https://discord.gg/platformdestroyer" class="special-button discord" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon-text-container">
+                        <i data-lucide="leaf" class="lucide-icon" data-color="#FFFFFF"></i>
+                        <span>Discord</span>
+                    </div>
+                </a>
+            </div>
         </div>
+    </div>
 
     <div class="notification" id="donation-notification">
         <div class="notification-content">
@@ -1213,6 +1083,54 @@
             </div>
         </div>
     </div>
+
+    <footer class="footer">
+        <div class="about-section" data-aos="fade-up">
+            <h2 class="section-title">Sobre</h2>
+            <div class="about-content">
+                <p>Olá, bem-vindo ao site do <strong>CMSP Hacks</strong>! Aqui vocês vão encontrar os
+                    melhores métodos, scripts e hacks para facilitar e automatizar suas tarefas da escola. Temos TODAS
+                    as plataformas do Sala do Futuro – então aproveitem!</p>
+                <br>
+                <p>Nossa equipe é formada por desenvolvedores e estudantes que já não aguentam mais essas plataformas de
+                    São Paulo, que não fazem diferença nenhuma e só atrapalham a vida dos alunos. Por isso estamos aqui:
+                    para facilitar a vida de vocês, alunos. Obrigado por apoiarem nossos projetos.</p>
+                <br>
+                <p><strong>Ass: <\DarkMode></strong></p>
+            </div>
+        </div>
+
+        <div class="credits-section">
+            <div class="credits-row">
+                <div class="credits-column">
+                    <h3 class="credit-category-title" data-aos="fade-up">
+                        <div class="icon-text-container">
+                            <i data-lucide="crown" class="lucide-icon" data-color="#FFD700"></i>
+                            <span>Fundadores</span>
+                        </div>
+                    </h3>
+                    <div class="credits-container" id="owners-container"></div>
+                </div>
+                <div class="credits-column">
+                    <h3 class="credit-category-title" data-aos="fade-up">
+                        <div class="icon-text-container">
+                            <i data-lucide="star" class="lucide-icon" data-color="#4169E1"></i>
+                            <span>Co-fundador</span>
+                        </div>
+                    </h3>
+                    <div class="credits-container" id="coleaders-container"></div>
+                </div>
+            </div>
+
+            <h3 class="credit-category-title managers-title" data-aos="fade-up">
+                <div class="icon-text-container">
+                    <i data-lucide="code" class="lucide-icon" data-color="#32CD32"></i>
+                    <span>Desenvolvedores</span>
+                </div>
+            </h3>
+            <div class="credits-container" id="managers-container"></div>
+        </div>
+    </footer>
 
     <div id="user-modal" class="modal">
         <div class="modal-content">
@@ -1647,4 +1565,3 @@
     </script>
 </body>
 </html>
-
