@@ -1,737 +1,689 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="DarkMode, desenvolvedor criador de ferramentas inovadoras e soluções tecnológicas.">
-  <meta name="keywords" content="DarkMode, portfólio desenvolvedor, Vinicius developer, ferramentas OSINT, Dark-OSINT, NIGHTBOX, CMSP Plataformas Hacks, cybersecurity, automação scripts">
-  <link rel="icon" type="image/png" href="https://i.imgur.com/VOvTamJ.png">
-  <meta name="author" content="DarkMode">
-  <title>Dark-Developer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark-Developer</title>
+    <meta name="description" content="DarkMode, desenvolvedor criador de ferramentas inovadoras e soluções tecnológicas.">
+    <meta name="keywords" content="DarkMode, portfólio desenvolvedor, Vinicius developer, ferramentas OSINT, Dark-OSINT, NIGHTBOX, CMSP Plataformas Hacks, cybersecurity, automação scripts">
+    <meta name="author" content="DarkMode">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/VOvTamJ.png">
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Dark-Developer">
-  <meta property="og:description" content="Portfólio de DarkMode, desenvolvedor de ferramentas inovadoras.">
-  <meta property="og:image" content="https://i.imgur.com/VYDNZxr.png">
-  <meta property="og:url" content="https://darkmodde.xyz">
-  <meta property="og:type" content="website">
+    <meta property="og:title" content="Dark-Developer">
+    <meta property="og:description" content="Portfólio de DarkMode, desenvolvedor de ferramentas inovadoras.">
+    <meta property="og:image" content="https://i.imgur.com/VYDNZxr.png">
+    <meta property="og:url" content="https://darkmodde.xyz">
+    <meta property="og:type" content="website">
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Dark-Developer">
-  <meta name="twitter:description" content="Portfólio de DarkMode, desenvolvedor de ferramentas inovadoras.">
-  <meta name="twitter:image" content="https://i.imgur.com/VYDNZxr.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dark-Developer">
+    <meta name="twitter:description" content="Portfólio de DarkMode, desenvolvedor de ferramentas inovadoras.">
+    <meta name="twitter:image" content="https://i.imgur.com/VYDNZxr.png">
 
-  <!-- Preload de recursos -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" as="style">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6416626749154410"
-     crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-  <!-- CSS -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  
-  <style>
-    :root {
-      --primary: #ffffff;
-      --primary-dark: #cccccc;
-      --bg-color: #000000;
-      --card-bg: #111111;
-      --text-color: #ffffff;
-      --text-secondary: #aaaaaa;
-      --grid-color: rgba(255, 255, 255, 0.05);
-      --accent-color: #333333;
-      --transition: all 0.3s ease;
-    }
+    <style>
+        :root {
+            --primary: #ffffff;
+            --primary-dark: #cccccc;
+            --bg-color: #000000;
+            --card-bg: #111111;
+            --text-color: #ffffff;
+            --text-secondary: #aaaaaa;
+            --grid-color: rgba(255, 255, 255, 0.05);
+            --accent-color: #333333;
+            --transition: all 0.3s ease;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body, html {
-      width: 100%;
-      min-height: 100vh;
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      overflow-x: hidden;
-      background-image: 
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-      background-size: 30px 30px;
-      background-position: center center;
-      user-select: none;
-    }
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: center center;
+            user-select: none;
+        }
 
-    img {
-      pointer-events: none;
-      max-width: 100%;
-      height: auto;
-    }
+        img {
+            pointer-events: none;
+            max-width: 100%;
+            height: auto;
+        }
 
-    /* Animações */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    @keyframes scaleIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
 
-    /* Tela de introdução */
-    #intro {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: var(--bg-color);
-      color: var(--text-color);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      z-index: 100;
-      transition: opacity 0.5s ease;
-    }
+        #intro {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            z-index: 100;
+            transition: opacity 0.5s ease;
+        }
 
-    #intro h1 {
-      font-family: 'Roboto Mono', monospace;
-      margin-bottom: 1rem;
-      color: var(--primary);
-      font-weight: 700;
-    }
+        #intro h1 {
+            font-family: 'Roboto Mono', monospace;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
 
-    #intro .loader {
-      width: 50px;
-      height: 50px;
-      border: 3px solid var(--accent-color);
-      border-top-color: var(--primary);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-top: 2rem;
-    }
+        #intro .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--accent-color);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-top: 2rem;
+        }
 
-    /* Conteúdo principal */
-    #main {
-      display: none;
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      padding: 2rem;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
+        #main {
+            display: none;
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
 
-    #main.show {
-      opacity: 1;
-    }
+        #main.show {
+            opacity: 1;
+        }
 
-    /* Seção de perfil */
-    #profile {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: rgba(17, 17, 17, 0.9);
-      border-radius: 16px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--accent-color);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      animation: fadeIn 0.8s ease-out forwards;
-    }
+        #profile {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(17, 17, 17, 0.9);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
 
-    #profile img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--primary);
-      transition: var(--transition);
-    }
+        #profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            transition: var(--transition);
+        }
 
-    #profile img:hover {
-      transform: scale(1.05);
-    }
+        #profile img:hover {
+            transform: scale(1.05);
+        }
 
-    #profile h1 {
-      margin: 1rem 0 0.5rem;
-      font-size: 2.2rem;
-      font-weight: 600;
-      font-family: 'Roboto Mono', monospace;
-      color: var(--primary);
-    }
+        #profile h1 {
+            margin: 1rem 0 0.5rem;
+            font-size: 2.2rem;
+            font-weight: 600;
+            font-family: 'Roboto Mono', monospace;
+            color: var(--primary);
+        }
 
-    #profile p {
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin: 1rem auto;
-      max-width: 600px;
-    }
+        #profile p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 1rem auto;
+            max-width: 600px;
+        }
 
-    /* Botões sociais */
-    .social-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
-    }
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
 
-    .social-buttons a {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.7rem 1.5rem;
-      background: var(--accent-color);
-      color: var(--primary);
-      border-radius: 8px;
-      text-decoration: none;
-      transition: var(--transition);
-      font-weight: 500;
-      border: 1px solid var(--text-secondary);
-    }
+        .social-buttons a {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.7rem 1.5rem;
+            background: var(--accent-color);
+            color: var(--primary);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+            border: 1px solid var(--text-secondary);
+        }
 
-    .social-buttons a:hover {
-      background: var(--primary);
-      color: var(--bg-color);
-      transform: translateY(-2px);
-    }
+        .social-buttons a:hover {
+            background: var(--primary);
+            color: var(--bg-color);
+            transform: translateY(-2px);
+        }
 
-    .social-buttons a i {
-      margin-right: 8px;
-    }
+        .social-buttons a i {
+            margin-right: 8px;
+        }
 
-    /* Seção de projetos */
-    #projects {
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 0 2rem;
-    }
+        #projects {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
 
-    #projects h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      position: relative;
-      display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
-      padding-bottom: 0.5rem;
-      color: var(--primary);
-    }
+        #projects h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding-bottom: 0.5rem;
+            color: var(--primary);
+        }
 
-    #projects h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--primary);
-      border-radius: 3px;
-    }
+        #projects h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
 
-    .project-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: var(--transition);
-      border: 1px solid var(--accent-color);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      animation: scaleIn 0.6s ease-out forwards;
-      animation-delay: calc(var(--order) * 0.1s);
-      opacity: 0;
-    }
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 0.6s ease-out forwards;
+            animation-delay: calc(var(--order) * 0.1s);
+            opacity: 0;
+        }
 
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-      border-color: var(--primary);
-    }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border-color: var(--primary);
+        }
 
-    .project-card.is-website {
-      cursor: pointer;
-    }
+        .project-card.is-website {
+            cursor: pointer;
+        }
 
-    .project-image-container {
-      height: 180px;
-      overflow: hidden;
-      position: relative;
-      background-color: #000;
-    }
+        .project-image-container {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+            background-color: #000;
+        }
 
-    .project-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
-    }
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
 
-    .project-info {
-      padding: 1.5rem;
-    }
+        .project-info {
+            padding: 1.5rem;
+        }
 
-    .project-info h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-      color: var(--primary);
-    }
+        .project-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
 
-    .project-info p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.5;
-      margin-bottom: 1rem;
-    }
+        .project-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
 
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
 
-    .project-tag {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--primary);
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      border: 1px solid var(--accent-color);
-    }
+        .project-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--accent-color);
+        }
 
-    /* Rodapé */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      margin-top: 3rem;
-      border-top: 1px solid var(--accent-color);
-    }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--accent-color);
+        }
 
-    /* Notificação de localização */
-    .location-notification {
-      position: fixed;
-      text-align: center;
-      top: 20px;
-      right: 20px;
-      background: var(--card-bg);
-      color: var(--primary);
-      padding: 15px 20px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      border-left: 4px solid var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transform: translateX(120%);
-      opacity: 0;
-      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      z-index: 1000;
-      max-width: 320px;
-      border: 1px solid var(--accent-color);
-    }
-    
-    .location-notification.show {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    
-    .location-notification .flag {
-      width: 32px;
-      height: 24px;
-      object-fit: cover;
-      border-radius: 3px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    
-    .location-info {
-      flex-grow: 1;
-    }
-    
-    .location-info h4 {
-      margin-bottom: 5px;
-      font-size: 16px;
-      color: var(--primary);
-    }
-    
-    .location-info p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      margin: 0;
-    }
+        .location-notification {
+            position: fixed;
+            text-align: center;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            color: var(--primary);
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(120%);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            max-width: 320px;
+            border: 1px solid var(--accent-color);
+        }
 
-    /* Responsividade */
-    @media (max-width: 1024px) {
-      #profile {
-        padding: 1.8rem;
-      }
-      
-      .projects-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      }
-      
-      .location-notification {
-        max-width: 280px;
-      }
-    }
+        .location-notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
 
-    @media (max-width: 768px) {
-      #main {
-        padding: 1.5rem;
-      }
-      
-      #profile {
-        padding: 1.5rem;
-        margin: 1rem auto;
-      }
-      
-      #profile h1 {
-        font-size: 1.8rem;
-      }
-      
-      #profile p {
-        font-size: 1rem;
-      }
-      
-      .social-buttons a {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-      }
-      
-      #projects {
-        margin: 3rem auto;
-        padding: 0 1rem;
-      }
-      
-      #projects h2 {
-        font-size: 1.8rem;
-      }
-      
-      .location-notification {
-        top: 15px;
-        right: 15px;
-        max-width: calc(100% - 30px);
-      }
-    }
+        .location-notification .flag {
+            width: 32px;
+            height: 24px;
+            object-fit: cover;
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
 
-    @media (max-width: 480px) {
-      #main {
-        padding: 1rem;
-      }
-      
-      #profile {
-        padding: 1.2rem;
-      }
-      
-      #profile img {
-        width: 120px;
-        height: 120px;
-      }
-      
-      #profile h1 {
-        font-size: 1.6rem;
-      }
-      
-      .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      
-      .project-image-container {
-        height: 160px;
-      }
-      
-      .project-info {
-        padding: 1.2rem;
-      }
-      
-      .project-info h3 {
-        font-size: 1.2rem;
-      }
-      
-      footer {
-        padding: 1.5rem;
-        font-size: 0.8rem;
-      }
-      
-      .location-notification {
-        padding: 12px 15px;
-      }
-      
-      .location-info h4 {
-        font-size: 15px;
-      }
-      
-      .location-info p {
-        font-size: 13px;
-      }
-    }
-  </style>
+        .location-info {
+            flex-grow: 1;
+        }
+
+        .location-info h4 {
+            margin-bottom: 5px;
+            font-size: 16px;
+            color: var(--primary);
+        }
+
+        .location-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        @media (max-width: 1024px) {
+            #profile {
+                padding: 1.8rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            .location-notification {
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #main {
+                padding: 1.5rem;
+            }
+
+            #profile {
+                padding: 1.5rem;
+                margin: 1rem auto;
+            }
+
+            #profile h1 {
+                font-size: 1.8rem;
+            }
+
+            #profile p {
+                font-size: 1rem;
+            }
+
+            .social-buttons a {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            #projects {
+                margin: 3rem auto;
+                padding: 0 1rem;
+            }
+
+            #projects h2 {
+                font-size: 1.8rem;
+            }
+
+            .location-notification {
+                top: 15px;
+                right: 15px;
+                max-width: calc(100% - 30px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            #main {
+                padding: 1rem;
+            }
+
+            #profile {
+                padding: 1.2rem;
+            }
+
+            #profile img {
+                width: 120px;
+                height: 120px;
+            }
+
+            #profile h1 {
+                font-size: 1.6rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-image-container {
+                height: 160px;
+            }
+
+            .project-info {
+                padding: 1.2rem;
+            }
+
+            .project-info h3 {
+                font-size: 1.2rem;
+            }
+
+            footer {
+                padding: 1.5rem;
+                font-size: 0.8rem;
+            }
+
+            .location-notification {
+                padding: 12px 15px;
+            }
+
+            .location-info h4 {
+                font-size: 15px;
+            }
+
+            .location-info p {
+                font-size: 13px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="intro">
-    <h1>DarkMode</h1>
-    <div class="loader"></div>
-  </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6416626749154410" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6416626749154410" data-ad-slot="1273485651" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
-  <div id="main">
-    <section id="profile">
-      <img id="avatar" src="" alt="Avatar" loading="lazy">
-      <h1 id="username"></h1>
-      <p id="bio">Olá bem-vindo ao meu site! Eu me chamo Vinicius mais conhecido como DarkMode. Abaixo você verá alguns projetos meus.</p>
-      
-      <div class="social-buttons">
-        <a href="https://discord.gg/platformdestroyer" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Discord</a>
-        <a href="https://steamcommunity.com/id/Dark-Mode" target="_blank" rel="noopener noreferrer"><i class="fab fa-steam"></i> Steam</a>
-        <a href="https://github.com/DarkModde" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2>Meus Projetos</h2>
-      <div class="projects-grid" id="projects-container"></div>
-    </section>
-  </div>
-
-  <div class="location-notification" id="locationNotification">
-    <img class="flag" id="countryFlag" src="" alt="Bandeira" loading="lazy">
-    <div class="location-info">
-      <h4>Localização detectada!</h4>
-      <p id="locationText">Carregando sua localização...</p>
+    <div id="intro">
+        <h1>DarkMode</h1>
+        <div class="loader"></div>
     </div>
-  </div>
 
-  <script>
-    // Configurações
-    const CONFIG = {
-      showLocationOnce: false,
-      profileCacheHours: 12,
-      discordUserId: '1080175803024814142'
-    };
-
-    // Elementos DOM
-    const DOM = {
-      intro: document.getElementById('intro'),
-      main: document.getElementById('main'),
-      avatar: document.getElementById('avatar'),
-      username: document.getElementById('username'),
-      projectsContainer: document.getElementById('projects-container'),
-      locationNotification: document.getElementById('locationNotification'),
-      countryFlag: document.getElementById('countryFlag'),
-      locationText: document.getElementById('locationText')
-    };
-
-    // Dados dos projetos
-    const PROJECTS = [
-      {
-        title: "CMSP Plataformas Hacks",
-        description: "Website com métodos para facilitar as tarefas de estudantes de São Paulo",
-        image: "https://i.imgur.com/PBnK2Pb.png",
-        tags: ["Website", "School", "Scripts"],
-        isWebsite: true,
-        url: "https://darkmodde.xyz/CMSP-Hacks/"
-      },
-      {
-        title: "Night ToolBox",
-        description: "Um simples Batch com ferramentas e utilitários para otimizar o Windows",
-        image: "https://i.imgur.com/FGvCjkO.png",
-        tags: ["Program", "Optimizer", "Batch"],
-        isWebsite: true,
-        url: "https://darkmodde.xyz/NightBox/"
-      },
-      {
-        title: "Dark-Privacy",
-        description: "Website com dicas de privacidade para uso diario do computador",
-        image: "https://i.imgur.com/5HC7i4d.png",
-        tags: ["Website", "Privacy", "Tips"],
-        isWebsite: true,
-        url: "https://darkmodde.xyz/Dark-Privacy/"
-      }
-    ];
-
-    // Funções utilitárias
-    const Utils = {
-      getCurrentTime: () => new Date().getTime(),
-      fetchWithTimeout: async (url, options = {}, timeout = 8000) => {
-        const controller = new AbortController();
-        const id = setTimeout(() => controller.abort(), timeout);
-        
-        try {
-          const response = await fetch(url, {
-            ...options,
-            signal: controller.signal
-          });
-          
-          clearTimeout(id);
-          
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          
-          return response.json();
-        } catch (error) {
-          clearTimeout(id);
-          throw error;
-        }
-      }
-    };
-
-    // Perfil do Discord
-    const DiscordProfile = {
-      load: async () => {
-        const now = Utils.getCurrentTime();
-        const storedProfile = localStorage.getItem('discordProfile');
-        const lastUpdate = localStorage.getItem('lastProfileUpdate');
-        
-        if (storedProfile && lastUpdate && (now - lastUpdate < CONFIG.profileCacheHours * 60 * 60 * 1000)) {
-          DiscordProfile.update(JSON.parse(storedProfile));
-        } else {
-          try {
-            const data = await Utils.fetchWithTimeout(`https://dnext-api.vercel.app/api/discord/user/${CONFIG.discordUserId}`);
-            DiscordProfile.update(data);
-            localStorage.setItem('discordProfile', JSON.stringify(data));
-            localStorage.setItem('lastProfileUpdate', now.toString());
-          } catch {
-            DiscordProfile.update({ 
-              global_name: "<\\DarkMode>", 
-              avatar: { link: "https://i.imgur.com/lLkPufb.png" } 
-            });
-          }
-        }
-      },
-      
-      update: (data) => {
-        DOM.username.textContent = data.global_name || "<\\DarkMode>";
-        DOM.avatar.src = data.avatar?.link || "https://i.imgur.com/lLkPufb.png";
-      }
-    };
-
-    // Localização do visitante
-    const LocationTracker = {
-      getLocationData: async (ip) => {
-        try {
-          return await Utils.fetchWithTimeout(`https://ipinfo.io/${ip}/json`);
-        } catch {
-          return await Utils.fetchWithTimeout('https://ipinfo.io/json');
-        }
-      },
-      
-      showNotification: (locationData) => {
-        if (CONFIG.showLocationOnce && localStorage.getItem('locationShown')) return;
-
-        const countryCode = locationData.country || 'BR';
-        const flagUrl = `https://flagcdn.com/256x192/${countryCode.toLowerCase()}.png`;
-        
-        DOM.countryFlag.src = flagUrl;
-        DOM.locationText.textContent = 
-          `${locationData.region || ''}, ${locationData.country || ''}`.replace(/,\s*,/g, '').trim();
-        
-        DOM.locationNotification.classList.add('show');
-        
-        if (CONFIG.showLocationOnce) {
-          localStorage.setItem('locationShown', 'true');
-        }
-
-        setTimeout(() => {
-          DOM.locationNotification.classList.remove('show');
-        }, 5000);
-      }
-    };
-
-    // Carregamento de projetos
-    const Projects = {
-      load: () => {
-        PROJECTS.forEach((project, index) => {
-          const projectCard = Projects.createCard(project, index);
-          DOM.projectsContainer.appendChild(projectCard);
-          
-          setTimeout(() => {
-            projectCard.style.opacity = '1';
-          }, 100 + (index * 100));
-        });
-      },
-      
-      createCard: (project, index) => {
-        const card = document.createElement('div');
-        card.className = 'project-card';
-        card.style.setProperty('--order', index);
-        
-        if (project.isWebsite) {
-          card.classList.add('is-website');
-          card.addEventListener('click', () => window.open(project.url, '_blank'));
-        }
-        
-        card.innerHTML = `
-          <div class="project-image-container">
-            <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy">
-          </div>
-          <div class="project-info">
-            <h3>${project.title}</h3>
-            <p>${project.description}</p>
-            <div class="project-tags">
-              ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+    <div id="main">
+        <section id="profile">
+            <img id="avatar" src="" alt="Avatar" loading="lazy">
+            <h1 id="username"></h1>
+            <p id="bio">Olá bem-vindo ao meu site! Eu me chamo Vinicius mais conhecido como DarkMode. Abaixo você verá alguns projetos meus.</p>
+            <div class="social-buttons">
+                <a href="https://discord.gg/platformdestroyer" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Discord</a>
+                <a href="https://steamcommunity.com/id/Dark-Mode" target="_blank" rel="noopener noreferrer"><i class="fab fa-steam"></i> Steam</a>
+                <a href="https://github.com/DarkModde" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
             </div>
-          </div>
-        `;
-        
-        return card;
-      }
-    };
+        </section>
 
-    // Transição de tela
-    const UI = {
-      hideIntro: () => {
-        DOM.intro.style.opacity = '0';
-        
-        setTimeout(() => {
-          DOM.intro.style.display = 'none';
-          DOM.main.style.display = 'block';
-          
-          setTimeout(() => {
-            DOM.main.classList.add('show');
-          }, 100);
-        }, 500);
-      }
-    };
+        <section id="projects">
+            <h2>Meus Projetos</h2>
+            <div class="projects-grid" id="projects-container"></div>
+        </section>
+    </div>
 
-    // Prevenção de ações indesejadas
-    const Security = {
-      init: () => {
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('selectstart', e => e.preventDefault());
-        document.addEventListener('dragstart', e => e.preventDefault());
-      }
-    };
+    <div class="location-notification" id="locationNotification">
+        <img class="flag" id="countryFlag" src="" alt="Bandeira" loading="lazy">
+        <div class="location-info">
+            <h4>Localização detectada!</h4>
+            <p id="locationText">Carregando sua localização...</p>
+        </div>
+    </div>
 
-    // Inicialização
-    window.addEventListener('load', () => {
-      Security.init();
-      DiscordProfile.load();
-      Projects.load();
-      setTimeout(UI.hideIntro, 2000);
-    });
-  </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const CONFIG = {
+                showLocationOnce: false,
+                profileCacheHours: 12,
+                discordUserId: '1080175803024814142'
+            };
+
+            const DOM = {
+                intro: document.getElementById('intro'),
+                main: document.getElementById('main'),
+                avatar: document.getElementById('avatar'),
+                username: document.getElementById('username'),
+                projectsContainer: document.getElementById('projects-container'),
+                locationNotification: document.getElementById('locationNotification'),
+                countryFlag: document.getElementById('countryFlag'),
+                locationText: document.getElementById('locationText')
+            };
+
+            const PROJECTS = [{
+                title: "CMSP Plataformas Hacks",
+                description: "Website com métodos para facilitar as tarefas de estudantes de São Paulo",
+                image: "https://i.imgur.com/PBnK2Pb.png",
+                tags: ["Website", "School", "Scripts"],
+                isWebsite: true,
+                url: "https://darkmodde.xyz/CMSP-Hacks/"
+            }, {
+                title: "Night ToolBox",
+                description: "Um simples Batch com ferramentas e utilitários para otimizar o Windows",
+                image: "https://i.imgur.com/FGvCjkO.png",
+                tags: ["Program", "Optimizer", "Batch"],
+                isWebsite: true,
+                url: "https://darkmodde.xyz/NightBox/"
+            }, {
+                title: "Dark-Privacy",
+                description: "Website com dicas de privacidade para uso diario do computador",
+                image: "https://i.imgur.com/5HC7i4d.png",
+                tags: ["Website", "Privacy", "Tips"],
+                isWebsite: true,
+                url: "https://darkmodde.xyz/Dark-Privacy/"
+            }];
+
+            const Utils = {
+                getCurrentTime: () => new Date().getTime(),
+                fetchWithTimeout: async (url, options = {}, timeout = 8000) => {
+                    const controller = new AbortController();
+                    const id = setTimeout(() => controller.abort(), timeout);
+                    try {
+                        const response = await fetch(url, { ...options, signal: controller.signal });
+                        clearTimeout(id);
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                        return response.json();
+                    } catch (error) {
+                        clearTimeout(id);
+                        throw error;
+                    }
+                }
+            };
+
+            const DiscordProfile = {
+                load: async () => {
+                    const now = Utils.getCurrentTime();
+                    const storedProfile = localStorage.getItem('discordProfile');
+                    const lastUpdate = localStorage.getItem('lastProfileUpdate');
+                    const isCacheValid = storedProfile && lastUpdate && (now - lastUpdate < CONFIG.profileCacheHours * 3600 * 1000);
+
+                    if (isCacheValid) {
+                        DiscordProfile.update(JSON.parse(storedProfile));
+                    } else {
+                        try {
+                            const data = await Utils.fetchWithTimeout(`https://dnext-api.vercel.app/api/discord/user/${CONFIG.discordUserId}`);
+                            DiscordProfile.update(data);
+                            localStorage.setItem('discordProfile', JSON.stringify(data));
+                            localStorage.setItem('lastProfileUpdate', now.toString());
+                        } catch {
+                            DiscordProfile.update({
+                                global_name: "<\\DarkMode>",
+                                avatar: { link: "https://i.imgur.com/lLkPufb.png" }
+                            });
+                        }
+                    }
+                },
+                update: (data) => {
+                    DOM.username.textContent = data.global_name || "<\\DarkMode>";
+                    DOM.avatar.src = data.avatar?.link || "https://i.imgur.com/lLkPufb.png";
+                }
+            };
+            
+            const LocationTracker = {
+                getLocationData: async (ip) => {
+                    try {
+                        return await Utils.fetchWithTimeout(`https://ipinfo.io/${ip}/json`);
+                    } catch {
+                        return await Utils.fetchWithTimeout('https://ipinfo.io/json');
+                    }
+                },
+                showNotification: (locationData) => {
+                    if (CONFIG.showLocationOnce && localStorage.getItem('locationShown')) return;
+
+                    const countryCode = (locationData.country || 'BR').toLowerCase();
+                    DOM.countryFlag.src = `https://flagcdn.com/w320/${countryCode}.png`;
+                    DOM.locationText.textContent = `${locationData.region || ''}, ${locationData.country || ''}`.replace(/^,\s*|\s*,$/g, '');
+                    
+                    DOM.locationNotification.classList.add('show');
+                    if (CONFIG.showLocationOnce) localStorage.setItem('locationShown', 'true');
+                    
+                    setTimeout(() => DOM.locationNotification.classList.remove('show'), 5000);
+                }
+            };
+
+            const Projects = {
+                load: () => {
+                    PROJECTS.forEach((project, index) => {
+                        const projectCard = Projects.createCard(project, index);
+                        DOM.projectsContainer.appendChild(projectCard);
+                        setTimeout(() => projectCard.style.opacity = '1', 100 + (index * 100));
+                    });
+                },
+                createCard: (project, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+                    card.style.setProperty('--order', index);
+
+                    if (project.isWebsite) {
+                        card.classList.add('is-website');
+                        card.addEventListener('click', () => window.open(project.url, '_blank'));
+                    }
+
+                    card.innerHTML = `
+                        <div class="project-image-container">
+                            <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy">
+                        </div>
+                        <div class="project-info">
+                            <h3>${project.title}</h3>
+                            <p>${project.description}</p>
+                            <div class="project-tags">
+                                ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>`;
+                    return card;
+                }
+            };
+
+            const UI = {
+                hideIntro: () => {
+                    DOM.intro.style.opacity = '0';
+                    setTimeout(() => {
+                        DOM.intro.style.display = 'none';
+                        DOM.main.style.display = 'block';
+                        setTimeout(() => DOM.main.classList.add('show'), 50);
+                    }, 500);
+                }
+            };
+
+            const Security = {
+                init: () => {
+                    document.addEventListener('contextmenu', e => e.preventDefault());
+                    document.addEventListener('selectstart', e => e.preventDefault());
+                    document.addEventListener('dragstart', e => e.preventDefault());
+                }
+            };
+
+            const init = () => {
+                Security.init();
+                DiscordProfile.load();
+                Projects.load();
+                // LocationTracker.getLocationData().then(LocationTracker.showNotification); // Descomente para ativar
+                setTimeout(UI.hideIntro, 2000);
+            };
+            
+            init();
+        });
+    </script>
 </body>
 </html>
