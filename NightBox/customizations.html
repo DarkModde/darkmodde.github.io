@@ -49,7 +49,6 @@
             transition: opacity 0.5s;
         }
         
-        /* Estrutura básica */
         .bg-animated {
             position: fixed;
             top: 0;
@@ -88,7 +87,6 @@
             66% { transform: translate(-50px, 50px) rotate(240deg); }
         }
         
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -169,7 +167,6 @@
             margin: 0 auto 3rem;
         }
         
-        /* Categorias */
         .category-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -232,7 +229,6 @@
             transform: scale(1.02);
         }
         
-        /* Botões */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -268,7 +264,6 @@
             max-width: 800px;
         }
         
-        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -312,7 +307,6 @@
             transform: rotate(90deg);
         }
         
-        /* Responsividade */
         @media (max-width: 1024px) {
             .hero { padding: 6rem 1.5rem 3rem; }
             .items-grid { gap: 1.5rem; }
@@ -371,7 +365,6 @@
         <p class="section-subtitle">Imagens em alta resolução para personalizar sua área de trabalho</p>
         
         <div class="items-grid" id="wallpapers-grid">
-            <!-- Wallpapers serão inseridos via JavaScript -->
         </div>
     </div>
     
@@ -382,11 +375,9 @@
         <p class="section-subtitle">Pacotes de cursores personalizados para deixar seu mouse único</p>
         
         <div class="items-grid" id="cursors-grid">
-            <!-- Cursores serão inseridos via JavaScript -->
         </div>
     </div>
 
-    <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <span class="close-lightbox">&times;</span>
         <div class="lightbox-content">
@@ -506,7 +497,6 @@
             }
         ];
 
-        // Função para criar os cards
         function createCard(item, isWallpaper = true) {
             return `
                 <div class="item-card">
@@ -518,19 +508,16 @@
             `;
         }
 
-        // Renderizar wallpapers
         const wallpapersGrid = document.getElementById('wallpapers-grid');
         wallpapers.forEach(wallpaper => {
             wallpapersGrid.innerHTML += createCard(wallpaper);
         });
 
-        // Renderizar cursores
         const cursorsGrid = document.getElementById('cursors-grid');
         cursors.forEach(cursor => {
             cursorsGrid.innerHTML += createCard(cursor, false);
         });
 
-        // Lightbox
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-image');
         const closeLightbox = document.querySelector('.close-lightbox');
@@ -554,7 +541,6 @@
             }
         });
 
-        // Função para forçar download
         function forceDownload(url, filename) {
             const a = document.createElement('a');
             a.href = url;
@@ -564,26 +550,21 @@
             document.body.removeChild(a);
         }
 
-        // Gerenciador de downloads
         document.querySelectorAll('.btn-primary').forEach(button => {
             button.addEventListener('click', function() {
                 const downloadUrl = this.getAttribute('data-download');
                 const filename = this.getAttribute('data-filename');
                 
-                // Efeito visual no botão
                 const originalText = this.innerHTML;
                 this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparando...';
                 this.style.pointerEvents = 'none';
                 
                 setTimeout(() => {
-                    // Inicia o download
                     forceDownload(downloadUrl, filename);
                     
-                    // Feedback visual
                     this.innerHTML = '<i class="fas fa-check"></i> Download Iniciado!';
                     this.style.background = '#10b981';
                     
-                    // Reseta o botão após 2 segundos
                     setTimeout(() => {
                         this.innerHTML = originalText;
                         this.style.background = '';
@@ -593,7 +574,6 @@
             });
         });
 
-        // Proteções
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('dragstart', e => e.target.tagName === 'IMG' && e.preventDefault());
         document.addEventListener('selectstart', e => {
@@ -605,4 +585,5 @@
         });
     </script>
 </body>
+
 </html>
